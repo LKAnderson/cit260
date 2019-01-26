@@ -1,0 +1,2 @@
+Writing Prompt - Does CIT 260 relate to the Gospel?
+What parallels do you see between the Gospel and the work we are doing as programmers in our class?
