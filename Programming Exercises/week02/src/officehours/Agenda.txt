@@ -1,0 +1,35 @@
+Agenda
+------
+
+1. Setting Eclipse to use spaces instead of tabs.
+
+2. Ensuring we're looking at the right place for assignments.
+
+3. Q&A
+
+    - Celsius & Fahrenheit - constants or literals? For our assignments 
+      this week - literals are fine.
+    
+    - Are parentheses necessary? Sometimes - parentheses make your code 
+      more precise and leave less to chance (when working with numeric 
+      calculations).
+     
+4. Assignment Demonstration
+
+    - Explanation of the Scanner class
+    
+    - Demonstration of using try() to clear the warning about Scanner 
+      needing to be closed.
+    
+    - Demonstration of how to look up the documentation for a class on 
+      the Oracle website.
+    
+    - Demonstration of the print, println, and printf methods on System.out.
+    
+    - Demonstration of Math.pow()
+    
+    - Demonstration of Inheritance (sub-classing), which is something you 
+      can safely ignore until later in the semester. This wasn't the best 
+      example to use for a discussion on inheritance, but we tried it anyway.
+      
+

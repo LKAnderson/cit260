@@ -1,0 +1,22 @@
+AGENDA
+======
+
+1. Q&A
+
+    - Console.WriteLine in the slides? (That's a typo and is actually C# code)
+    - What is "package" in the code?
+    - Indentation - what does it mean to be consistent?
+    - Abnormal Exit? (System.exit(), and exceptions)
+    - Eclipse, can it do HTML? Yes!
+    
+
+2. Demonstration (3.17 - Not on the assignment, but similar)
+
+    - User input using Scanner (this time we call nextInt()
+    - Validating user input using if-statements
+    - Switch statements to get a string description of the integer input.
+    - if-else-if statement for figuring out complex selections.
+    - Discussion of Magic Numbers and how (and why) to avoid them.
+    
+    
+

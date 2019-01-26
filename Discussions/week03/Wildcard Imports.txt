@@ -1,0 +1,5 @@
+It can be tempting to use the wildcard import statement, but you should resist the temptation.
+
+The problem is that you can often run into name collisions where you imported a class under the wildcard that you did not intend, and it conflicts with another class you already have in your project, or have already imported under a different wildcard. 
+
+You might think it's a pain, and you're right. But tools like Eclipse will manage your imports for you, and will highlight which ones you aren't currently using so you can keep your file as clean as possible. 

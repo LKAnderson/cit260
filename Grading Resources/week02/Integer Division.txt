@@ -1,0 +1,1 @@
+You used integer arithmetic on the 9/5, which yield a value of 1 instead of 1.8. You need to make sure at least one of the terms in that fraction is a double value (eg, 9.0/5). This threw off your calculation. When entering 100 C, the answer should be 212.0 F. Your program returned 132.0 F.

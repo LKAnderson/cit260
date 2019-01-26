@@ -1,0 +1,1 @@
+Our assignments are our software requirements. When a specific output (or format of output) is given in the requirements, we need to meet it exactly, and not modify it without prior agreement from the stakeholder.

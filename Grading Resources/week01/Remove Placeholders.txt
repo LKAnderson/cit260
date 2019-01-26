@@ -1,0 +1,1 @@
+One tip: When using auto-generated code that inserts a TODO comment as a placeholder, please remove the placeholder once you've satisfied it.

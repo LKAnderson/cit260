@@ -1,0 +1,5 @@
+<p>Good idea! The "goto fail" security bug that made the news a few years ago was caused by not using curly braces around an if-statement body.&nbsp;</p>
+<p>As I recall, the code looked something like this (it was written in C):</p>
+<pre>if (some_condition == some_other_condition)<br />&nbsp; &nbsp; do_something_important();<br />&nbsp; &nbsp; goto fail;</pre>
+<p>The problem is that the indentation makes the reader assume those statements will be executed if the condition is true. But only the first line will be executed. The "goto fail" line will be executed&nbsp;<em>every time</em> because it's not part of an if-statement block. It only appears to be.</p>
+<p>So, as a rule, I use curly braces around even single-line blocks of code. It's just smart and safe.</p>

@@ -1,0 +1,3 @@
+When coding, our top priority is making the code correct. Next is making it maintainable. By "maintainable," we mean that the effort to understand it and make changes to it later is the lowest it can be. 
+
+If you were to print the whole pictogram using just five println() calls, and "drawing" the picture all at once, it will be very easy to see mistakes and to make changes should the requirements of the software change in the future.
