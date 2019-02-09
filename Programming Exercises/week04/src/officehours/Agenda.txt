@@ -1,0 +1,27 @@
+AGENDA
+
+1. Finding feedback with the new rubric
+
+2. Q&A
+
+    - System.out.printf() or System.out.format()? - Answer: Either. 
+      They both work the same.
+      
+    - Math.random() function demo?
+    
+    - Discussion Board - What counts?
+
+3. Programming Examples (How many of these can we get done tonight?)
+
+    4.13 - Vowel or Consonant?
+    4.14 - Convert Letter grade to a number
+    4.15 - Phone keypad (which key is a letter found on?
+    4.18 - Student major and status
+    4.20 - Length and first character of a string
+    4.22 - Check for a substring
+    
+    4.23 - Assignment Hint: Nothing new here. Just more variables and a little 
+           bit of math.
+    
+    
+

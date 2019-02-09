@@ -71,6 +71,9 @@ public class A4dot23 {
             System.out.println("Pay Rate:      " + payRate);
             System.out.println("Gross Pay:     " + format.format(grossPay));
             System.out.println("Deductions:");
+            
+            
+            
             System.out.format ("  Federal Witholding (%f%%): %s\n", 
                 federalTaxRate, format.format(federalWitholding));
             System.out.format ("  State Witholding (%f%%): %s\n",
@@ -78,6 +81,7 @@ public class A4dot23 {
             System.out.println("  Total Deduction: " + format.format(totalDeductions));
             System.out.println("Net Pay: " + format.format(netPay));
 
+            
         }
     }
 

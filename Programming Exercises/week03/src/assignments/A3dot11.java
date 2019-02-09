@@ -19,6 +19,14 @@ public class A3dot11 {
     
     public static void main(String[] argv) {
         
+        // Some constants to make things easier
+        // to read down below.
+        final int FEB = 2;
+        final int APR = 4;
+        final int JUN = 6;
+        final int SEP = 9;
+        final int NOV = 11;
+        
         String[] months = new String[] {
                 "January", "February", "March",    "April", "May",    "June",
                 "July",    "August", "September", "October", "November", "Decemer"
@@ -47,14 +55,14 @@ public class A3dot11 {
             // Check for non-default cases
             switch(month) {
             // first the 30-day months
-            case 4:
-            case 6:
-            case 9:
-            case 11:
+            case APR:
+            case JUN:
+            case SEP:
+            case NOV:
                 days = 30;
                 break;
             // finally, handle poor little February
-            case 2:
+            case FEB:
                 if ((year % 4 == 0 && year % 100 != 0)
                     || year % 400 == 0) {
                     days = 29;

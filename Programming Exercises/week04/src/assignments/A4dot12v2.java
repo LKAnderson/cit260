@@ -5,28 +5,8 @@ import java.util.Scanner;
 /**
  * Convert a hex character to its binary representation.
  */
-public class A4dot12 {
+public class A4dot12v2 {
 
-    // Could use a switch statement, but arrays are much faster and can
-    // be used repeatedly.
-    private final static String[] BINARY_DIGITS = new String[] { 
-            "0000", // 0
-            "0001", // 1
-            "0010", // 2
-            "0011", // 3
-            "0100", // 4
-            "0101", // 5
-            "0110", // 6
-            "0111", // 7
-            "1000", // 8
-            "1001", // 9
-            "1010", // A (10)
-            "1011", // B (11)
-            "1100", // C (12)
-            "1101", // D (13)
-            "1110", // E (14)
-            "1111", // F (15)
-    };
 
     public static void main(String[] argv) {
 
@@ -49,17 +29,15 @@ public class A4dot12 {
 
             // Get the first (only) character
             char hexDigit = hexString.charAt(0);
-
-            // default to an empty string
-            String binaryString = "";
+            int digit = 0;
 
             // Find the binary string according to the relative offset
             // of the character from its root character.
             if (hexDigit >= 'A' && hexDigit <= 'F') {
-                binaryString = BINARY_DIGITS[10 + (hexDigit - 'A')];
+                digit = 10 + (hexDigit - 'A');
 
             } else if (hexDigit >= '0' && hexDigit <= '9') {
-                binaryString = BINARY_DIGITS[hexDigit - '0'];
+                digit = hexDigit - '0';
 
             } else {
                 System.err.printf("%c is an invalid input\n", hexDigit);
@@ -69,8 +47,30 @@ public class A4dot12 {
                 System.exit(1);
             }
 
+            String binaryString = Integer.toBinaryString(digit);
+            
+            // Make sure it's four digits
+            if (binaryString.length() == 1) {
+                binaryString = "0" + binaryString;
+            }
+            
+            // notice the *lack* of an else here. We want each
+            // if statement to be tested as we build up our
+            // string to 4 digits.
+            
+            if (binaryString.length() == 2) {
+                binaryString = "0" + binaryString;
+            }
+            
+            if (binaryString.length() == 3) {
+                binaryString = "0" + binaryString;
+            }
+            // Man! I can't wait until we learn about loops
+            // next week!
+            
             // Print it out.
             System.out.printf("The binary value is %s\n", binaryString);
+                    
         }
     }
 }
