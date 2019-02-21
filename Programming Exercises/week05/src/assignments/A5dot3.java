@@ -2,6 +2,8 @@ package assignments;
 
 public class A5dot3 {
 
+    private final static double KG_PER_POUND = 2.2;
+
     public static void main(String[] argv) {
         
         // print the table headers (alignment matters)
@@ -12,7 +14,7 @@ public class A5dot3 {
         for(int kilograms = 1; kilograms <= 199; kilograms += 2) {
         
             // Convert the kilograms to pounds (1 kg = 2.2 lbs)
-            double pounds = kilograms * 2.2;
+            double pounds = kilograms * KG_PER_POUND;
         
             // Print the formatted table
             System.out.printf("%-9d     %6.1f\n", kilograms, pounds);

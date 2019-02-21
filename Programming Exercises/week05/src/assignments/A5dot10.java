@@ -2,6 +2,8 @@ package assignments;
 
 public class A5dot10 {
     
+    private static final int MAX_PER_LINE = 10;
+
     public static void main(String[] argv) {
         
         // Loop from 100 to 1000, by one
@@ -22,7 +24,7 @@ public class A5dot10 {
                 // line
                 printCounter += 1;
                 
-                if (printCounter % 10 == 0) {
+                if (printCounter % MAX_PER_LINE == 0) {
                     System.out.println();
                 }
             }

@@ -1,0 +1,14 @@
+
+Week 7 Agenda
+=============
+
+1. Q&A
+
+2. Code Demonstration
+
+- Using Javadocs & Jshell 
+    (https://docs.oracle.com/javase/10/docs/api/overview-summary.html)
+    
+- Creating arrays
+
+- Sorting array values (Bubble Sort)
