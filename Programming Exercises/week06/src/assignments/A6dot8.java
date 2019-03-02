@@ -2,11 +2,20 @@ package assignments;
 
 public class A6dot8 {
 
+    /**
+     * Convert C to F
+     * @param celsius
+     * @return
+     */
     public static double celsiusToFahrenheit(double celsius) {
         return (9.0/5 * celsius) + 32;
     }
 
-
+    /**
+     * Convert F to C
+     * @param fahrenheit
+     * @return
+     */
     public static double fahrenheitToCelsius(double fahrenheit) {
         return (fahrenheit - 32) / (9.0/5);
     }

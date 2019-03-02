@@ -15,37 +15,37 @@ public class A7dot8 {
     
     /**
      * Calculate the average of the integers provided.
-     * @param array
+     * @param numbers
      * @return
      */
-    public static int average(int[] array) {
+    public static int average(int[] numbers) {
         
         // loop through all elements and total the values
         int total = 0;
-        for (int number: array) {
+        for (int number: numbers) {
             total += number;
         }
         
         // divide the total by the number of elements.
-        return total / array.length;
+        return total / numbers.length;
     }
     
     
     /**
      * Calculate the aver of the doubles provided.
-     * @param array
+     * @param numbers
      * @return
      */
-    public static double average(double[] array) {
+    public static double average(double[] numbers) {
         
         // loop through all elements and total the values
         double total = 0;
-        for (double number: array) {
+        for (double number: numbers) {
             total += number;
         }
         
         // divide the total by the number of elements
-        return total / array.length;
+        return total / numbers.length;
     }
     
     
@@ -142,7 +142,7 @@ public class A7dot8 {
         // Read the data from the line entered by the user
         String line = scanner.nextLine();
         
-        // Split it into individual array elements
+        // Split it into individual array elements based on whitespace (regex)
         String[] data = line.split("\\s+");
         
         return data;

@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class A7dot11 {
 
-    
+    /**
+     * Parse the doubles from the input string (space separated)
+     * @param inputs
+     * @return
+     */
     public static double[] getDoubles(String[] inputs) {
         
         double[] doubles = new double[inputs.length];
@@ -21,7 +25,11 @@ public class A7dot11 {
         
     }
     
-    
+    /**
+     * Calculate the mean
+     * @param data
+     * @return
+     */
     public static double mean(double[] data) {
         double total = 0;
         for (double d: data) {
@@ -30,7 +38,11 @@ public class A7dot11 {
         return total / data.length;
     }
     
-    
+    /**
+     * Calculate the std dev
+     * @param data
+     * @return
+     */
     public static double deviation(double[] data) {
         double mean = mean(data);
         
@@ -50,6 +62,8 @@ public class A7dot11 {
             System.out.print("Enter the numbers: ");
             String input = scanner.nextLine();
             
+            // Split the string into multiple strings based on
+            // whitespace (regex)
             String[] inputs = input.split("\\s+");
             double[] doubles = getDoubles(inputs);
             

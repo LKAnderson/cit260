@@ -1,0 +1,15 @@
+AGENDA
+======
+
+1. Q&A
+
+- Multiple classes in a single file
+
+- JavaFX utils? 
+
+- When to use private vs public, etc?
+
+
+2. Programming Exercise 9.2
+
+

@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 public class A6dot7 {
 
+    /**
+     * Calculate the future value of an investment.
+     * @param investmentAmount
+     * @param monthlyInterestRate
+     * @param years
+     * @return
+     */
     public static double futureInvestmentValue(
                             double investmentAmount,
                             double monthlyInterestRate,

@@ -12,3 +12,5 @@ Week 7 Agenda
 - Creating arrays
 
 - Sorting array values (Bubble Sort)
+
+- Binary Search
