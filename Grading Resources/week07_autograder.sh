@@ -2,56 +2,108 @@
 
 export IFS=$'\n'
 
-for zip in $(ls *.zip); do
+zip=$1
 
-    dir=$(echo "$zip" | sed 's/.zip//')
-    unzip -qq -o -d $dir $zip
-    
-    echo $dir
-    pushd $dir > /dev/null
+dir=$(echo "$zip" | sed 's/_/ /' | awk '{ print $1; }')
+unzip -qq -o -d $dir $zip
 
+pushd $dir > /dev/null
+dir=$(pwd)
 
-    # clear out class files
-    find . -name \*.class -exec rm {} \;
+# clear out class files
+find . -name \*.class -exec rm {} \;
 
-    # find java files
-    for javaPath in $(find . -name \*.java); do
-        javaDir=$(dirname $javaPath)
-        javaFile=$(basename $javaPath)
-        
-        pushd $javaDir > /dev/null
+javaPath=$(find . -name A7dot\*8.java)
+if [ $javaPath != "" ]; then
+    echo "Found ${javaPath}"
 
-        # Remove any package names.
-        indent="   "
-        echo $indent $javaFile
-        cp $javaFile tmpfile
-        cat tmpfile | sed 's/^\s*package .*;//' > $javaFile
+    javaDir=$(dirname "${javaPath}")
+    pushd "${javaDir}" > /dev/null
+
+    javaFile=$(basename ${javaPath})
+
+    # Remove package, if any
+    for jj in $(ls *.java); do
+        cp $jj tmpfile
+        cat tmpfile | sed 's/^\s*package .*;//' > $jj
         rm tmpfile
-
-        # Compile the file
-        javac $javaFile 2> $javaFile.compile.txt
-        if [ "$?" != "0" ]; then
-            echo $indent $javaFile has errors
-        else
-            class=$(echo $javaFile | sed 's/.java//')
-            echo "1 2 3 4 5 6 7 8 9 10" | java $class 2>&1 > $class.result.txt
-        fi
-
-        # Check for cheating
-        
-        if [ $class == "A7dot8" ]; then
-            touch ${class}_match_$(is_copy $javaFile $HOME/Projects/Intro-to-Java-Programming/Exercise_07/Exercise_07_08/Exercise_07_08.java)
-        fi  
-
-        if [ $class == "A7dot11" ]; then
-            touch ${class}_match_$(is_copy $javaFile $HOME/Projects/Intro-to-Java-Programming/Exercise_07/Exercise_07_11/Exercise_07_11.java)
-        fi  
-
-        popd > /dev/null
-
     done
 
-    popd > /dev/null
-    
+    mkdir -p "${dir}/RESULT/"
+    RESULT="${dir}/result/7.8.txt"
+    echo "A7dot8" > "${RESULT}"
+    echo "------" >> "${RESULT}"
 
-done
+
+    # Compile the file
+    echo "Compiling it"
+    echo "Compile A7dot8" >> "${RESULT}"
+    javac $javaFile 2>> "${RESULT}"
+    echo "--------------" >> "${RESULT}"
+
+    # Check for cheating
+    echo -n "Cheating Check: A7dot8: " >> "${RESULT}"
+    echo -n "$(is_copy $javaFile $HOME/Projects/Intro-to-Java-Programming/Exercise_07/Exercise_07_08/Exercise_07_08.java)%, Rectangle: " >> ${RESULT}
+    echo "--------------------" >> "${RESULT}"
+
+    javaClass=$(echo $javaFile | sed 's/\.java//')
+
+    # Run the class
+    echo "Running it"
+    echo "Output" >> "${RESULT}"
+    java $javaClass 2>&1 >> "${RESULT}"
+    echo "" >> "${RESULT}"
+
+    echo "-------------" >> "${RESULT}"
+    echo "Looking for elements" >> "${RESULT}"
+
+    popd > /dev/null
+fi
+
+javaPath=$(find . -name A7dot11.java)
+if [ $javaPath != "." ]; then
+    echo "Found ${javaPath}"
+    javaDir=$(dirname "${javaPath}")
+    pushd "${javaDir}" > /dev/null
+
+    javaFile=$(basename ${javaPath})
+
+    # Remove package, if any
+    for jj in $(ls *.java); do
+        cp $jj tmpfile
+        cat tmpfile | sed 's/^\s*package .*;//' > $jj
+        rm tmpfile
+    done
+
+    mkdir -p "${dir}/RESULT/"
+    RESULT="${dir}/result/9.3.txt"
+    echo "A7dot11" > "${RESULT}"
+    echo "------" >> "${RESULT}"
+
+
+    # Compile the file
+    echo "Compiling it"
+    echo "Compile A7dot11" >> "${RESULT}"
+    javac $javaFile 2>> "${RESULT}"
+    echo "--------------" >> "${RESULT}"
+
+    # Check for cheating
+    echo -n "Cheating Check: " >> "${RESULT}"
+    echo "$(is_copy $javaFile $HOME/Projects/Intro-to-Java-Programming/Exercise_07/Exercise_07_11/Exercise_07_11.java)%" >> ${RESULT}
+    echo "--------------------" >> "${RESULT}"
+
+    javaClass=$(echo $javaFile | sed 's/\.java//')
+
+    # Run the class
+    echo "Running it"
+    echo "Output" >> "${RESULT}"
+    java $javaClass 2>&1 >> "${RESULT}"
+    echo "" >> "${RESULT}"
+
+    echo "-------------" >> "${RESULT}"
+    echo "Looking for elements" >> "${RESULT}"
+
+    popd > /dev/null
+fi
+
+popd > /dev/null

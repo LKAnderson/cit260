@@ -15,8 +15,8 @@ public class Rectangle {
      * object is created.
      */
     public Rectangle() {
-        width = 0;
-        height = 0;
+        width = 1;
+        height = 1;
     }
     
     /**
