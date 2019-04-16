@@ -53,7 +53,7 @@ public class Dog extends Animal {
      */
     @Override
     public String getDescription() {
-        return String.format("%s (Dog) loves its %s, and says '%s'", getName(), favoriteToy, speak());
+        return String.format("%s (Dog) loves its %s, and says '%s'.", getName(), favoriteToy, speak());
     }
 
     /**

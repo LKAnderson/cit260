@@ -1,0 +1,43 @@
+<div style="width: 37%; background-color: #d7eff7; float: right; margin: 0 0 1em 1em; padding: 1em;">
+    <p><span><strong>At a glance</strong></span></p>
+    <p><span style="font-size: 10pt;"><strong>Subject</strong> - Chapter 6, Methods (aka subroutines, procedures and functions)</span></p>
+    <p><span style="font-size: 10pt;"><strong>Office Hour Call</strong> - Wednesday, 7:30pm Mountain Time</span></p>
+    <p><a title="W06: Exam 1" href="https://byui.instructure.com/courses/37376/quizzes/405913" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/quizzes/405913" data-api-returntype="Quiz"><span style="font-size: 10pt;"><strong>Week 6 Exam</strong> - due Saturday, 11:59pm Mountain Time (2 hour time limit)</span></a></p>
+    <p><span style="font-size: 10pt;"><strong><a title="W06 Exercise: Assignment 6" href="https://byui.instructure.com/courses/37376/assignments/921619" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921619" data-api-returntype="Assignment">Week 6 Programming Exercises</a>, <a title="W06 Reflection: Learning Summary" href="https://byui.instructure.com/courses/37376/assignments/921625" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921625" data-api-returntype="Assignment">Learning Summary</a>, <a title="W06 Quiz: Teaching One Another" href="https://byui.instructure.com/courses/37376/quizzes/405979" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/quizzes/405979" data-api-returntype="Quiz">Teach One Another Quiz</a></strong> - all due Saturday, 11:59pm Mountain Time</span></p>
+    </div>
+    <h2>The Exam</h2>
+    <p>Our weekly subject is an extremely important part of programming, but I know what is topmost in your mind this week. Let's talk about the exam first.</p>
+    <p>The exam is comprised of <strong>50 multiple choice questions</strong>. There is a<strong> two hour time limit</strong> to take the exam. Once you start the exam, you won't be able to pause it, and you must finish it within the two hour time limit.</p>
+    <p>The exam is open <strong>book</strong>, open <strong>notes</strong>, open <strong>computer</strong>, open <strong>previous discussion boards</strong>, open <strong>Internet</strong>, open <strong>Eclipse</strong> and open <strong>Jshell </strong>(or any other tool). <strong>It is not open for discussion with other people</strong>. Please do your own work. Please do not post details of the exam or any questions to the discussion boards or to any other forum. Your integrity is more important than grades.</p>
+    <p>The questions are taken from the subjects we have studied up through Week 6, including methods, our topic for this week.</p>
+    <h3>What's on the test?&nbsp;</h3>
+    <p><strong>Short answer: everything.</strong></p>
+    <p>You'll want to know how to read code.&nbsp;</p>
+    <p>You'll want to know how to use the Java built-in methods we have used in our assignments (eg, Scanner, System.out.println(), System.out.format() (and printf()), toUpperCase() and toLowerCase()).</p>
+    <p>You'll want to understand pass-by-value (discussed in this week's reading).</p>
+    <p>You'll want to understand how to compile and run a Java program without using an IDE. That means from the command line or terminal in your computer.</p>
+    <p>You'll want to understand how conditional logic works (&amp;&amp;, ||, ==, !=, etc.).</p>
+    <h3>How to approach this week with the Exam</h3>
+    <p>I recommend you start the week by looking at the assignments due for Chapter 6: 6.7 and 6.8. Then read Chapter 6 (more about how to read it, below). Review the PowerPoint slides if you want.&nbsp;</p>
+    <p>Then I recommend you work on <a title="W06 Exercise: Assignment 6" href="https://byui.instructure.com/courses/37376/assignments/921619" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921619" data-api-returntype="Assignment">exercise 6.8 from the assignment</a>. It does not require any user input. Get a basic version of it working and producing the correct numbers. You can worry about formatting the output later in the week, after you've taken the exam.</p>
+    <p>Review for the exam, if you want to.</p>
+    <p>Then take the exam. Consider getting some physical activity in before you sit down to take the test. Studies show it helps you perform better. <strong>You're all going to do fine on it. You got this.</strong></p>
+    <p>You'll get your results immediately after submitting the exam. You'll be able to see what you missed, and what the correct answers were. I suggest you review those corrections so you can understand why they are the correct answer. You are welcome to contact me directly with any questions about the exam after you have taken it. Please don't discuss it with other students in this section, or in other sections, until next week.</p>
+    <p>Then, go back and focus on finishing the programming exercises for the assignment.</p>
+    <p>If you have to decide between finishing the exam or submitting the assignment late, take the exam. It's worth more to you.&nbsp;</p>
+    <h2>How to Read Chapter 6</h2>
+    <p>There is a lot of technical talk in Chapter 6.&nbsp;</p>
+    <p>It all boils down to this: <strong>Programmers hate repeating themselves</strong>. <strong>We love writing reusable code</strong> and calling over and over. Methods are nothing more than a way to pull that reusable code out of our main() method so we can call it over and over.</p>
+    <p>Some methods can do everything they need without any extra information.&nbsp;</p>
+    <p>Some methods want us to provide some input to them so they can make decisions based on it.</p>
+    <p>And some methods provide a general algorithm, but need us to provide some of the values that would be different each time it is used. These are "variables." That term should not be new to you :-) We pass these in as inputs, too.</p>
+    <p>The inputs to a method are called its "parameters." The parameters become local variables within the scope of the method's code. When the method is done, its parameters "evaporate."</p>
+    <p>If we need a method to return a value, we have to return the value using the "return" statement. "Function" is what we call a method that returns a value. (The book also calls it a "value returning method." It's easier to say "function")</p>
+    <p>Parameters are passed by value, meaning a copy of the value is given to the method to use. Nothing happens to the value outside of the method. (We will learn more about this in future weeks. Classes and Objects will introduce pass-by-reference, but it will make so much more sense after you've taken the time to understand passing by value.)</p>
+    <p>There is some talk about activation records and an area of memory called a stack. This is nothing more than a way to provide the copied values to the method, and for the Java runtime to know which instruction to return to after the method ends.</p>
+    <h2>Discussion Boards</h2>
+    <p>Use them early and often every week!&nbsp;</p>
+    <p>Because this is an exam week, I wait for at least two hours before I answer a post. This is usually the case for posts made during business hours since I'm at work and can't respond immediately anyway. But I just wanted to give you a heads up if you feel like you need a response more quickly. If you do, you can text/email me and I will respond as soon as I am able.</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>

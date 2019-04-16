@@ -1,0 +1,96 @@
+<div style="width: 37%; background-color: #d7eff7; float: right; margin: 0 0 1em 1em; padding: 1em;"><span style="font-size: 12pt;"><strong>At a glance</strong></span>
+    <p><span style="font-size: 10pt;"><strong>Subject</strong> - Chapters 7 &amp; 8, Arrays and Multi-Dimensional Arrays</span></p>
+    <p><span style="font-size: 10pt;"><strong>Office Hour Call</strong> - Wednesday, 7:30pm Mountain Time<a title="W06: Exam 1" href="https://byui.instructure.com/courses/37376/quizzes/405913" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/quizzes/405913" data-api-returntype="Quiz"></a></span></p>
+    <p><span style="font-size: 10pt;"><strong><a title="W07 Exercise: Assignment 7" href="https://byui.instructure.com/courses/37376/assignments/921631" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921631" data-api-returntype="Assignment">W07 Exercise: Assignment 7</a>, <a title="W07 Quiz: Teaching One Another" href="https://byui.instructure.com/courses/37376/assignments/921379" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921379" data-api-returntype="Assignment">W07 Quiz: Teaching One Another</a>, <a title="W07 Reflection: Learning Summary" href="https://byui.instructure.com/courses/37376/assignments/921637" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921637" data-api-returntype="Assignment">W07 Reflection: Learning Summary</a></strong>&nbsp;- all due Saturday, 11:59pm Mountain Time</span></p>
+    </div>
+    <p>I hope you are feeling some relief now that the first mid-term is behind you. If you feel like you didn't quite get a full understanding of methods from Chapter 6, don't worry. We will be using them for the rest of the semester. They make it so much easier to reuse code and to organize your code so it's a lot easier to manage.</p>
+    <h2>Arrays</h2>
+    <p>Arrays are just lists with some specific characteristics:</p>
+    <ul>
+    <li>they have a fixed number of entries in the list</li>
+    <li>all of the entries have the same data type.</li>
+    <li>you can access a specific entry using an index, which is an integer. Array indices always start at zero. This means that the highest index will always be one less than the overall length of the list.</li>
+    </ul>
+    <p>For example,</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #00aaaa;">int</span>[] numbers = <span style="color: #0000aa;">new</span> <span style="color: #00aaaa;">int</span>[<span style="color: #009999;">3</span>];
+    numbers[<span style="color: #009999;">0</span>] = 1;
+    numbers[<span style="color: #009999;">1</span>] = 2;
+    numbers[<span style="color: #009999;">2</span>] = 3;
+    </pre>
+    <p>We've already seen some examples of arrays in some of the solutions I've presented in prior weeks. The nice thing about them is they let us store many values (sometimes hundreds, thousands or millions of values) in just a single variable. We use the index to pick a specific value from the list. The index can be a hardcoded value, or it can be the result of any valid Java expression that results in an integer. So a constant value, or a calculation, or a return value from a function, etc. can all be used.</p>
+    <p>If you specify an index that is out of range for the array (for example, -1 or a number that is bigger than the number of values in the array), you'll get an ugly "<strong>ArrayIndexOutOfBoundsException</strong>" error. Those are always fun. Fortunately, Java will usually tell you exactly what line in your program the problem happened on, so you'll get a bit of help figuring out what the problem was.</p>
+    <h2>For Loops and Arrays</h2>
+    <p>Here is some more sample code that demonstrates some more array processing.</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #aaaaaa; font-style: italic;">// You can create a hardcoded array like this. </span>
+    <span style="color: #00aaaa;">int</span>[] data = <span style="color: #0000aa;">new</span> <span style="color: #00aaaa;">int</span>[] { <span style="color: #009999;">100</span>, <span style="color: #009999;">200</span>, <span style="color: #009999;">300</span>, <span style="color: #009999;">400</span>, <span style="color: #009999;">500</span> };
+    
+    <span style="color: #aaaaaa; font-style: italic;">// For Loops are a natural fit for working with</span>
+    <span style="color: #aaaaaa; font-style: italic;">// arrays. Notice the .length property that all arrays</span>
+    <span style="color: #aaaaaa; font-style: italic;">// have. You can use this any way you want.</span>
+    <span style="color: #0000aa;">for</span> (<span style="color: #00aaaa;">int</span> i=<span style="color: #009999;">0</span>; i &lt; data.<span style="color: #1e90ff;">length</span>; i++) {
+        System.<span style="color: #1e90ff;">out</span>.<span style="color: #1e90ff;">println</span>(data[i]);
+    }
+    
+    <span style="color: #aaaaaa; font-style: italic;">// We use For Loops so often in processing every array </span>
+    <span style="color: #aaaaaa; font-style: italic;">// value that we invented a more convenient <strong>For Each</strong> <strong>Loop </strong></span>
+    <span style="color: #aaaaaa; font-style: italic;">// that gives us every value in a variable, one by one.</span>
+    <span style="color: #0000aa;">for</span> (<span style="color: #00aaaa;">int</span> value: data) {
+        <span style="color: #aaaaaa; font-style: italic;">// Notice that we don't have to use</span>
+        <span style="color: #aaaaaa; font-style: italic;">// an index. The variable was filled in</span>
+        <span style="color: #aaaaaa; font-style: italic;">// by our special for-each loop.</span>
+        System.<span style="color: #1e90ff;">out</span>.<span style="color: #1e90ff;">println</span>(value);
+    }
+    </pre>
+    <h2>How to use Case Studies in the reading</h2>
+    <p>This week's reading contains a lot of case studies. It's because while arrays are pretty simple, they open up a ton of possibilities for solving real-world problems using software.&nbsp;</p>
+    <p>Use the case studies as examples, and don't feel like you have to understand everything they demonstrate before you start working on the assignments.</p>
+    <p>Sections 7.5 and 7.6 are particularly important to understand. Array variables point to a memory address where the data are stored. So if you pass an array to a method, you're passing a copy of its address, not of the data itself.&nbsp;</p>
+    <p>Section 7.12 describes an Arrays class. Like our System class that we've been using, it's just a class that's part of the Java standard library that we can use to build our programs. There are some cool things it can do for us. Be sure to check out this section and start to imagine the possibilities.</p>
+    <h2>Multi-Dimensional Arrays (Chapter 8)</h2>
+    <p>Chapter 8 introduces "Multi-Dimensional" Arrays. Don't panic. All it means is that you can have an array whose values are themselves arrays.&nbsp;</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #aaaaaa; font-style: italic;">// Single dimension arrays can be thought of</span>
+    <span style="color: #aaaaaa; font-style: italic;">// as a single row in a spreadsheet. Each value</span>
+    <span style="color: #aaaaaa; font-style: italic;">// in the array is like a column in that row of </span>
+    <span style="color: #aaaaaa; font-style: italic;">// of the spreadsheet.</span>
+    <span style="color: #00aaaa;">int</span>[] row1 = <span style="color: #0000aa;">new</span> <span style="color: #00aaaa;">int</span>[<span style="color: #009999;">5</span>];
+    row1[<span style="color: #009999;">0</span>] = <span style="color: #009999;">1</span>;
+    row1[<span style="color: #009999;">1</span>] = <span style="color: #009999;">2</span>;
+    row1[<span style="color: #009999;">2</span>] = <span style="color: #009999;">3</span>;
+    row1[<span style="color: #009999;">3</span>] = <span style="color: #009999;">4</span>;
+    row1[<span style="color: #009999;">4</span>] = <span style="color: #009999;">5</span>; 
+    
+    <span style="color: #aaaaaa; font-style: italic;">// Now see how we can make it fit our "column" idea</span>
+    row1 = <span style="color: #0000aa;">new</span> <span style="color: #00aaaa;">int</span>[] { <span style="color: #009999;">1</span>, <span style="color: #009999;">2</span>, <span style="color: #009999;">3</span>, <span style="color: #009999;">4</span>, <span style="color: #009999;">5</span> };
+    
+    <span style="color: #aaaaaa; font-style: italic;">// When we add a second dimension to our array, we</span>
+    <span style="color: #aaaaaa; font-style: italic;">// are simply adding the rest of the rows of the spreadsheet</span>
+    <span style="color: #aaaaaa; font-style: italic;">// or "table."</span>
+    <span style="color: #00aaaa;">int</span>[][] sheet = <span style="color: #0000aa;">new</span> <span style="color: #00aaaa;">int</span>[][] {
+        <span style="color: #aaaaaa; font-style: italic;">// 0   1   2   3   4</span>
+        {  <span style="color: #009999;">1</span>,  <span style="color: #009999;">2</span>,  <span style="color: #009999;">3</span>,  <span style="color: #009999;">4</span>,  <span style="color: #009999;">5</span> }, <span style="color: #aaaaaa; font-style: italic;">// row 0</span>
+        {  <span style="color: #009999;">6</span>,  <span style="color: #009999;">7</span>,  <span style="color: #009999;">8</span>,  <span style="color: #009999;">9</span>, <span style="color: #009999;">10</span> }, <span style="color: #aaaaaa; font-style: italic;">// row 1</span>
+        { <span style="color: #009999;">11</span>, <span style="color: #009999;">12</span>, <span style="color: #009999;">13</span>, <span style="color: #009999;">14</span>, <span style="color: #009999;">15</span> }  <span style="color: #aaaaaa; font-style: italic;">// row 2</span>
+    };
+    
+    <span style="color: #aaaaaa; font-style: italic;">// The order of the indexes matters. We</span>
+    <span style="color: #aaaaaa; font-style: italic;">// reference the row first, then the column.</span>
+    <span style="color: #aaaaaa; font-style: italic;">// So sheet[1][2] contains the value 8</span>
+    </pre>
+    <p>Of course, you can create 3 dimensional arrays, like this:</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #00aaaa;">int</span>[][][] cube = <span style="color: #0000aa;">new</span> <span style="color: #00aaaa;">int</span>[][][] {
+        { {<span style="color: #009999;">0</span>, <span style="color: #009999;">1</span>}, {<span style="color: #009999;">2</span>, <span style="color: #009999;">3</span>}, {<span style="color: #009999;">4</span>, <span style="color: #009999;">5</span>} },
+        { {<span style="color: #009999;">6</span>, <span style="color: #009999;">7</span>}, {<span style="color: #009999;">8</span>, <span style="color: #009999;">9</span>}, {<span style="color: #009999;">10</span>, <span style="color: #009999;">11</span>} },
+        { {<span style="color: #009999;">12</span>, <span style="color: #009999;">13</span>}, {<span style="color: #009999;">14</span>, <span style="color: #009999;">15</span>}, {<span style="color: #009999;">16</span>, <span style="color: #009999;">17</span>} }
+    };
+    
+    <span style="color: #aaaaaa; font-style: italic;">// cube [0] = { {0, 1}, {2, 3}, {4, 5} }</span>
+    <span style="color: #aaaaaa; font-style: italic;">// cube [0][1] = {2, 3}</span>
+    <span style="color: #aaaaaa; font-style: italic;">// cube [0][1][1] = 3</span>
+    </pre>
+    <p>Hopefully, you can agree with me that this is approaching a level of silliness in the code. There are some gaming, scientific and machine learning applications where multi-dimensional arrays are the best way to solve a problem. But they're hard to wrap your head around, so they should be used carefully. If you find yourself thinking about using a 3-D array (or more), you might want to spend some time thinking about a different approach to solving your problem before you proceed.</p>
+    <h2>Calculating Standard Deviation (Assignment 7.11)</h2>
+    <p>Assignment 7.11 requires you to calculate the standard deviation of a list of numbers. Since this is not a math (or a statistics) class, I'm giving you the pseudocode below. You should be able to translate this directly into Java code from here.</p>
+    <pre>deviation(double[] data):&nbsp;<br />  mean = calculate the mean (or average) of the data<br />  sumDeviation = 0<br />  <br />  foreach value in data:<br />    sumDeviation += pow(value - mean, 2)<br /><br />  standardDev = sqrt(sumDeviation / (number of data values - 1))</pre>
+    <p>&nbsp;</p>
+    <p>On both programming exercises, your program should handle entering the input numbers on a single line, separated by spaces. Scanner.nextDouble() does this just fine.</p>
+    <p>Good luck this week! I'm looking forward to it!</p>

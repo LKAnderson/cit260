@@ -103,6 +103,7 @@ public class AddAnimalMenu extends Menu {
         animal.setName(name);
     }
 
+
     /**
      * Prompt the user for the new Dog's attributes and
      * add it to the ZooDatabase.

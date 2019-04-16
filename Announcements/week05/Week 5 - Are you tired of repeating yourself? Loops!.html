@@ -1,0 +1,88 @@
+<div style="width: 37%; background-color: #d7eff7; float: right; margin: 0 0 1em 1em; padding: 1em;">
+    <p style="text-align: left;"><span style="font-size: 18pt;"><strong>At a glance</strong></span></p>
+    <p><span style="font-size: 10pt;"><strong>Subject</strong> - Chapter 5, Looping</span></p>
+    <p><span style="font-size: 10pt;"><strong>Office Hour Call</strong> - Wednesday, 7:30pm Mountain Time</span></p>
+    <p><span style="font-size: 10pt;"><strong>Instructor Feedback Survey</strong> - Due Saturday, 11:59pm</span></p>
+    <p><span style="font-size: 10pt;"><strong>Week 5 Programming Exercises, Learning Summary, Teach One Another Quiz</strong> - all due Saturday, 11:59pm</span></p>
+    </div>
+    <h2>Welcome to Week 5!<br />Welcome to Week 5!<br />Welcome to Week 5!<br />Welcome to Week 5!<br />Welcome to Week 5!</h2>
+    <p>Tedious, right? (And obnoxious!)</p>
+    <p>Well, it'll be less tedious after this week (but probably still just as obnoxious).</p>
+    <p>After this week, you'll be able to do this:</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #0000aa;">for</span> (<span style="color: #00aaaa;">int</span> i=<span style="color: #009999;">0</span>; i &lt; <span style="color: #009999;">5</span>; i++) {
+        System.<span style="color: #1e90ff;">out</span>.<span style="color: #1e90ff;">println</span>(<span style="color: #aa5500;">"Welcome to Week 5!"</span>);
+    }
+    </pre>
+    <p>As I've read through the chapter, my impression is that the material looks hard only because of the numerous examples provided. The material is actually quite straightforward. We will be learning about how to write looping logic in Java. More about that in a minute...</p>
+    <p>But first...</p>
+    <h2>Instructor Feedback Survey</h2>
+    <p>This week's assignments include a&nbsp;<a title="W05 Student Feedback to Instructor" href="https://byui.instructure.com/courses/37376/assignments/921611" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921611" data-api-returntype="Assignment">W05 Student Feedback to Instructor</a>&nbsp;survey. We do these each semester to give you an opportunity to let your instructor know how they're doing. You'll be asked to evaluate our work according to the standards of the University. You'll also be given a chance to provide written feedback about what I'm doing well, and what you wish I would do differently. Your feedback is anonymous. Although your comments will be available to read, no other identifying information will be linked to them. So you can say what you really want to say.</p>
+    <p><strong>We really do use this feedback.</strong> We'll get a report next week and as teachers, we have meetings scheduled to discuss our feedback and come up with ways we can improve.&nbsp;</p>
+    <p>So your feedback is super important to me. Please take a few extra minutes this week and let me know what you think.</p>
+    <p>Ok, back to looping...</p>
+    <h2>Three types of Loops</h2>
+    <p>There are just three basic types of loops. And they're all very similar to each other.</p>
+    <h3>The While Loop</h3>
+    <pre style="margin: 0; line-height: 125%;">        <span style="color: #aaaaaa; font-style: italic;">// set up starting condition</span>
+            <span style="color: #00aaaa;">boolean</span> condition = <span style="color: #0000aa;">true</span>;
+    
+            <span style="color: #aaaaaa; font-style: italic;">// loop until something sets the condition</span>
+            <span style="color: #aaaaaa; font-style: italic;">// to false</span>
+            <span style="color: #0000aa;">while</span> (condition == <span style="color: #0000aa;">true</span>) {
+    
+                <span style="color: #aaaaaa; font-style: italic;">// Your repeated code goes in here.</span>
+    
+                <span style="color: #aaaaaa; font-style: italic;">// Something needs to happen to</span>
+                <span style="color: #aaaaaa; font-style: italic;">// set your condition to false</span>
+                <span style="color: #aaaaaa; font-style: italic;">// so your loop can eventually</span>
+                <span style="color: #aaaaaa; font-style: italic;">// exit</span>
+                condition = <span style="color: #0000aa;">false</span>;
+            }
+    </pre>
+    <h3></h3>
+    <h3>The Do-While Loop</h3>
+    <pre style="margin: 0; line-height: 125%;">        <span style="color: #aaaaaa; font-style: italic;">// It's the same, except the body of the</span>
+            <span style="color: #aaaaaa; font-style: italic;">// loop is executed at least one time</span>
+            <span style="color: #aaaaaa; font-style: italic;">// before the condition is checked.</span>
+            <span style="color: #00aaaa;">boolean</span> condition = <span style="color: #0000aa;">true</span>;
+    
+            <span style="color: #0000aa;">do</span> {
+                <span style="color: #aaaaaa; font-style: italic;">// Your repeated code goes in here.</span>
+    
+                <span style="color: #aaaaaa; font-style: italic;">// Something needs to happen to</span>
+                <span style="color: #aaaaaa; font-style: italic;">// set your condition to false</span>
+                <span style="color: #aaaaaa; font-style: italic;">// so your loop can eventually</span>
+                <span style="color: #aaaaaa; font-style: italic;">// exit</span>
+                condition = <span style="color: #0000aa;">false</span>;
+    
+            } <span style="color: #0000aa;">while</span> (condition == <span style="color: #0000aa;">true</span>);
+    </pre>
+    <h3></h3>
+    <h3>The For-Loop</h3>
+    <pre style="margin: 0; line-height: 125%;">        <span style="color: #aaaaaa; font-style: italic;">// For loop - this is just a </span>
+            <span style="color: #aaaaaa; font-style: italic;">// convenient shorthand of the while</span>
+            <span style="color: #aaaaaa; font-style: italic;">// loop.</span>
+            
+            <span style="color: #00aaaa;">int</span> counter = <span style="color: #009999;">0</span>;
+            <span style="color: #0000aa;">while</span> (counter &lt; <span style="color: #009999;">10</span>) {
+                
+                <span style="color: #aaaaaa; font-style: italic;">// Do repeated stuff</span>
+                
+                counter += <span style="color: #009999;">1</span>;
+            }
+            
+            <span style="color: #aaaaaa; font-style: italic;">// We can re-write this while loop like this...</span>
+            
+            <span style="color: #0000aa;">for</span> (<span style="color: #00aaaa;">int</span> counter = <span style="color: #009999;">0</span>; counter &lt; <span style="color: #009999;">10</span>; counter += <span style="color: #009999;">1</span>) {
+                
+                <span style="color: #aaaaaa; font-style: italic;">// Do repeated stuff</span>
+            }
+    </pre>
+    <p>That's all the loops we have. Well, ok, there's one more we'll get to, called a <strong>for-each loop</strong>, but it's even easier than a regular for loop, and we'll get to it in Chapter 7 when we get to Arrays.</p>
+    <p>And, you'll be very happy to know that <span style="color: #008000;"><strong>the assignments this week require NO USER INPUT.</strong></span> Hurray! It's just you and your logic this week. No checking for invalid values.</p>
+    <h2>Fancy source code listings</h2>
+    <p>For anyone interested in how I'm creating these fancy source code listings, I'm using the site <a href="http://hilite.me">http://hilite.me</a>. You can paste in some code, pick the language you want it to be highlighted as, pick the color scheme, and press the Highlight button. It creates HTML that you can paste into any HTML file or editor (like the HTML Editor at the top-right of the Canvas editor!).</p>
+    <h2>Writing Prompt</h2>
+    <p>As this is a pilot course and new in Canvas, we're still learning how to make things work better. While the writing prompts are optional and are intended to help you have a way to get your discussion board credit for the week, they can be important activities to participate in.&nbsp;</p>
+    <p>So, our Writing Prompts will get their own discussion board so they don't get buried among the other important technical questions each week. Feel free to <a title="Week 5 Writing Prompt: Ponder &amp; Prove" href="https://byui.instructure.com/courses/37376/discussion_topics/629842" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/discussion_topics/629842" data-api-returntype="Discussion">take a look at this week's board</a> and consider contributing your thoughts to it.</p>
+    <p>Also, don't forget about our <a title="Let's Talk" href="https://byui.instructure.com/courses/37376/discussion_topics/487964" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/discussion_topics/487964" data-api-returntype="Discussion">Water Cooler discussion boards</a>, too. They're always open and waiting for good topics.</p>

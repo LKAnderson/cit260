@@ -1,0 +1,60 @@
+<div style="width: 37%; background-color: #d7eff7; float: right; margin: 0 0 1em 1em; padding: 1em;"><span style="font-size: 12pt;"><strong>At a glance</strong></span><span style="font-size: 10pt;"></span>
+    <p><span style="font-size: 10pt;"><strong>Subject</strong> - Chapter 9, Objects and Classes</span></p>
+    <p><span style="font-size: 10pt;"><strong>Office Hour Call</strong> - Wednesday, 7:30pm Mountain Time<a title="W06: Exam 1" href="https://byui.instructure.com/courses/37376/quizzes/405913" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/quizzes/405913" data-api-returntype="Quiz"></a></span></p>
+    <p><span style="font-size: 10pt;"><strong><a title="W07 Reflection: Learning Summary" href="https://byui.instructure.com/courses/37376/assignments/921637" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921637" data-api-returntype="Assignment"></a><a title="W08 Exercise: Assignment 8" href="https://byui.instructure.com/courses/37376/assignments/921645" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921645" data-api-returntype="Assignment">W08 Exercise: Assignment 8</a>, <a title="W08 Quiz: Teaching One Another" href="https://byui.instructure.com/courses/37376/assignments/921479" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921479" data-api-returntype="Assignment">W08 Quiz: Teaching One Another</a>, <a title="W08 Reflection: Learning Summary" href="https://byui.instructure.com/courses/37376/assignments/921651" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921651" data-api-returntype="Assignment">W08 Reflection: Learning Summary</a><a title="W07 Reflection: Learning Summary" href="https://byui.instructure.com/courses/37376/assignments/921637" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921637" data-api-returntype="Assignment"></a></strong>&nbsp;- all due Saturday, 11:59pm Mountain Time</span></p>
+    <p><span style="color: #ff6600;"><em><span style="font-size: 10pt;">Note: We are in Week 8, but we are studying Chapter 9. I've already confused myself on it. Make sure you read the assignments carefully!</span></em></span></p>
+    </div>
+    <p>I am intentionally going to make this announcement as short as I can. <strong>There is a lot of reading to do this week</strong>. You won't be able to take it all in a single day. <strong>Get started as early as possible</strong>.&nbsp;</p>
+    <p>The good news is this: after all that reading, the programming exercises are very simple and they require no user input.</p>
+    <h2><span>Objects and Classes</span></h2>
+    <p>Up until now, we have been using very basic data and solving some simple (relatively speaking) problems. Computer software is supposed to help us with the complex stuff. Objects and classes will help us do that in a way that helps us maintain our sanity!</p>
+    <p>Imagine that you need to write a program that manages families. The program must store the Surname, Father's name, Mother's name, and the names of each of the children. With what we have learned up until now, how might we do this? Check out this solution with arrays:</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #0000aa;">package</span> officehours;
+    
+    <span style="color: #0000aa;">public</span> <span style="color: #0000aa;">class</span> <span>FamilyArray</span> {
+    
+        <span style="color: #0000aa;">public</span> <span style="color: #0000aa;">static</span> <span style="color: #00aaaa;">void</span> <span style="color: #00aa00;">main</span>(String[] args) {
+            
+            
+            String[][] families = <span style="color: #0000aa;">new</span> String[][] {
+                
+                { <span style="color: #aa5500;">"Smith"</span>, <span style="color: #aa5500;">"Joseph"</span>, <span style="color: #aa5500;">"Lucy"</span>, <span style="color: #aa5500;">"Alvin"</span>, <span style="color: #aa5500;">"Hyrum"</span>, 
+                    <span style="color: #aa5500;">"Sophronia"</span>, <span style="color: #aa5500;">"Jospeh"</span>, <span style="color: #aa5500;">"Samuel Harrison"</span>, 
+                    <span style="color: #aa5500;">"Ephraim"</span>, <span style="color: #aa5500;">"William"</span>, <span style="color: #aa5500;">"Katharine"</span>, 
+                    <span style="color: #aa5500;">"Don Carlos"</span>, <span style="color: #aa5500;">"Lucy"</span> },    
+            };
+            
+        }
+    }
+    </pre>
+    <p>We could say the surname is element 0, the father's name is element 1, the mother's name is element 2, and everything else is the kids' names. That'd be tough to remember. We could be a little smarter about it:</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #0000aa;">package</span> officehours;
+    
+    <span style="color: #0000aa;">public</span> <span style="color: #0000aa;">class</span> <span>FamilyArray</span> {
+    
+        <span style="color: #0000aa;">public</span> <span style="color: #0000aa;">static</span> <span style="color: #00aaaa;">void</span> <span style="color: #00aa00;">main</span>(String[] args) {
+            
+            <span style="color: #0000aa;">final</span> <span style="color: #00aaaa;">int</span> SURNAME = <span style="color: #009999;">0</span>;
+            <span style="color: #0000aa;">final</span> <span style="color: #00aaaa;">int</span> FATHER = <span style="color: #009999;">1</span>;
+            <span style="color: #0000aa;">final</span> <span style="color: #00aaaa;">int</span> MOTHER = <span style="color: #009999;">2</span>;
+            <span style="color: #0000aa;">final</span> <span style="color: #00aaaa;">int</span> KIDS_START = <span style="color: #009999;">3</span>;
+            
+            String[][] families = <span style="color: #0000aa;">new</span> String[][] {
+                
+                { <span style="color: #aa5500;">"Smith"</span>, <span style="color: #aa5500;">"Joseph"</span>, <span style="color: #aa5500;">"Lucy"</span>, <span style="color: #aa5500;">"Alvin"</span>, <span style="color: #aa5500;">"Hyrum"</span>, 
+                    <span style="color: #aa5500;">"Sophronia"</span>, <span style="color: #aa5500;">"Jospeh"</span>, <span style="color: #aa5500;">"Samuel Harrison"</span>, 
+                    <span style="color: #aa5500;">"Ephraim"</span>, <span style="color: #aa5500;">"William"</span>, <span style="color: #aa5500;">"Katharine"</span>, 
+                    <span style="color: #aa5500;">"Don Carlos"</span>, <span style="color: #aa5500;">"Lucy"</span> },    
+            };
+            
+        }
+    }
+    </pre>
+    <p>But even that is going to be really hard to deal with.</p>
+    <p>Classes give us a way to define more complex data <em>structures,</em> building them up using the primitive types we have been using. It is also possible to include complex classes in other classes. This flexibility is what makes Object Oriented Programming so powerful. We can model pretty much everything we can describe.&nbsp;</p>
+    <p>Go to the <a title="Week 8 Code Samples" href="https://byui.instructure.com/courses/37376/discussion_topics/662794" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/discussion_topics/662794" data-api-returntype="Discussion">Week 8 Code Samples</a>&nbsp;to see the solution to our problem above.&nbsp;</p>
+    <h2>What you need to do this week</h2>
+    <p>As I said above, there is a LOT of reading this week. I think the PowerPoint slides will help you, too. Use them as a resource. Use your class members and me as a resource, too. Hit the discussion boards early and often!</p>
+    <h3>UML Diagramming</h3>
+    <p>One of the programming assignments this week asks you to create a UML diagram (Unified Modeling Language). Don't get hung up on this. There are plenty of examples of it in the book, and you only have to model one simple class with it. For the assignment, you can draw it by hand and submit a photo of it. Or you can use drawing software that supports UML. I like a free tool called Draw.io (<a href="https://www.draw.io">https://www.draw.io</a>). In the help menu on that site, there is a link to download the desktop version.&nbsp;</p>
+    <p>&nbsp;</p>

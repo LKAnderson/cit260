@@ -1,0 +1,72 @@
+<div style="width: 37%; background-color: #d7eff7; float: right; margin: 0 0 1em 1em; padding: 1em;"><span style="font-size: 10pt;"><strong>At a glance</strong></span>
+    <p><span style="font-size: 10pt;"><strong>Subject</strong> - Chapter 11, Inheritance and Polymorphism</span></p>
+    <p><span style="font-size: 10pt;"><strong>Office Hour Call</strong> - Wednesday, 7:30pm Mountain Time<a title="W06: Exam 1" href="https://byui.instructure.com/courses/37376/quizzes/405913" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/quizzes/405913" data-api-returntype="Quiz"></a></span></p>
+    <p><span style="font-size: 10pt;"><a title="W10 Exercise: Assignment 10" href="https://byui.instructure.com/courses/37376/assignments/921669" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921669" data-api-returntype="Assignment"><strong>W10 Exercise: Assignment 10</strong></a><strong>, </strong><span style="color: #993300;">Project Team Organization and</span><strong><span style="color: #993300;"><a style="color: #993300;" title="W10 Project: Team Proposal" href="https://byui.instructure.com/courses/37376/assignments/921675" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921675" data-api-returntype="Assignment"> W10 Project: Team Proposal</a></span>, <a title="W10 Reflection: Learning Summary" href="https://byui.instructure.com/courses/37376/assignments/921681" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921681" data-api-returntype="Assignment">W10 Reflection: Learning Summary</a>, <a title="W10 Quiz: Teaching One Another" href="https://byui.instructure.com/courses/37376/assignments/921491" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921491" data-api-returntype="Assignment">W10 Quiz: Teaching One Another</a></strong>&nbsp;- all due Saturday, 11:59pm Mountain Time</span></p>
+    <p><span style="font-size: 10pt;">Team Registration Spreadsheet <a href="https://webmailbyui-my.sharepoint.com/:x:/g/personal/kentanderson_byui_edu/EdaQ4uWh2vZBpC5cMiFqAnUBGFVF0GdqLLz_4-TmHIN43Q?e=aETBrn">link</a></span></p>
+    <p><span style="font-size: 10pt;"><em>Note: Week 10 = Chapter 11. Hopefully we're getting used to this now.</em></span></p>
+    </div>
+    <h2>Week 10&nbsp;</h2>
+    <h3>Team Formation and Project Proposal</h3>
+    <p>This week has two extra super important things to get done:</p>
+    <p>1. Pair up with another student in the class. You will be doing the final project together as a team. <a href="https://webmailbyui-my.sharepoint.com/:x:/g/personal/kentanderson_byui_edu/EdaQ4uWh2vZBpC5cMiFqAnUBGFVF0GdqLLz_4-TmHIN43Q?e=aETBrn">Register your team</a>.</p>
+    <p>2. Come up with a proposal for your project. You will be creating a program that incorporates the skills you have learned in the class. See <a title="W10 Project: Team Proposal" href="https://byui.instructure.com/courses/37376/assignments/921675" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921675" data-api-returntype="Assignment">W10 Project: Team Proposal</a>&nbsp;for details on the specific requirements of the project.&nbsp;</p>
+    <p>Team formation, and proposals are due this week, on Saturday at the usual time.</p>
+    <p>Next week, we will be learning about error handling and file input/output (and taking a test). That will round out your education for this class, and in Week 12, you'll be providing a detailed design of your program. And then you'll have a week and half to work together to build your project.</p>
+    <p><strong>You are responsible to find a team to join.</strong></p>
+    <p>I will not be making group assignments. I recommend you do this early in the week. Working solo is the option of last resort, and you will need to justify to me why you are unable to meet the requirement of working with a partner. I may be an easy grader, but I'm not easy on this one - you need this experience. But if your situation does justify working solo, you will still need to meet all of the requirements of the project and you will have to do all of the designing and coding yourself.&nbsp;</p>
+    <h2>Object Oriented Inheritance and Polymorphism</h2>
+    <p>After talking about abstraction, encapsulation, association, composition and all that stuff last week, we will finish our introduction to Object Oriented Programming by learning about inheritance from one class to another, and some of the wonderful software design possibilities this opens up for us.</p>
+    <p>There is truly too much in this chapter for me summarize in one announcement. But I'll try..</p>
+    <p>When modeling real world things in classes and objects, we often find that certain related classes have common elements. We don't want to repeat ourselves, so we take those common elements and we put them in a "base" class, and then we inherit from (or "extend") the base class to define the parts that are not common between them.</p>
+    <p>For example, let's consider a data model for buildings in a city. We have the following types of buildings (keeping it simple):</p>
+    <ul>
+    <li>Houses</li>
+    <li>Apartment Buildings</li>
+    <li>Shopping Centers</li>
+    <li>Office Buildings</li>
+    </ul>
+    <p>Each of these types of buildings has an address, and maybe the number of tenants. So let's define a base class, called Building. Each of the other types of buildings will have other characteristics that are unique to only some of them, so we could end up with UML that looks like this:</p>
+    <p><img src="https://byui.instructure.com/users/39437/files/8374982/preview?verifier=QpH3pn11au2m60tBIvD3qoOZFsh3yD8OCgi9l2f6" alt="BuildingModel.svg" width="561" height="487" data-api-endpoint="https://byui.instructure.com/api/v1/users/39437/files/8374982" data-api-returntype="File" /></p>
+    <p>Here's how to read this UML:</p>
+    <ul>
+    <li>Inheritance (or extending) is denoted using an arrow from the child to the parent (or "base") class. The arrowhead is a hollow triangle.</li>
+    <li>While defining our model, we found that the commercial buildings have something else in common that a house doesn't have: a property management company (I know, I know -- rental homes might have a property manager, too. We're keeping this example simple).</li>
+    <li>They all have a way of calculating their occupancy. But it may be different for each type of building.&nbsp;</li>
+    </ul>
+    <p>There is an "is-a" relationship that follows the arrows in the diagram. A Mall "is-a" ManagedBuilding, which itself "is-a" Building. A House "is-a" Building. But a House is not a ManagedBuilding.</p>
+    <p>A child class inherits everything from the parent class. A Mall has everything defined in the Building and ManagedBuilding classes. And it doesn't have to redefine them. They just get inherited from their base class and are available for use in the child class.</p>
+    <p>The is-a relationship allows us to do this:&nbsp;</p>
+    <pre style="margin: 0; line-height: 125%;">ArrayList&lt;Building&gt; buildings = <span style="color: #0000aa;">new</span> ArrayList&lt;Building&gt;();
+    buildings.<span style="color: #1e90ff;">add</span>(<span style="color: #0000aa;">new</span> House());
+    buildings.<span style="color: #1e90ff;">add</span>(<span style="color: #0000aa;">new</span> Apartments());
+    buildings.<span style="color: #1e90ff;">add</span>(<span style="color: #0000aa;">new</span> Mall());
+    buildings.<span style="color: #1e90ff;">add</span>(<span style="color: #0000aa;">new</span> Offices());
+    </pre>
+    <p>Since they're all Buildings, we can keep them all in a list of Building objects. There's a trick to this, though. When we treat a House like a Building, we can only call the methods of the Building class on the House class. That means anything that a House has that is not common to all Buildings will not be available until we tell Java that we're dealing with a House object.</p>
+    <pre style="margin: 0; line-height: 125%;">Building building = buildings.<span style="color: #1e90ff;">get</span>(<span style="color: #009999;">0</span>);
+    <span style="color: #0000aa;">if</span> (building <span style="color: #0000aa;">instanceof</span> House) {
+        House house = (House)building;
+        <span style="color: #aaaaaa; font-style: italic;">// Now we can do House-y stuff...</span>
+    }
+    </pre>
+    <p>This is typecasting, just like any other casting we have already seen. If the building is not an actual House object, though, we'll get a runtime error if we try to cast it to a House. That's why we test it beforehand using the <strong>instanceof</strong> operator.</p>
+    <h3>Method Overriding</h3>
+    <p><strong>Method overriding</strong> (not quite the same as <strong>overloading</strong>) involves a child class providing its own version of a method that its parent defined. Notice the getOccupancy() method. Each type of building might have to provide its own style of counting occupancy.&nbsp;</p>
+    <p>All Building objects have a getOccupancy() method. But the way occupancy is calculated might be different for each type of building. But since building has a getOccupancy() method, and all of the children of Building inherit it, we know that any kind of Building object will give us an answer back if we call that method on it. This is known as <strong>Polymorphism</strong> (or "multiple bodies").</p>
+    <p>However, check out this loop:</p>
+    <pre style="margin: 0; line-height: 125%;"><span style="color: #0000aa;">for</span> (Building building: buildings) {
+        System.<span style="color: #1e90ff;">out</span>.<span style="color: #1e90ff;">println</span>(building.<span style="color: #1e90ff;">getOccupancy</span>());
+    }
+    </pre>
+    <p>This loop will actually call the version of getOccupancy() from each child class. This is known as <strong>dynamic binding</strong>. It means that the program figures out which version of the method to call at runtime, based on the object it has.&nbsp;</p>
+    <p>It is not magic. It's just some cool data structures and a little bit of extra code injected by the Java compiler when it compiles your program. We won't get into those data structures in this class. But just know that it's not magic.&nbsp;</p>
+    <p><strong>Remember:</strong></p>
+    <p><strong>Overloading</strong> = multiple methods in the same class with different inputs.</p>
+    <p><strong>Overriding</strong> = same method in a child class; same inputs, but different implementation.</p>
+    <h2>ArrayList</h2>
+    <p>This week formally introduces us to the ArrayList class. We've seen this helpful class for a few weeks now in some of the examples I've posted.</p>
+    <h2>This week's Assignment and some Math Help</h2>
+    <p>This week's assignment once again requires you to know some cool math. But as always, this is not a math class. So head on over to the <a title="W10 Code Samples" href="https://byui.instructure.com/courses/37376/discussion_topics/679882" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/discussion_topics/679882" data-api-returntype="Discussion">W10 Code Samples</a>&nbsp;for some free code you can add to your Triangle class for Assignment 11.1.</p>
+    <p>There will be user input involved in this week's assignment, so that means you'll need to do some error checking. See the <a title="W10 Exercise: Assignment 10" href="https://byui.instructure.com/courses/37376/assignments/921669" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921669" data-api-returntype="Assignment">W10 Exercise: Assignment 10</a>&nbsp;description for the test cases I will be using to grade your work this week.&nbsp;</p>
+    <p>There is one additional requirement in this assignment that is not included in the book. It is included as <strong>1a in the <a title="W10 Exercise: Assignment 10" href="https://byui.instructure.com/courses/37376/assignments/921669" data-api-endpoint="https://byui.instructure.com/api/v1/courses/37376/assignments/921669" data-api-returntype="Assignment">instructions</a></strong>.</p>
+    <p>&nbsp;</p>
