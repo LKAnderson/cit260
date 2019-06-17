@@ -1,5 +1,0 @@
-# We actually don't want to keep anything from this 
-# project in source control. It's where I paste in
-# the students' assignments as I grade them.
-bin/
-src/

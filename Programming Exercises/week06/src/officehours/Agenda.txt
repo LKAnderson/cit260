@@ -3,24 +3,13 @@ AGENDA
 ======
 
 
-1. Q&A
+1. Jshell demonstration
 
 
-0xA9 = 169 (decimal) = 101010001 (binary)
+2. Q&A
 
-1,000
-
-ABCD
-
-A9 = (A * 16) + 9
-      10
-       160    + 9  = 169
-       
-       
-       
-Void method? What the heck?!
 
 
        
-2. Programming Demonstration - RockPaperScissors, revisited
+3. Programming Demonstration - RockPaperScissors, revisited
 

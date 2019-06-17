@@ -19,3 +19,10 @@
 
 31  11111
 32 100000
+
+
+switch(ch) {
+    case 'A': string = 1010; break;
+    case '1': string = 0001; break;
+}
+

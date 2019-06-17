@@ -47,8 +47,8 @@ public class A7dot11 {
         double mean = mean(data);
         
         double sumDeviation = 0;
-        for (double d: data) {
-            sumDeviation += Math.pow(d - mean, 2);
+        for (double num: data) {
+            sumDeviation += Math.pow(num - mean, 2);
         }
         
         return Math.sqrt(sumDeviation / (data.length-1));
@@ -62,7 +62,7 @@ public class A7dot11 {
             System.out.print("Enter the numbers: ");
             String input = scanner.nextLine();
             
-            // Split the string into multiple strings based on
+            // Split the string into an array of strings based on
             // whitespace (regex)
             String[] inputs = input.split("\\s+");
             double[] doubles = getDoubles(inputs);

@@ -30,7 +30,6 @@ public class A7dot8 {
         return total / numbers.length;
     }
     
-    
     /**
      * Calculate the aver of the doubles provided.
      * @param numbers
@@ -47,8 +46,6 @@ public class A7dot8 {
         // divide the total by the number of elements
         return total / numbers.length;
     }
-    
-    
     
     /**
      * Convert the user's input into an array of integers
@@ -155,9 +152,7 @@ public class A7dot8 {
      */
     public static void main(String[] args) {
  
-        
         try (Scanner scanner = new Scanner(System.in)) {
-            
         
             // Loop until the user enters "QUIT"
             while (true) {
@@ -187,6 +182,5 @@ public class A7dot8 {
         }
         
         System.out.println("Thank you!");
- 
     }
 }

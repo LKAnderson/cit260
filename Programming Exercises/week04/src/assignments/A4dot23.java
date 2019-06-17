@@ -60,8 +60,8 @@ public class A4dot23 {
 
             // do the calculations
             double grossPay = hoursWorked * payRate;
-            double federalWitholding = grossPay * federalTaxRate / 100.0;
-            double stateWitholding = grossPay * stateTaxRate / 100.0;
+            double federalWitholding = grossPay * federalTaxRate;
+            double stateWitholding = grossPay * stateTaxRate;
             double totalDeductions = federalWitholding + stateWitholding;
             double netPay = grossPay - totalDeductions;
 

@@ -3,14 +3,11 @@ AGENDA
 
 1. Q&A
 
-    - Console.WriteLine in the slides? (That's a typo and is actually C# code)
-    - What is "package" in the code?
-    - Indentation - what does it mean to be consistent?
-    - Abnormal Exit? (System.exit(), and exceptions)
-    - Eclipse, can it do HTML? Yes!
-    
+    - A3.5 - Array vs Switch for days of the week? Yes, it's ok to do this.
+    - 
+  
 
-2. Demonstration (3.17 - Not on the assignment, but similar)
+2. Demonstration (3.17 - Not on the assignment, but similar - Rock, Paper, Scissors)
 
     - User input using Scanner (this time we call nextInt()
     - Validating user input using if-statements

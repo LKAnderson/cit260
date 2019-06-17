@@ -1,15 +1,19 @@
 AGENDA
 ======
 
-1. Q&A
+1. Source code formatting - why is it important?
 
-- Multiple classes in a single file
+2. Q&A
 
-- JavaFX utils? 
+Vocabulary
+- Constructor vs Object
+- Methods 
+- Reference Variable vs Primitive (value) vs Parameters
+- Static and instance members
+- Default values?
 
-- When to use private vs public, etc?
+- 9.1 UML dont have to worry about +/- visibility in the UML, but you do need proper public/private in yoru Java code.
 
-
-2. Programming Exercise 9.2
+3. Programming Exercise 9.2 (Modeling a Stock Quote)
 
 

@@ -43,8 +43,6 @@ public class BinarySearchRecursive {
 
     public static void main(String[] argv) {
 
-        Random random = new Random();
-
         int[] numbers = Utils.getSortedIntegerArray(20, 0);
         int numberToFind = 17; //random.nextInt(20);
 

@@ -1,13 +1,14 @@
 package officehours;
 
 public class Primes {
+    
+    // List 5 numbers per line.
+    static final int PRINT_MAX = 5;
 
     public static void main(String[] argv) {
         
         // Find all primes between 1 and 1000
-        // List 5 numbers per line.
-        final int PRINT_MAX = 10;
-        
+         
         int printCounter = 0;
         
         // Loop from 1 to 1000
@@ -18,30 +19,36 @@ public class Primes {
             boolean isPrime = true;
             
             // divide number by all numbers leading up to it
-            for (int i = 2; i < number; i++) {
+            for (int factor = 2; factor < number; factor++) {
                 // if number is evenly divisible by the other number
                 // then not prime.
-                if (number % i == 0) {
+                if (number % factor == 0) {
                     isPrime = false;
                     break;
                 }
             }
             
+            // If it's a prime number, print it out.
             if (isPrime == true) {
-                System.out.printf("%3d ", number);
+                
+                System.out.printf("%d", number);
+                
                 printCounter += 1;
+                
+                // Check to see if we've hit the max per line.
+                // If so, print a new line.
+                
                 if (printCounter % PRINT_MAX == 0) {
                     System.out.println();
+                } else {
+                    System.out.print(" ");
                 }
             }
             
         }
         
-        
-        
         // Test cases:
-        // 3, 7, 11, 17, 31, 101
-        
+        // 2, 3, 7, 11, 17, 31, 101
         
     }
 }

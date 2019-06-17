@@ -34,14 +34,11 @@ public class A6dot8 {
         double celsius = 40.0;
         double fahrenheit = 120.0;
 
-        for (int i=0; i < 10; i++ ){
+        for (int i=0; i < 10; i++, celsius -= 1.0, fahrenheit -= 10.0 ){
             double c2f = celsiusToFahrenheit(celsius);
             double f2c = fahrenheitToCelsius(fahrenheit);
 
             System.out.printf(tableTemplate, celsius, c2f, fahrenheit, f2c);
-
-            celsius -= 1.0;
-            fahrenheit -= 10.0;
         }
         
     }

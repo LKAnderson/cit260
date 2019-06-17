@@ -20,6 +20,4 @@ public class A5dot3 {
             System.out.printf("%-9d     %6.1f\n", kilograms, pounds);
         }
     }
-    
-    
 }

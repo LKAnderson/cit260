@@ -1,99 +1,64 @@
-/**
- * 
- */
 package officehours;
 
-/**
- * @author kent
- *
+/** 
+ * A class to model a stock ticker object from the stock market. 
  */
 public class Stock {
-    
+
     private String symbol;
     private String name;
     private double previousClosingPrice;
     private double currentPrice;
-    
-    
+
+    /**
+     * Constructor/Initializer
+     * @param symbol The ticker symbol
+     * @param name The company name
+     */
     public Stock(String symbol, String name) {
         this.symbol = symbol;
         this.name = name;
-    }
-    
-    
-    public double getChangePercent() {
-        if (previousClosingPrice == 0) {
-            return 0;
-        }
-        
-        double percentChange = (currentPrice - previousClosingPrice) / previousClosingPrice;
-        return percentChange;
-    }
 
+        previousClosingPrice = 0;
+        currentPrice = 0;
+    }
 
     /**
-     * @return the symbol
+     * Returns the change percent as as fraction (50% = 0.50)
      */
+    public double getChangePercent() {
+        // Check for divide by zero condition, and don't let it happen.
+        if (previousClosingPrice == 0) {
+            return -1;
+        }
+
+        return (currentPrice - previousClosingPrice) / previousClosingPrice;
+    }
+
+
     public String getSymbol() {
         return symbol;
     }
 
-
-    /**
-     * @param symbol the symbol to set
-     */
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    /**
-     * @return the previousClosingPrice
-     */
     public double getPreviousClosingPrice() {
         return previousClosingPrice;
     }
 
-
-    /**
-     * @param previousClosingPrice the previousClosingPrice to set
-     */
-    public void setPreviousClosingPrice(double previousClosingPrice) {
-        this.previousClosingPrice = previousClosingPrice;
+    public void setPreviousClosingPrice(double value) {
+        previousClosingPrice = value;
     }
 
-
-    /**
-     * @return the currentPrice
-     */
     public double getCurrentPrice() {
         return currentPrice;
     }
 
-
-    /**
-     * @param currentPrice the currentPrice to set
-     */
-    public void setCurrentPrice(double currentPrice) {
-        this.currentPrice = currentPrice;
+    public void setCurrentPrice(double value) {
+        currentPrice = value;
     }
 
-    
     
 }

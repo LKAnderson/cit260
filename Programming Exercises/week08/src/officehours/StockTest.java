@@ -1,24 +1,19 @@
 package officehours;
 
+/**
+ * Test our Stock class and it's percent changed method.
+ */
 public class StockTest {
-    
 
-    public static void main(String[] args) {
-        
-        long value = 100_000_000L;
-        
-        Stock orcl = new Stock("ORCL", "Oracle Corporation");
-        
-        orcl.setPreviousClosingPrice(34.50);
-        orcl.setCurrentPrice(34.35);
-        
-        System.out.printf("The percent change for %s (%s) is %.2f%%%n",
-                orcl.getName(),
-                orcl.getSymbol(),
-                100*orcl.getChangePercent());
+    public static void main(String[] argv) {
 
-        Stock msft = new Stock("MSFT", "Microsoft Corporation");
+        var stock = new Stock("ORCL", "Oracle Corporation");
+        stock.setPreviousClosingPrice(34.5);
+        stock.setCurrentPrice(34.35);
+
+        double percentChange = stock.getChangePercent();
+
+        System.out.printf("Percent Change is %.2f%%%n", percentChange * 100);
     }
 
 }
-

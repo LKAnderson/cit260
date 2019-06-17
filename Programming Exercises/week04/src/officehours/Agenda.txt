@@ -1,15 +1,18 @@
 AGENDA
 
-1. Finding feedback with the new rubric
+1. Question for class: Is everyone seeing the feedback? Did the PDFs add any value this week?
+
 
 2. Q&A
 
-    - System.out.printf() or System.out.format()? - Answer: Either. 
-      They both work the same.
-      
-    - Math.random() function demo?
+- How to uppercase a character?
+
+- Switch on hex digits.
+
+- How to print out zero-padded binary values?
+
+- Character.getNumericValue() method (seems a little wonky, but allowable for this week's assignment)
     
-    - Discussion Board - What counts?
 
 3. Programming Examples (How many of these can we get done tonight?)
 

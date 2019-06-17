@@ -57,8 +57,10 @@ public class A3dot5 {
                 System.exit(2);
             }
             
-            
+            // This line guarantees that invalid data won't mess us up. 
+            // 7 % 7 = 0, which is Sunday again.
             String weekdayToday = weekdays[today % 7];
+            
             String weekdayFuture = weekdays[(today + future) % 7];
             
             System.out.printf("Today is %s and the future day is %s", weekdayToday, weekdayFuture);

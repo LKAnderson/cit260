@@ -21,16 +21,16 @@ public class RockPaperScissors {
     public static String getChoiceString(int choice) {
         
         String choiceString = null;
-        
+          
         switch (choice) {
             case SCISSOR:
-                choiceString = "scissor";
+                choiceString = "Scissor";
                 break;
             case ROCK:
-                choiceString = "rock";
+                choiceString = "Rock";
                 break;
             case PAPER:
-                choiceString = "paper";
+                choiceString = "Paper";
                 break;
         }
         
@@ -43,7 +43,7 @@ public class RockPaperScissors {
      * @param userChoice
      * @param computerChoice
      */
-    public static void printResult(int userChoice, int computerChoice) {
+    public static void gameLogic(int userChoice, int computerChoice) {
         
         String userChoiceString = getChoiceString(userChoice);            
 
@@ -91,7 +91,7 @@ public class RockPaperScissors {
             int computerChoice = randomGenerator.nextInt(MAXVALUE + 1);
             
             
-            printResult(userChoice, computerChoice);
+            gameLogic(userChoice, computerChoice);
 
         }
     }
