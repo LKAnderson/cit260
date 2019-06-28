@@ -1,15 +1,16 @@
+
+
 AGENDA
 ------
 
 ANNOUNCEMENT: 
 
-- For Arizona: This call will be at 6:30pm from now on. 
-- For the rest of you: Still 7:30pm.
-
-
 1. Q&A
 
+- try statements 
 
-2. Airport Abstraction Exercise
+2. Example of relationships between classes: Airport
 
-    
+3. Demo: A10.3 (MyInteger class)
+
+

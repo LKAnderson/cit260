@@ -1,5 +1,8 @@
 package officehours.navdb;
 
+/**
+ * The runway model for our navdb.
+ */
 public class Runway {
     
     private String identifier;

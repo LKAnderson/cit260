@@ -1,10 +1,12 @@
 AGENDA
 ======
 
+0. Q&A
+
 1. Final Project requirements (In Plain English)
 
-2. instanceof
+2. User Inputs 
 
 3. A11.1 Output example
 
-4. Inheritance and Polymorphism (Menu example)
+4. Inheritance and Polymorphism (GeometricShape/Circle example)
