@@ -1,11 +1,11 @@
-package officehours;
+package officehours.database;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class ZooDatabase {
@@ -17,15 +17,63 @@ public class ZooDatabase {
     
     /**
      * Return the zoo database array, loading it from a file, if necessary.
+     * This method is "synchronized," meaning that it is protected from
+     * multiple threads calling it at the same time. Our program is not
+     * multi-threaded, so it doesn't really matter here, but I wanted
+     * to show you how it should be done in a real-world scenario.
      * @return
      */
     synchronized public static ArrayList<Animal> getZoo() {
         
         if (zoo == null) {
-            loadZoo();
+            try {
+                loadZoo();
+            } catch (IOException exception) {
+                // Since we couldn't load the zoo, create an empty one.
+                zoo = new ArrayList<>();
+            }
         }
         
         return zoo;
+    }
+
+
+    /**
+     * Produce a tabular report of all animals in the database.
+     * @return A string containing the whole report.
+     */
+    synchronized public static String getZooReport() {
+        StringBuilder report = new StringBuilder();
+
+        // Define our columns
+        var formatTemplate = "%-3s %-20s %-10s %-7s  %-10s %s%n";
+
+        // Print the column headings
+        report.append(String.format(formatTemplate, "", "NAME", "TYPE", "CAN FLY", "SPEAKS", "NOTES"));
+
+        var zoo = getZoo();
+
+        // Add each animal to the report.
+        for (int i = 0; i < zoo.size(); i++) {
+            var animal = zoo.get(i);
+
+            var name = animal.getName();
+            var type = animal.getClass().getSimpleName();
+            var speaks = animal.speak();
+            var canFly = "N/A";
+            var notes = "";
+
+            if (animal instanceof WingedAnimal) {
+                canFly = ((WingedAnimal)animal).isFlying() ? "Yes" : "No";
+            } else {
+                // it's a dog
+                notes = "Favorite Toy: " + ((Dog)animal).getFavoriteToy();
+            }
+
+            report.append(String.format(formatTemplate, (i+1), name, type, canFly, speaks, notes));
+        }
+
+        return report.toString();
     }
     
     
@@ -34,41 +82,32 @@ public class ZooDatabase {
      * Write the list of animals out to a file.
      * @param zoo
      */
-    public static void storeZoo() {
+    public static void storeZoo() throws IOException {
         
         File textFile = new File(FILEPATH);
         
         try (PrintWriter out = new PrintWriter(new FileOutputStream(textFile))) {
-            
             
             for (Animal animal : zoo) {
                 out.printf("Type: %s%n", animal.getClass().getSimpleName());
                 
                 if (animal instanceof WingedAnimal) {
                     out.printf("Name: %s%n", animal.getName());
-               
                     
                 } else if (animal instanceof Dog) {
                     Dog dog = (Dog)animal;
-                    out.printf("Name: %s%n", animal.getName());
+                    out.printf("Name: %s%n", dog.getName());
                     out.printf("FavoriteToy: %s%n", dog.getFavoriteToy());
-                    
                 }
             }
-           
-        
-        } catch (FileNotFoundException exception) {
-            System.err.println("Could not find file path");
-            
         } 
-        
     }
 
     /**
      * Load a zoo.
      * @return
      */
-    public static void loadZoo() {
+    public static void loadZoo() throws IOException {
         
         File textFile = new File(FILEPATH);
         zoo = new ArrayList<>();
@@ -107,11 +146,7 @@ public class ZooDatabase {
                     zoo.add(animal);
                 }
             }
-        } catch (FileNotFoundException exception) {
-            System.err.println("Could not find file path");
-            
         } 
-        
     }
     
     
@@ -135,7 +170,7 @@ public class ZooDatabase {
                 name = scanner.next();
                 
             } else if (key.equals("FavoriteToy")) {
-                toy = scanner.next().trim();
+                toy = scanner.next();
             }
         }
         
@@ -143,7 +178,7 @@ public class ZooDatabase {
             return null;
         }
         
-        return new Dog(name, toy);
+        return new Dog(name.trim(), toy.trim());
         
     }
     

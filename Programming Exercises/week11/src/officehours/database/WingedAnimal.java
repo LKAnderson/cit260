@@ -1,9 +1,7 @@
-package officehours;
+package officehours.database;
 
 
 public abstract class WingedAnimal extends Animal {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * Indicate whether the winged animal can fly.
@@ -24,7 +22,7 @@ public abstract class WingedAnimal extends Animal {
      * @param name The animal name.
      * @param flying Indicate whether the animal flies.
      */
-    public WingedAnimal(String name, boolean flying) {
+    protected WingedAnimal(String name, boolean flying) {
         super(name);
         this.flying = flying;
     }

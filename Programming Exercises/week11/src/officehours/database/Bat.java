@@ -1,9 +1,7 @@
-package officehours;
+package officehours.database;
 
 
 public class Bat extends WingedAnimal {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor.

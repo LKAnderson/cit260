@@ -1,8 +1,6 @@
-package officehours;
+package officehours.database;
 
 public class Ostrich extends WingedAnimal {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor.

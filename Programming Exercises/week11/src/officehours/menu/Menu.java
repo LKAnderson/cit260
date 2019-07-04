@@ -131,14 +131,32 @@ public abstract class Menu {
     /**
      * Prompt the user for input, and return whatever they type. The user
      * must hit Enter before this will return the value.
-     * @param message
+     * @param message The prompt to be displayed to the user
+     * @param requireValue Force the user to enter a non-blank value
+     * @return The user's typed value.
+     */
+    public static String prompt(String message, boolean requireValue) {
+        
+        String input = "";
+        while (input.trim().length() == 0) {
+            System.out.print(message);
+            input = scanner.nextLine();
+            if (requireValue == false) {
+                break;
+            }
+        }
+        return input.trim();
+    }
+
+    /**
+     * Prompt the user for input, and return whatever they type. The user
+     * must hit Enter before this will return the value.
+     * @param message The prompt to be displayed to the user
      * @return The user's typed value.
      */
     public static String prompt(String message) {
-        
-        System.out.print(message);
-        String input = scanner.nextLine();
-        return input.trim();
+        // if not specified, requireValue is false.
+        return prompt(message, false);
     }
     
     

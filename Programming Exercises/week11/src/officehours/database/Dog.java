@@ -1,9 +1,7 @@
-package officehours;
+package officehours.database;
 
 
 public class Dog extends Animal {
-
-    private static final long serialVersionUID = 1L;
 
     private String favoriteToy;
 

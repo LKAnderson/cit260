@@ -1,14 +1,10 @@
-package officehours;
+package officehours.database;
 
-import java.io.Serializable;
 
 /**
  * Base class of all Animals in our program.
  */
-public abstract class Animal implements Serializable {
-
-    // This is added because Serializable requires it. We won't use it.
-    private static final long serialVersionUID = 1L;
+public abstract class Animal {
 
     private String name;
 
