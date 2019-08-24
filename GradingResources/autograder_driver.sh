@@ -51,12 +51,12 @@ for module in ${JAVA_MODULES[*]}; do
 
     export module
     
-    echo "===== ${module} =====" >> ${RESULT}
 
     export javaPath=$(find . -name ${module}.java)
     if [ "${javaPath}" != "" ]; then
     
         echo "Found ${javaPath}"
+        echo "===== ${module} =====" >> ${RESULT}
         
         export submissionDir="$(pwd)"
         export javaDir="$(dirname ${javaPath})"

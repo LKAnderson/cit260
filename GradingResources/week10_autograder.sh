@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export JAVA_MODULES=(GeometricObject Triangle A11dot1 A11Dot1)
+export JAVA_MODULES=(GeometricObject Triangle triangle A11dot1 A11Dot1)
 
 function gradeModule() {
 
