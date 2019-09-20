@@ -17,4 +17,4 @@ function gradeModule() {
     esac
 }
 
-source $(dirname $0)/autograder_driver.sh
+d

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SCRIPTDIR=$(cd $(dirname $0); pwd)
+
+if [ "$1" == "" ]; then
+    echo "$0 path-to-submission-folder"
+    exit 1
+fi
+
+SUBMISSIONDIR=$1
+
+docker run -it \
+    -v ${SCRIPTDIR}/GradingResources:/opt/grading:ro \
+    -v ${SUBMISSIONDIR}:/opt/submissions \
+    autograder-env

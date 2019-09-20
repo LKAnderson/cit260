@@ -6,7 +6,15 @@
 # VS Code settings
 .vscode
 
+# IntelliJ
+*.iml
+.idea
+out/
+*.class
+
 # Eclipse things
 .classpath
 .settings
 bin/
+
+*.zip
