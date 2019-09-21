@@ -41,22 +41,22 @@ dir=$(pwd)
 # clear out class files
 find . -name \*.class -exec rm {} \;
 
-
 RESULT="`pwd`/${userdir}_RESULT.txt"
 
 # create the file or clear out the file if it exists.
 echo -n "" > ${RESULT}
 
+PDFFILES=("${RESULT}")
+
 for module in ${JAVA_MODULES[*]}; do 
 
     export module
     
-
     export javaPath=$(find . -name ${module}.java)
     if [ "${javaPath}" != "" ]; then
     
         echo "Found ${javaPath}"
-        echo "===== ${module} =====" >> ${RESULT}
+        echo "=================================================== ${module} =====" >> ${RESULT}
         
         export submissionDir="$(pwd)"
         export javaDir="$(dirname ${javaPath})"
@@ -64,9 +64,8 @@ for module in ${JAVA_MODULES[*]}; do
 
         export javaFile=$(basename "${javaPath}")
 
-        # Print the file to PDF
-        enscript -1jC --font=Courier@7 -q --color -T 4 -E -p - "${javaFile}" \
-            | pstopdf -o "${submissionDir}/${javaFile}.pdf"
+        # Add the file to the list of PDFs
+        PDFFILES+=("${javaPath}")
 
         # Remove package, if any
         for jj in $(ls *.java); do
@@ -78,15 +77,23 @@ for module in ${JAVA_MODULES[*]}; do
         # Compile the file
         echo "Compile ${javaPath}" >> "${RESULT}"
         javac ${javaFile} 2>> "${RESULT}"
-        echo "--------------" >> "${RESULT}"
+        echo "" >> "${RESULT}"
+        echo "------- Run it -------" >> "${RESULT}"
 
         export javaClass=$(echo ${javaFile} | sed 's/\.java//')
 
         # Run the class
         gradeModule
         
+        echo "" >> "${RESULT}"
+
         popd > /dev/null
     fi
 done
+
+FEEDBACKFILE="${userdir}.feedback"
+enscript -1jC --font=Courier@7 -q --color -T 4 -E -p - "${PDFFILES[@]}" > "${FEEDBACKFILE}.ps"
+bash -c "ps2pdf ${FEEDBACKFILE}.ps ${FEEDBACKFILE}.pdf"
+rm "${FEEDBACKFILE}.ps"
 
 popd > /dev/null
