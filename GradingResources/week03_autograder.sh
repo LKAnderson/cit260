@@ -1,116 +1,75 @@
 #!/usr/bin/env bash
 
-export IFS=$'\n'
 
-zip=$1
+export RESULT_TITLE="WEEK 3 PROGRAMMING EXERCISES"
+export JAVA_MODULES=(W3dot1 w3dot1 W3dot2 w3dot2)
 
-dir=$(echo "$zip" | sed 's/_/ /' | awk '{ print $1; }')
-echo ${dir}
-if [ ! -d "$dir" ]; then
-    unzip -qq -o -d $dir "$zip"
-fi
+function gradeModule() {
+    case $module in 
+        W3dot1|w3dot1)
+            echo "### Case 1: 0-Sunday -> 3-Wednesday" >> "${RESULT}"
+            printf "0\n3\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
+            
+            echo "### Case 2: 0-Sunday -> 15-Monday" >> "${RESULT}"
+            printf "0\n15\n" | java $module  >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
 
-pushd $dir > /dev/null
-dir=$(pwd)
+            echo "### Case 3: 5-Friday -> 21-Friday" >> "${RESULT}"
+            printf "5\n21\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
+            
+            echo "### Case 4: 5 -1 Invalid" >> "${RESULT}"
+            printf '%d\n%d\n' 5 -1 | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
 
-# clear out class files
-find . -name \*.class -exec rm {} \;
+            echo "### Case 5: 7 -2 Invalid" >> "${RESULT}"
+            printf '%d\n\%d\n' 7 -2 | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
+            ;;
 
+        W3dot2|w3dot2)
+            echo "### Case 1: 2019 1 -> 31 days" >> "${RESULT}"
+            printf "2019\n1\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
+            
+            echo "### Case 2: 2019 2 -> 28 days" >> "${RESULT}"
+            printf "2019\n2\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
+            
+            echo "### Case 3: 2016 4 -> 30 days" >> "${RESULT}"
+            printf "2016\n4\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
 
-RESULT="`pwd`/RESULT.txt"
+            echo "### Case 4: 2000  2 -> 29 days" >> "${RESULT}"
+            printf "2000\n2\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
 
-# create the file or clear out the file if it exists.
-echo -n "" > ${RESULT}
+            echo "### Case 5: 1900 2 -> 28 days" >> "${RESULT}"
+            printf "1900\n2\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
 
-for module in A3dot5 A3dot11; do 
-    
-    echo "===== ${module} =====" >> ${RESULT}
+            echo "### Case 6: 2020 -1 -> Invalid" >> "${RESULT}"
+            printf "%d\n%d\n" 2020 -1 | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
 
-    javaPath=$(find . -name ${module}.java)
-    if [ $javaPath != "" ]; then
-    
-        echo "Found ${javaPath}"
+            echo "### Case 7: 2020 13 -> Invalid" >> "${RESULT}"
+            printf "2020\n13\n" | java $module >> "$$" 2>&1
+            indent 4 "$$" >> "${RESULT}"
+            rm "$$"
+            ;;
+    esac
+}
 
-        
-        submissionDir=$(pwd)
-        javaDir=$(dirname "${javaPath}")
-        pushd "${javaDir}" > /dev/null
-
-        javaFile=$(basename ${javaPath})
-
-        # Print the file to PDF
-        enscript -1jC --font=Courier@7 -q --color -T 4 -E -p - "$javaFile" | pstopdf -o "${submissionDir}/${javaFile}.pdf"
-
-
-        # Remove package, if any
-        for jj in $(ls *.java); do
-            cp $jj tmpfile
-            cat tmpfile | perl -p -e 's/^\s*package .*;//g' > $jj
-            #cat tmpfile | iconv -t ISO-8859-1 | LC_ALL=C sed 's/^\s*package .*;//' > $jj
-            rm tmpfile
-        done
-
-        # Compile the file
-        echo "Compile ${javaPath}" >> "${RESULT}"
-        javac $javaFile 2>> "${RESULT}"
-        echo "--------------" >> "${RESULT}"
-
-        javaClass=$(echo $javaFile | sed 's/\.java//')
-
-        # Run the class
-        case $module in 
-            A3dot5)
-                echo "Output 0-Sunday -> 3-Wednesday" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "0 3" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output 0-Sunday -> 15-Monday" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "0 15" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output -1 Invalid" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "-1 -2" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output 7 Invalid" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "7 -2" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                ;;
-
-            A3dot11)
-                echo "Output 1 2019 -> 31 days" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "1 2019" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output 2 2019 -> 28 days" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "2 2019" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output 4 2016 -> 30 days" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "4 2016" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output 2 2000 -> 29 days" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "2 2000" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output 2 1900 -> 28 days" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "2 1900" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output -1 2020 -> Invalid" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "-1 2020" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                echo "Output 13 2020 -> Invalid" >> "${RESULT}"
-                echo -n " ===> " >> "${RESULT}"
-                echo "13 2020" | java $javaClass >> "${RESULT}" 2>&1
-                echo "" >> "${RESULT}"
-                ;;
-        esac
-        popd > /dev/null
-    fi
-done
-
-popd > /dev/null
+source $(dirname $0)/autograder_driver.sh

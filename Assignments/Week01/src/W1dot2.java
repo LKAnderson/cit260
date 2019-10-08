@@ -1,3 +1,6 @@
+/**
+ * Print the word JAVA in ASCII art.
+ */
 public class W1dot2 {
     public static void main(String[] argv) {
 

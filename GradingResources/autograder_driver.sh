@@ -25,6 +25,12 @@
 #              (may have spaces in the path so use it within quotes)
 # 
 
+indent() {
+    width=$1
+    file=$2
+    cat "${file}" | awk "{ printf(\"%${width}s%s\n\", \" \", \$0) }"
+}
+
 export IFS=$'\n'
 
 zip=$1
@@ -41,12 +47,11 @@ dir=$(pwd)
 # clear out class files
 find . -name \*.class -exec rm {} \;
 
-RESULT="`pwd`/${userdir}_RESULT.txt"
+RESULT="`pwd`/${userdir}.feedback.md"
 
 # create the file or clear out the file if it exists.
-echo -n "" > ${RESULT}
-
-PDFFILES=("${RESULT}")
+echo "${RESULT_TITLE}" > "${RESULT}"
+echo "===" >> "${RESULT}"
 
 for module in ${JAVA_MODULES[*]}; do 
 
@@ -56,16 +61,13 @@ for module in ${JAVA_MODULES[*]}; do
     if [ "${javaPath}" != "" ]; then
     
         echo "Found ${javaPath}"
-        echo "=================================================== ${module} =====" >> ${RESULT}
+        echo "# ${module}" >> "${RESULT}"
         
         export submissionDir="$(pwd)"
         export javaDir="$(dirname ${javaPath})"
         pushd "${javaDir}" > /dev/null
 
         export javaFile=$(basename "${javaPath}")
-
-        # Add the file to the list of PDFs
-        PDFFILES+=("${javaPath}")
 
         # Remove package, if any
         for jj in $(ls *.java); do
@@ -75,25 +77,30 @@ for module in ${JAVA_MODULES[*]}; do
         done
 
         # Compile the file
-        echo "Compile ${javaPath}" >> "${RESULT}"
+        echo "## Compiling ${javaPath}" >> "${RESULT}"
+        echo '```' >> "${RESULT}"
         javac ${javaFile} 2>> "${RESULT}"
-        echo "" >> "${RESULT}"
-        echo "------- Run it -------" >> "${RESULT}"
+        echo '```' >> "${RESULT}"
+        echo "## Running ${javaPath}" >> "${RESULT}"
 
         export javaClass=$(echo ${javaFile} | sed 's/\.java//')
 
         # Run the class
         gradeModule
-        
-        echo "" >> "${RESULT}"
 
         popd > /dev/null
+
+        # Add source code to result file
+        echo "## ${module} Source Listing" >> "${RESULT}"
+        echo '```java' >> "${RESULT}"
+        cat "${javaPath}" >> "${RESULT}"
+        echo "" >> "${RESULT}"; echo '```' >> "${RESULT}"
     fi
 done
 
-FEEDBACKFILE="${userdir}.feedback"
-enscript -1jC --font=Courier@7 -q --color -T 4 -E -p - "${PDFFILES[@]}" > "${FEEDBACKFILE}.ps"
-bash -c "ps2pdf ${FEEDBACKFILE}.ps ${FEEDBACKFILE}.pdf"
-rm "${FEEDBACKFILE}.ps"
+markdown-pdf \
+    -s /opt/grading/markdown-stuff/pdf.css \
+    -z /opt/grading/markdown-stuff/highlight.css \
+    ${RESULT}
 
 popd > /dev/null

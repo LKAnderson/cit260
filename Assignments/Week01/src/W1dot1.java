@@ -1,3 +1,6 @@
+/**
+ * Print out my Name, CIT section, Hometown, and Favorite dessert
+ */
 public class W1dot1 {
 
     public static void main(String[] args) {

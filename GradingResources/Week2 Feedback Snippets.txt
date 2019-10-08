@@ -1,0 +1,26 @@
+
+Compliments
+-----------
+
+You passed all of the test cases! Good job!
+
+I love the structure and formatting of your code. Very well done.
+
+I love the comments throughout the code!
+
+
+
+
+
+Magic Numbers 
+-------------
+
+Nice job avoiding a magic number here.
+
+One piece of advice would be to make this tax value a constant,
+so it is not a magic number. You can do this by declaring a final 
+variable with the value of 0.032.
+
+This is not really a magic number, since it’s a commonly used
+technique to convert to a fraction. So it’s ok to leave it as a 
+literal value.
