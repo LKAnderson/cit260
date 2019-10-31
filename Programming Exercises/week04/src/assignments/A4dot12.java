@@ -62,7 +62,7 @@ public class A4dot12 {
                 binaryString = BINARY_DIGITS[hexDigit - '0'];
 
             } else {
-                System.err.printf("%c is an invalid input\n", hexDigit);
+                System.err.printf("%c is an invalid input%n", hexDigit);
                 // Exiting the whole program from an if-else-if ladder
                 // isn't really the best form, but it will do for this
                 // lesson.
@@ -70,7 +70,7 @@ public class A4dot12 {
             }
 
             // Print it out.
-            System.out.printf("The binary value is %s\n", binaryString);
+            System.out.printf("The binary value is %s%n", binaryString);
         }
     }
 }

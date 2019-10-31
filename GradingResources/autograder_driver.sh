@@ -33,6 +33,8 @@ indent() {
 
 export IFS=$'\n'
 
+export SCRIPTDIR=$(dirname $0)
+
 zip=$1
 
 userdir=$(echo "${zip}" | sed 's/_/ /' | awk '{ print $1; }')
@@ -61,7 +63,7 @@ for module in ${JAVA_MODULES[*]}; do
     if [ "${javaPath}" != "" ]; then
     
         echo "Found ${javaPath}"
-        echo "# ${module}" >> "${RESULT}"
+        echo "## ${module}" >> "${RESULT}"
         
         export submissionDir="$(pwd)"
         export javaDir="$(dirname ${javaPath})"
@@ -77,30 +79,54 @@ for module in ${JAVA_MODULES[*]}; do
         done
 
         # Compile the file
-        echo "## Compiling ${javaPath}" >> "${RESULT}"
-        echo '```' >> "${RESULT}"
+        echo "### Compiling ${javaPath}" >> "${RESULT}"
+        echo '```plaintext' >> "${RESULT}"
         javac ${javaFile} 2>> "${RESULT}"
+        if [ $? -eq 0 ]; then
+            echo "Compiled cleanly" >> "${RESULT}"
+        fi
         echo '```' >> "${RESULT}"
-        echo "## Running ${javaPath}" >> "${RESULT}"
+
+        echo "### Running ${javaPath}" >> "${RESULT}"
 
         export javaClass=$(echo ${javaFile} | sed 's/\.java//')
 
         # Run the class
         gradeModule
+        echo "" >> "${RESULT}"
 
         popd > /dev/null
 
         # Add source code to result file
-        echo "## ${module} Source Listing" >> "${RESULT}"
+        echo "### ${module} Source Listing" >> "${RESULT}"
         echo '```java' >> "${RESULT}"
         cat "${javaPath}" >> "${RESULT}"
         echo "" >> "${RESULT}"; echo '```' >> "${RESULT}"
     fi
 done
 
-markdown-pdf \
-    -s /opt/grading/markdown-stuff/pdf.css \
-    -z /opt/grading/markdown-stuff/highlight.css \
-    ${RESULT}
+cat <<EOF > header.html
+<html><head>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow.min.css">
+<style type="text/css">
+body { font-family: sans-serif; }
+pre { border: 1px solid black; padding: .5em; overflow-wrap: break-word;}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+EOF
+
+markdown-it "${RESULT}" > content.html
+
+echo "</body></html>" >> content.html
+
+cat header.html content.html > "${userdir}.feedback.html"
+
+wkhtmltopdf -q "${userdir}.feedback.html" "${userdir}.feedback.pdf"
+
+rm content.html header.html "${userdir}.feedback.html"
 
 popd > /dev/null

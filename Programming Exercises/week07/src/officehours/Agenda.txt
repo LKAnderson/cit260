@@ -2,34 +2,12 @@
 Week 7 Agenda
 =============
 
-1. Q&A
 
-    - Formatting
-    
-        %6.2f --> XXXXXX 
-                    3.11
-                    
-        %d -> integer (long)
-        %o -> octal
-        %x -> hex
-        %f -> float (double)
-        %s -> string
         
-        
-    - Assignment 7.8 
-        - You need to define the int version of the average() method, but
-          you only need to call the double version of the method.
+   
           
     
 
 2. Code Demonstrations
 
-    - Creating arrays
-    
-    - Adding validation of the user's input
-        
-    - Handling any number of user inputs (ArrayList) 
-    
-    - Sorting array values (Bubble Sort)
-    
-    - (time permitting) Binary Search
+    - Sorting Arrays (Bubble Sort)

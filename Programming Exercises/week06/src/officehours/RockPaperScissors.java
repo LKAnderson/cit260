@@ -51,8 +51,6 @@ public class RockPaperScissors {
 
         // Start to print out the report
         System.out.printf("The computer chose %s. You chose %s", computerChoiceString, userChoiceString);
-
-
         
         if (userChoice == computerChoice) {
             System.out.print(", too. It is a draw.");
