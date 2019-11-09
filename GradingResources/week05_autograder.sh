@@ -23,7 +23,7 @@ gradeModule() {
             echo '```' >> "${RESULT}"
             echo "### Actual Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
-            java $module >> "${RESULT}" 2>&1; 
+            java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"
             echo '```' >> "${RESULT}"
             ;;
@@ -39,7 +39,7 @@ gradeModule() {
             echo '```' >> "${RESULT}"
             echo "### Actual Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
-            java $module >> "${RESULT}" 2>&1
+            java -Djava.security.manager $module >> "${RESULT}" 2>&1
             echo '' >> "${RESULT}"
             echo '```' >> "${RESULT}"
             ;;

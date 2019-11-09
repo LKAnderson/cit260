@@ -1,32 +1,65 @@
 #!/usr/bin/env bash
 
-export JAVA_MODULES=(A7dot8 A7dot11)
+export RESULT_TITLE="WEEK 7 PROGRAMMING EXERCISES"
+export JAVA_MODULES=(W7dot1 w7dot1 W07dot1 W7dot2 w7dot2 W07dot2)
 
 function gradeModule() {
 
-    # From the book
-    echo "CASE 1: Example from the book: 1.9 2.5 3.7 2 1 6 3 4 5 2" >> "${RESULT}"
-    echo "-> mean(3.11) stdev(1.55738)" >> "${RESULT}"
-    printf "\n" >> "${RESULT}"
-    printf "1.9 2.5 3.7 2 1 6 3 4 5 2" | java ${javaClass} >> "${RESULT}" 2>&1
+    case $module in
+        W7dot1|w7dot1|W07dot1)
+            echo "### CASE 1: Example from the assignment" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            echo "Program description..." >> "${RESULT}"
+            echo "" >> "${RESULT}"
+            echo "Inputs: 5.3 6.2 12.1 8.6 7.8" >> "${RESULT}"
+            echo "The mean should be 8.00" >> "${RESULT}"
+            printf '\n```\n' >> "${RESULT}"
+            echo "### Results" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            printf "5.3\n6.2\n12.1\n8.6\n7.8\n" | java -Djava.security.manager ${javaClass} >> "${RESULT}" 2>&1
+            printf '\n```\n' >> "${RESULT}"
 
-    printf "\n\n" >> "${RESULT}"
+            # Our own sequence
+            echo "### CASE 2" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            echo "Program description..." >> "${RESULT}"
+            echo "Inputs: 66.9 6.4 22.21 209.9 85.71" >> "${RESULT}"
+            echo "The mean should be 40.42" >> "${RESULT}"
+            printf '\n```\n' >> "${RESULT}"
+            echo "### Results" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            printf "66.9\n6.4\n22.21\n20.9\n85.71\n" | java -Djava.security.manager ${javaClass} >> "${RESULT}" 2>&1
+            printf '\n```\n' >> "${RESULT}"
+            ;;
 
-    # Our own sequence
-    echo "CASE 2: Random numbers: 66.9 6.4 22.21 20.9 85.71 51.54 96.1 76.48 9.69 10.1" >> "${RESULT}"
-    echo "-> mean(44.6) stdev(34.69753)" >> "${RESULT}"
-    printf "\n" >> "${RESULT}"
-    printf "66.9 6.4 22.21 20.9 85.71 51.54 96.1 76.48 9.69 10.1" | java ${javaClass} >> "${RESULT}" 2>&1
-    
-    printf "\n\n" >> "${RESULT}"
+        W7dot2|w7dot2|W07dot2)
+            echo "### CASE 1: Example from the assignment" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            echo "Program description..." >> "${RESULT}"
+            echo "" >> "${RESULT}"
+            echo "Inputs: 3.5 4 6.1 6 7.5" >> "${RESULT}"
+            echo "The mean should be 5.42" >> "${RESULT}"
+            echo "The standard deviation should be 1.65 (1.47 is also acceptable)" >> "${RESULT}"
+            printf '\n```\n' >> "${RESULT}"
+            echo "### Results" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            printf "3.5\n4\n6.1\n6\n7.5\n" | java -Djava.security.manager  ${javaClass} >> "${RESULT}" 2>&1
+            printf '\n```\n' >> "${RESULT}"
 
-    # Non-double input
-    echo "CASE 3: Should handle the bad input gracefully: 1 2 3 four 5 6 7 8 9 10" >> "${RESULT}"
-    printf "\n" >> "${RESULT}"
-    printf "1 2 3 four 5 6 7 8 9 10" | java ${javaClass} >> "${RESULT}" 2>&1
-
-    printf "\n\n\n\n" >> "${RESULT}"
-    
+            # Our own sequence
+            echo "### CASE 2" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            echo "Program description..." >> "${RESULT}"
+            echo "Inputs: 66.9 6.4 22.21 209.9 85.71" >> "${RESULT}"
+            echo "The mean should be 40.42" >> "${RESULT}"
+            echo "The standard deviation should be 33.99 (30.41 is also acceptable)" >> "${RESULT}"
+            printf '\n```\n' >> "${RESULT}"
+            echo "### Results" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            printf "66.9\n6.4\n22.21\n20.9\n85.71\n" | java -Djava.security.manager ${javaClass} >> "${RESULT}" 2>&1
+            printf '\n```\n' >> "${RESULT}"
+            ;;
+    esac
 }
 
 source $(dirname $0)/autograder_driver.sh

@@ -25,17 +25,17 @@ function gradeModule() {
             printf '\n```\n' >> "${RESULT}"
             echo "### Actual Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
-            printf "1000\n9\n" | java $javaClass >> "${RESULT}" 2>&1; 
+            printf "1000\n9\n" | java -Djava.security.manager $javaClass >> "${RESULT}" 2>&1; 
             printf '\n```\n' >> "${RESULT}"
             
             echo "### Case 2: Invalid Investment (-\$1000)" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
-            printf "%d\n9\n" -1000 | java $javaClass >> "${RESULT}" 2>&1; 
+            printf "%d\n9\n" -1000 | java -Djava.security.manager $javaClass >> "${RESULT}" 2>&1; 
             printf '\n```\n' >> "${RESULT}"
             
             echo "### Case 3: Invalid Percent (100)" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
-            printf "1000\n100\n" | java $javaClass >> "${RESULT}" 2>&1; 
+            printf "1000\n100\n" | java -Djava.security.manager $javaClass >> "${RESULT}" 2>&1; 
             printf '\n```\n' >> "${RESULT}"
             ;;
 
@@ -58,7 +58,7 @@ function gradeModule() {
             printf '\n```\n' >> "${RESULT}"
             echo "### Actual Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
-            java $javaClass >> "${RESULT}" 2>&1; 
+            java -Djava.security.manager $javaClass >> "${RESULT}" 2>&1; 
             printf '\n```\n' >> "${RESULT}"
             ;;
     esac

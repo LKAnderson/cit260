@@ -1,0 +1,23 @@
+@startuml
+
+class Stock {
+    -symbol: String
+    -name: String
+    -previousClosingPrice: double
+    -currentPrice: double
+
+    +Stock(symbol: String, name: String)
+    +Stock()
+
+    +getSymbol(): String
+    +getName(): String
+
+    +getPreviousClosingPrice(): double
+    +setPreviousClosingPrice(newValue: double): void
+    +getCurrentPrice(): double
+    +setCurrentPrice(newValue: double): void
+
+    +getChangePercent(): double
+}
+
+@enduml

@@ -34,6 +34,7 @@ indent() {
 export IFS=$'\n'
 
 export SCRIPTDIR=$(dirname $0)
+export HTML_EXTRA="extra.html"
 
 zip=$1
 
@@ -45,6 +46,9 @@ fi
 
 pushd ${userdir} > /dev/null
 dir=$(pwd)
+if [ "${HAS_USERDIR_HOOK}" != "" ]; then
+    onUserDir "${userdir}"
+fi
 
 # clear out class files
 find . -name \*.class -exec rm {} \;
@@ -111,7 +115,10 @@ cat <<EOF > header.html
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow.min.css">
 <style type="text/css">
 body { font-family: sans-serif; }
-pre { border: 1px solid black; padding: .5em; overflow-wrap: break-word;}
+pre { border: 1px solid black; padding: .5em; overflow-wrap: break-word; page-break-before: avoid; }
+td { vertical-align: top; }
+h2 { page-break-before: always; }
+h2:first-of-type { page-break-before: avoid; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
@@ -120,6 +127,11 @@ pre { border: 1px solid black; padding: .5em; overflow-wrap: break-word;}
 EOF
 
 markdown-it "${RESULT}" > content.html
+
+if [ "${HAS_HTML_EXTRA}" != "" ]; then
+    cat "${HTML_EXTRA}" >> content.html
+    rm "${HTML_EXTRA}"
+fi
 
 echo "</body></html>" >> content.html
 

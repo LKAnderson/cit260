@@ -1,0 +1,20 @@
+@startuml
+
+class Triangle {
+    -base: double
+    -height: double
+
+    +Triangle()
+    +Triangle(base: double, height: double)
+
+    +setHeight(double)
+    +getHeight(): double
+    +setBase(double)
+    +getBase(): double
+
+    +getPerimeter(): double
+    +getArea(): double
+}
+
+@enduml
+
