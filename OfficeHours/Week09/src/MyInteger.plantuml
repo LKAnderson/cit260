@@ -1,0 +1,25 @@
+@startuml
+class MyInteger {
+    - value: int { get }
+
+    + MyInteger(value: int)
+
+    + isEven(): boolean
+    + isOdd(): boolean
+    + isPrime(): boolean
+
+    + isEven(intVal: int): boolean {static}
+    + isOdd(intVal: int): boolean {static}
+    + isPrime(intVal: int): boolean {static}
+
+    + isEven(intVal: MyInteger): boolean {static}
+    + isOdd(intVal: MyInteger): boolean {static}
+    + isPrime(intVal: MyInteger): boolean {static}
+
+    + equals(otherVal: int): boolean
+    + equals(otherVal: MyInteger): boolean
+
+    {static} + parseInt(data: char[]): int
+    {static} + parseInt(data: String): int
+}
+@enduml

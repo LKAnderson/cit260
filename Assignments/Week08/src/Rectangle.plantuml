@@ -1,0 +1,18 @@
+@startuml
+class Rectangle {
+    -height: double
+    -width: double
+
+    +Rectangle()
+    +Rectangle(width: double, height: double)
+
+    +setHeight(double height)
+    +getHeight(): double
+    +setWidth(double width)
+    +getWidth(): double
+
+    +getPerimeter(): double
+    +getArea(): double
+}
+@enduml
+

@@ -1,0 +1,13 @@
+@startuml
+class MyPoint {
+    - x: int { get set }
+    - y: int { get set }
+
+    + MyPoint()
+    + MyPoint(x: int, y: int)
+
+    + distance(xCoord: int, yCoord: int): double
+    + distance(p: MyPoint): double
+    + {static} distance(p1: MyPoint, p2: MyPoint): double
+}
+@enduml

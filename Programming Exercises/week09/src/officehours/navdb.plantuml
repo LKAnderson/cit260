@@ -1,0 +1,88 @@
+@startuml
+
+class Airport {
+    - identifier: String { get set }
+    - latitude: double { get set }
+    - longitude: double { get set }
+    - elevation: double { get set }
+    - magvar: double { get set }
+    - timezone: TimeZone { get set }
+    - zipcode: int { get set }
+    - runways: List<Runway>  { get }
+    - helipads: List<Helipad>  { get }
+    - communications: List<Communication>  { get }
+    - services: List<AirportService>  { get }
+
+    + Airport()
+    + Airport( all args, except the lists ))
+}
+
+class AirportService {
+    - name: String { get set }
+    - description: String { get set }
+
+    + AirportService()
+    + AirportService(all args)
+}
+
+class Communication {
+    - type: CommunicationType { get set }
+    - frequency: int { get set }
+    - qualifier: String { get set }
+
+    + Communication()
+    + Communication(all args)
+}
+
+enum CommunicationType {
+    TWR, WX, GND, APPR, 
+    DEPART, EMERG
+}
+
+class Helipad {
+    - identifier: String { get set }
+    - latitude: double { get set }
+    - longitude: double { get set }
+    - elevation: double { get set }
+    - length: double { get set }
+    - width: double { get set }
+    - surface: RunwaySurface { get set }
+
+    + Helipad()
+    + Helipad(all args)
+}
+
+class Runway {
+    - identifier: String { get set }
+    - latitude: double { get set }
+    - longitude: double { get set }
+    - elevation: double { get set }
+    - length: double { get set }
+    - width: double { get set }
+    - gradient: double { get set }
+    - magHeading: double { get set }
+    - trueHeading: double { get set }
+    - surface: RunwaySurface { get set }
+    - instrumentApproach: String { get set }
+
+    + Runway()
+    + Runway(all args)
+}
+
+enum RunwaySurface {
+    ASP, BIT, CLA, CON, GRS,
+    GVL, ICE, PER, SAN, U
+}
+
+Airport *--> Runway: "1:*"
+Airport *--> Helipad: "1:*"
+Runway *--> RunwaySurface
+Helipad *--> RunwaySurface
+
+Airport *--> AirportService: "1:*"
+
+Airport *--> Communication: "1:*"
+Communication *--> CommunicationType
+
+
+@enduml

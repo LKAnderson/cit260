@@ -25,11 +25,53 @@
 #              (may have spaces in the path so use it within quotes)
 # 
 
-indent() {
+function indent() {
     width=$1
     file=$2
     cat "${file}" | awk "{ printf(\"%${width}s%s\n\", \" \", \$0) }"
 }
+
+function processUmlDiagram() {
+    # To use this, the grader needs to inject "<!-- UML-INJECT -->" into the
+    # markdown file where you want the uml diagram to be injected.
+
+    echo "" > uml.html
+
+    # find plantuml files and convert them to svg
+    for uml in $(find . -name \*uml -o -name \*.pu | grep -v __MACOSX); do 
+        echo "Found PlantUML file: ${uml}"
+        svg=$(basename $uml).svg
+        curl -s https://www.plantuml.com/plantuml/svg/$(${SCRIPTDIR}/plantuml-encode "${uml}") > "${svg}"    
+        cat <<EOHTML >> uml.html
+            <table><tr><td>
+            $(cat ${svg})
+            </td><td>
+            <pre class="uml"><code class="language-java">$(cat ${uml})</code></pre>
+            </td></tr></table>
+EOHTML
+        rm ${svg}
+    done
+
+    # Find any other image files (png, jpg, jpeg, gif)
+    for img in $(find . -name \*.png -o -name \*.jpg -o -name \*.jpeg -o -name \*.gif); do
+        echo "Found image file: ${img}"
+        cat <<EOHTML >> uml.html
+            <img class="uml" src="${img}"/>
+EOHTML
+    done
+
+    for pdf in $(find . -name \*.pdf | grep -v feedback); do 
+        echo "Found pdf file: ${pdf}"
+        cleanpdf=$(echo "$pdf" | sed 's/^\.\///' | sed 's/ /+/')
+        cat <<EOHTML >> uml.html
+            <p class="uml">
+            <b>${pdf}</b>: 
+            <em>Please review this file separately as it cannot be rendered in this document.</em>
+            </p>
+EOHTML
+    done
+}
+
 
 export IFS=$'\n'
 
@@ -46,6 +88,14 @@ fi
 
 pushd ${userdir} > /dev/null
 dir=$(pwd)
+if [ "${HAS_UML_DIAGRAM}" == "1" ]; then
+    # Look for any PDF files outside of our directory and copy them in.
+    for pdf in $(ls ../${userdir}*.pdf 2> /dev/null); do
+        echo "Copying $pdf into working directory"
+        cp $pdf .
+    done
+fi
+
 if [ "${HAS_USERDIR_HOOK}" != "" ]; then
     onUserDir "${userdir}"
 fi
@@ -91,7 +141,10 @@ for module in ${JAVA_MODULES[*]}; do
         fi
         echo '```' >> "${RESULT}"
 
-        echo "### Running ${javaPath}" >> "${RESULT}"
+        grep main $(basename ${javaPath}) > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo "### Running ${javaPath}" >> "${RESULT}"
+        fi
 
         export javaClass=$(echo ${javaFile} | sed 's/\.java//')
 
@@ -115,10 +168,15 @@ cat <<EOF > header.html
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow.min.css">
 <style type="text/css">
 body { font-family: sans-serif; }
-pre { border: 1px solid black; padding: .5em; overflow-wrap: break-word; page-break-before: avoid; }
+pre { border: 1px solid black; padding: .5em; overflow-wrap: break-word; 
+      white-space: pre-wrap; page-break-before: avoid;
+      border-radius: 2pt; }
 td { vertical-align: top; }
 h2 { page-break-before: always; }
 h2:first-of-type { page-break-before: avoid; }
+.uml { font-size: smaller; }
+table pre.uml { margin-top: .5em; box-shadow: 4px 4px 8px #aaa; }
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
@@ -137,8 +195,18 @@ echo "</body></html>" >> content.html
 
 cat header.html content.html > "${userdir}.feedback.html"
 
+if [ "${HAS_UML_DIAGRAM}" == "1" ]; then
+    processUmlDiagram
+    sed -i "" -e '/<!-- UML-INJECT -->/r uml.html' "${userdir}.feedback.html"
+    rm uml.html
+fi
+
+if [ "${HAS_HTML_POST_RENDER_HOOK}" == "1" ]; then
+    doHtmlPostRender "${userdir}.feedback.html"
+fi
+
 wkhtmltopdf -q "${userdir}.feedback.html" "${userdir}.feedback.pdf"
 
-rm content.html header.html "${userdir}.feedback.html"
+rm content.html header.html #"${userdir}.feedback.html"
 
 popd > /dev/null
