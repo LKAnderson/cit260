@@ -12,17 +12,26 @@ public class W9dotExample {
 
             System.out.println("Value: " + myI.getValue());
 
-            System.out.format("MyInteger.isEven(%d) = %b%n", testVal, MyInteger.isEven(testVal));
-            System.out.format("MyInteger.isEven(MyInteger(%d) = %b%n", testVal, MyInteger.isEven(myI));
-            System.out.format("isEven(MyInteger(%d) = %b%n", testVal, myI.isEven());
+            System.out.format("MyInteger.isEven(%d) = %b%n",
+                    testVal, MyInteger.isEven(testVal));
+            System.out.format("MyInteger.isEven(MyInteger(%d) = %b%n",
+                    testVal, MyInteger.isEven(myI));
+            System.out.format("isEven(MyInteger(%d) = %b%n",
+                    testVal, myI.isEven());
 
-            System.out.format("MyInteger.isOdd(%d) = %b%n", testVal, MyInteger.isOdd(testVal));
-            System.out.format("MyInteger.isOdd(MyInteger(%d) = %b%n", testVal, MyInteger.isOdd(myI));
-            System.out.format("isOdd(MyInteger(%d) = %b%n", testVal, myI.isOdd());
+            System.out.format("MyInteger.isOdd(%d) = %b%n",
+                    testVal, MyInteger.isOdd(testVal));
+            System.out.format("MyInteger.isOdd(MyInteger(%d) = %b%n",
+                    testVal, MyInteger.isOdd(myI));
+            System.out.format("isOdd(MyInteger(%d) = %b%n",
+                    testVal, myI.isOdd());
 
-            System.out.format("MyInteger.isPrime(%d) = %b%n", testVal, MyInteger.isPrime(testVal));
-            System.out.format("MyInteger.isPrime(MyInteger(%d) = %b%n", testVal, MyInteger.isPrime(myI));
-            System.out.format("isPrime(MyInteger(%d) = %b%n", testVal, myI.isPrime());
+            System.out.format("MyInteger.isPrime(%d) = %b%n",
+                    testVal, MyInteger.isPrime(testVal));
+            System.out.format("MyInteger.isPrime(MyInteger(%d) = %b%n",
+                    testVal, MyInteger.isPrime(myI));
+            System.out.format("isPrime(MyInteger(%d) = %b%n",
+                    testVal, myI.isPrime());
 
             System.out.println();
         }

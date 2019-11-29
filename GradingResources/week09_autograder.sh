@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 export RESULT_TITLE="WEEK 9 PROGRAMMING EXERCISE"
-export JAVA_MODULES=(W9dot1 w9dot1 W09dot1 MyPoint)
+export JAVA_MODULES=(W9dot1 w9dot1 W09dot1 MyPoint Mypoint mypoint)
 export HAS_UML_DIAGRAM=1
 
 function gradeModule() {
 
     case $module in
-        MyPoint)
+        MyPoint|Mypoint|mypoint)
             echo '<!-- UML-INJECT -->' >> "${RESULT}"
             ;;
 

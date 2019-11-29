@@ -1,0 +1,24 @@
+@startuml
+class GeometricObject {
+    - color: String { get set }
+    - filled: boolean { get set }
+    - dateCreated: Date { get }
+
+    + GeometricObject()
+    + GeometricObject(color: String, filled: boolean)
+
+    + String toString()
+}
+
+class Rectangle extends GeometricObject {
+    - length: double { get set }
+    - width: double { get set }
+
+    + Rectangle()
+    + Rectangle(length: double, width: double, color: String, filled: boolean)
+
+    + getArea(): double
+
+    + toString(): String
+}
+@enduml

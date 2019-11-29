@@ -1,0 +1,6 @@
+grant {
+  permission java.io.FilePermission 
+        "data.txt", "read,write";
+  permission java.io.FilePermission 
+        "strings.txt", "read,write";
+};

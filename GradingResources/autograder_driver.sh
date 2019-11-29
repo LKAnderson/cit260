@@ -179,7 +179,10 @@ table pre.uml { margin-top: .5em; box-shadow: 4px 4px 8px #aaa; }
 
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+hljs.initHighlightingOnLoad();
+</script>
 </head>
 <body>
 EOF
@@ -207,6 +210,6 @@ fi
 
 wkhtmltopdf -q "${userdir}.feedback.html" "${userdir}.feedback.pdf"
 
-rm content.html header.html #"${userdir}.feedback.html"
+rm content.html header.html "${userdir}.feedback.html"
 
 popd > /dev/null

@@ -1,0 +1,27 @@
+@startuml
+class GeometricObject {
+    - color: String { get set }
+    - filled: boolean { get set }
+    - dateCreated: Date { get }
+
+    + GeometricObject()
+    + GeometricObject(color: String, filled: boolean)
+
+    + getArea(): double
+    + toString(): String
+}
+
+class Triangle extends GeometricObject {
+    - side1: double { get set }
+    - side2: double { get set }
+    - side3: double { get set }
+
+    + Triangle()
+    + Triangle(side1: double, side2: double, 
+        side3: double, color: String, filled: boolean)
+
+    + getArea(): double
+
+    + toString(): String
+}
+@enduml
