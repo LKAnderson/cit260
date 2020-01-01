@@ -11,7 +11,7 @@ function gradeModule() {
 
     case $module in
 
-        W11dot1|w11dot1)
+        W11dot1|w11dot1|W11assignment)
             echo "### Test Case" >> "${RESULT}"
             echo "#### Inputs" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"

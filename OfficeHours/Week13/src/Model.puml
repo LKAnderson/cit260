@@ -1,0 +1,32 @@
+@startuml
+
+class Parent {
+    - parentField: String { get set }
+
+    + Parent()
+    + Parent(value: String)
+
+    + toString(): String
+    + polymorphicMethod(): String
+}
+
+class IntChild extends Parent {
+    - childField: int { get set }
+
+    + IntChild()
+    + IntChild(value: int, parentValue: String)
+
+    + toString(): String
+    + polymorphicMethod(): String
+}
+
+class DoubleChild extends Parent {
+    - childField: double { get set }
+
+    + DoubleChild()
+    + DoubleChild(value: double, parentValue: String)
+
+    + toString(): String
+    + polymorphicMethod(): String
+}
+@enduml

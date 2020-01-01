@@ -49,7 +49,7 @@ public class Storage {
                 data.add(Integer.parseInt(line));
             }
         } catch (NumberFormatException ex) {
-            throw new IOException("Invalid number value in file: " + ex.getMessage());
+            throw new IOException("Invalid number value in file", ex);
         }
 
         return Utils.convertListToArray(data);

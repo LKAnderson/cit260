@@ -1,0 +1,35 @@
+@startuml
+
+package menu {
+    !include menu/Menu.puml
+}
+
+object Application {
+    + main(String[] argv) {static}
+}
+
+class MainMenu extends Menu {
+    + MainMenu()
+    # getTitle(): String
+    # getDescription(): String
+    # getMenuItems(): MenuItem[]
+    # handleMenuSelection(key: char): boolean
+    - callSubMenu()
+    - promptForSomething()
+    - displaySomething()
+}
+
+class SubMenu extends Menu {
+    + SubMenu()
+    # getTitle(): String
+    # getDescription(): String
+    # getMenuItems(): MenuItem[]
+    # handleMenuSelection(key: char): boolean
+    - subMenuOption1()
+    - subMenuOption2()
+    - subMenuOption3()
+}
+
+Application *-- MainMenu
+MainMenu o-- SubMenu
+@enduml

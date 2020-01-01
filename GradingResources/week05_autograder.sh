@@ -6,7 +6,7 @@ export JAVA_MODULES=(W5dot1 w5dot1 W5dot2 w5dot2)
 gradeModule() {
     case $module in 
         W5dot1|w5dot1)
-            echo "### Expected Output" >> "${RESULT}"
+            echo "#### Expected Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             echo "A description of the program" >> "${RESULT}"
             echo "" >> "${RESULT}"
@@ -21,7 +21,7 @@ gradeModule() {
             echo "13            28.6  " >> "${RESULT}"
             echo "15            33.0  " >> "${RESULT}"
             echo '```' >> "${RESULT}"
-            echo "### Actual Output" >> "${RESULT}"
+            echo "#### Actual Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"
@@ -29,7 +29,7 @@ gradeModule() {
             ;;
 
         W5dot2|w5dot2)
-            echo "### Expected Output" >> "${RESULT}"
+            echo "#### Expected Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             echo "A description of the program" >> "${RESULT}"
             echo "" >> "${RESULT}"
@@ -37,7 +37,7 @@ gradeModule() {
             echo "420 450 480 510 540 570 600 630 660 690" >> "${RESULT}"
             echo "720 750 780 810 840 870 900 930 960 990" >> "${RESULT}"
             echo '```' >> "${RESULT}"
-            echo "### Actual Output" >> "${RESULT}"
+            echo "#### Actual Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             java -Djava.security.manager $module >> "${RESULT}" 2>&1
             echo '' >> "${RESULT}"

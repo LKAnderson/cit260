@@ -23,4 +23,19 @@ public class Utils {
 
         return array;
     }
+
+    /**
+     * Convert ArrayList of Integer to Integer[]
+     * @param data
+     * @return
+     * @throws IllegalArgumentException if data is null
+     */
+    public static Integer[] convertListToIntegerArray(ArrayList<Integer> data) {
+        if (data == null) {
+            throw new IllegalArgumentException("Data must not be null");
+        }
+        Integer[] arrayData = new Integer[data.size()];
+        return data.toArray(arrayData);
+    }
+
 }

@@ -43,11 +43,8 @@ function processUmlDiagram() {
         svg=$(basename $uml).svg
         curl -s https://www.plantuml.com/plantuml/svg/$(${SCRIPTDIR}/plantuml-encode "${uml}") > "${svg}"    
         cat <<EOHTML >> uml.html
-            <table><tr><td>
+            <h3>$(basename $uml)</h3>
             $(cat ${svg})
-            </td><td>
-            <pre class="uml"><code class="language-java">$(cat ${uml})</code></pre>
-            </td></tr></table>
 EOHTML
         rm ${svg}
     done
@@ -96,6 +93,19 @@ if [ "${HAS_UML_DIAGRAM}" == "1" ]; then
     done
 fi
 
+
+# create the file or clear out the file if it exists.
+RESULT="`pwd`/${userdir}.feedback.md"
+echo "" > "${RESULT}"
+echo '<div id="submitter">' >> "${RESULT}"
+echo "<label>Submitter:</label>${userdir}<br/>" >> "${RESULT}"
+echo "<label>Run date:</label> $(date "+%b %d, %Y")" >> "${RESULT}"
+echo '</div>' >> "${RESULT}"
+echo "" >> "${RESULT}"
+
+echo "${RESULT_TITLE}" >> "${RESULT}"
+echo "===" >> "${RESULT}"
+
 if [ "${HAS_USERDIR_HOOK}" != "" ]; then
     onUserDir "${userdir}"
 fi
@@ -103,21 +113,20 @@ fi
 # clear out class files
 find . -name \*.class -exec rm {} \;
 
-RESULT="`pwd`/${userdir}.feedback.md"
-
-# create the file or clear out the file if it exists.
-echo "${RESULT_TITLE}" > "${RESULT}"
-echo "===" >> "${RESULT}"
+let moduleCounter=0
 
 for module in ${JAVA_MODULES[*]}; do 
+
 
     export module
     
     export javaPath=$(find . -name ${module}.java)
     if [ "${javaPath}" != "" ]; then
     
+        let moduleCounter=($moduleCounter + 1)
+
         echo "Found ${javaPath}"
-        echo "## ${module}" >> "${RESULT}"
+        echo "## ${moduleCounter} ${module}" >> "${RESULT}"
         
         export submissionDir="$(pwd)"
         export javaDir="$(dirname ${javaPath})"
@@ -125,42 +134,60 @@ for module in ${JAVA_MODULES[*]}; do
 
         export javaFile=$(basename "${javaPath}")
 
-        # Remove package, if any
-        for jj in $(ls *.java); do
-            cp ${jj} tmpfile
-            cat tmpfile | perl -p -e 's/^\s*package .*;//g' > $jj
-            rm tmpfile
-        done
+        if [ "$NO_COMPILE" == "" ]; then
+        
+            # Remove package, if any
+            for jj in $(ls *.java); do
+                cp ${jj} tmpfile
+                cat tmpfile | perl -p -e 's/^\s*package .*;//g' > $jj
+                rm tmpfile
+            done
 
-        # Compile the file
-        echo "### Compiling ${javaPath}" >> "${RESULT}"
-        echo '```plaintext' >> "${RESULT}"
-        javac ${javaFile} 2>> "${RESULT}"
-        if [ $? -eq 0 ]; then
-            echo "Compiled cleanly" >> "${RESULT}"
+            # Compile the file
+            echo "### ${moduleCounter}.1 Compile Program" >> "${RESULT}"
+            output=$(javac ${javaFile} 2>&1)
+            if [ $? -eq 0 ]; then
+                echo '<span class="compiler ok">OK</span> Compiled successfully' >> "${RESULT}"
+                grep main $(basename ${javaPath}) > /dev/null 2>&1
+                if [ $? -eq 0 ]; then
+                    echo "### ${moduleCounter}.2 Run Program" >> "${RESULT}"
+                fi
+                echo '<div class="run-listing">' >> "${RESULT}"
+                echo "" >> "${RESULT}"
+                export javaClass=$(echo ${javaFile} | sed 's/\.java//')
+
+                # Run the class
+                gradeModule
+                echo "" >> "${RESULT}"
+                echo '</div>' >> "${RESULT}"
+                echo "" >> "${RESULT}"
+            else
+                echo '<span class="compiler nok">X</span> There were errors.' >> "${RESULT}"
+                echo '<div class="run-listing">' >> "${RESULT}"
+                echo "" >> "${RESULT}"
+                echo '```plaintext' >> "${RESULT}"
+                echo "$output" >> "${RESULT}"
+                echo '```' >> "${RESULT}"
+                echo "" >> "${RESULT}"
+                echo "</div>" >> "${RESULT}"
+                echo "" >> "${RESULT}"
+            fi
+
         fi
-        echo '```' >> "${RESULT}"
-
-        grep main $(basename ${javaPath}) > /dev/null 2>&1
-        if [ $? -eq 0 ]; then
-            echo "### Running ${javaPath}" >> "${RESULT}"
-        fi
-
-        export javaClass=$(echo ${javaFile} | sed 's/\.java//')
-
-        # Run the class
-        gradeModule
-        echo "" >> "${RESULT}"
 
         popd > /dev/null
 
         # Add source code to result file
-        echo "### ${module} Source Listing" >> "${RESULT}"
+        echo "### ${moduleCounter}.3 Source Listing" >> "${RESULT}"
         echo '```java' >> "${RESULT}"
         cat "${javaPath}" >> "${RESULT}"
         echo "" >> "${RESULT}"; echo '```' >> "${RESULT}"
     fi
 done
+
+if [ "${HAS_FINISHED_HOOK}" != "" ]; then
+    onFinished
+fi
 
 cat <<EOF > header.html
 <html><head>
@@ -168,18 +195,26 @@ cat <<EOF > header.html
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow.min.css">
 <style type="text/css">
 body { font-family: sans-serif; }
-pre { border: 1px solid black; padding: .5em; overflow-wrap: break-word; 
-      white-space: pre-wrap; page-break-before: avoid;
-      border-radius: 2pt; }
+pre { padding: .5em; overflow-wrap: break-word; 
+      white-space: pre-wrap; page-break-before: avoid; }
 td { vertical-align: top; }
-h2 { page-break-before: always; }
+h2 { page-break-before: always; 
+     border-bottom: 2px solid #000; padding-bottom: .5em;}
 h2:first-of-type { page-break-before: avoid; }
+h3 { border-bottom: 1px solid #999; }
 .uml { font-size: smaller; }
 table pre.uml { margin-top: .5em; box-shadow: 4px 4px 8px #aaa; }
+#submitter { float: right; box-shadow: 2px 2px 4px #222; border: 1px solid #000; 
+             border-radius: 5px; padding: .5em .75em; }
+#submitter label { font-weight: bold; margin-right: 2em; }
+.compiler { font-size: larger; }
+.compiler.nok { color: #ff0000; }
+.compiler.ok { color: #00aa00; }
+.run-listing pre { background-color: #242424; 
+                   color: #dddddd; padding: 1.25em; border-radius: 5px; }
 
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script>
 hljs.initHighlightingOnLoad();
 </script>
@@ -210,6 +245,6 @@ fi
 
 wkhtmltopdf -q "${userdir}.feedback.html" "${userdir}.feedback.pdf"
 
-rm content.html header.html "${userdir}.feedback.html"
+rm content.html header.html #"${userdir}.feedback.html"
 
 popd > /dev/null
