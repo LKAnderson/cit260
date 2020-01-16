@@ -31,6 +31,25 @@ function indent() {
     cat "${file}" | awk "{ printf(\"%${width}s%s\n\", \" \", \$0) }"
 }
 
+function compile() {
+    output=$(javac "$1" 2>&1)
+    if [ $? -eq 0 ]; then
+        echo '<span class="compiler ok">OK</span> Compiled successfully' >> "${RESULT}"
+        return 0
+    else
+        echo '<span class="compiler nok">X</span> There were errors.' >> "${RESULT}"
+        echo '<div class="run-listing">' >> "${RESULT}"
+        echo "" >> "${RESULT}"
+        echo '```plaintext' >> "${RESULT}"
+        echo "$output" >> "${RESULT}"
+        echo '```' >> "${RESULT}"
+        echo "" >> "${RESULT}"
+        echo "</div>" >> "${RESULT}"
+        echo "" >> "${RESULT}"
+        return 1
+    fi
+}
+
 function processUmlDiagram() {
     # To use this, the grader needs to inject "<!-- UML-INJECT -->" into the
     # markdown file where you want the uml diagram to be injected.
@@ -117,7 +136,6 @@ let moduleCounter=0
 
 for module in ${JAVA_MODULES[*]}; do 
 
-
     export module
     
     export javaPath=$(find . -name ${module}.java)
@@ -126,7 +144,7 @@ for module in ${JAVA_MODULES[*]}; do
         let moduleCounter=($moduleCounter + 1)
 
         echo "Found ${javaPath}"
-        echo "## ${moduleCounter} ${module}" >> "${RESULT}"
+        echo "## ${moduleCounter} $(basename ${javaPath})" >> "${RESULT}"
         
         export submissionDir="$(pwd)"
         export javaDir="$(dirname ${javaPath})"
@@ -145,13 +163,9 @@ for module in ${JAVA_MODULES[*]}; do
 
             # Compile the file
             echo "### ${moduleCounter}.1 Compile Program" >> "${RESULT}"
-            output=$(javac ${javaFile} 2>&1)
+            compile "${javaFile}"
             if [ $? -eq 0 ]; then
-                echo '<span class="compiler ok">OK</span> Compiled successfully' >> "${RESULT}"
-                grep main $(basename ${javaPath}) > /dev/null 2>&1
-                if [ $? -eq 0 ]; then
-                    echo "### ${moduleCounter}.2 Run Program" >> "${RESULT}"
-                fi
+                echo "### ${moduleCounter}.2 Run Program" >> "${RESULT}"
                 echo '<div class="run-listing">' >> "${RESULT}"
                 echo "" >> "${RESULT}"
                 export javaClass=$(echo ${javaFile} | sed 's/\.java//')
@@ -161,18 +175,7 @@ for module in ${JAVA_MODULES[*]}; do
                 echo "" >> "${RESULT}"
                 echo '</div>' >> "${RESULT}"
                 echo "" >> "${RESULT}"
-            else
-                echo '<span class="compiler nok">X</span> There were errors.' >> "${RESULT}"
-                echo '<div class="run-listing">' >> "${RESULT}"
-                echo "" >> "${RESULT}"
-                echo '```plaintext' >> "${RESULT}"
-                echo "$output" >> "${RESULT}"
-                echo '```' >> "${RESULT}"
-                echo "" >> "${RESULT}"
-                echo "</div>" >> "${RESULT}"
-                echo "" >> "${RESULT}"
             fi
-
         fi
 
         popd > /dev/null
@@ -182,6 +185,36 @@ for module in ${JAVA_MODULES[*]}; do
         echo '```java' >> "${RESULT}"
         cat "${javaPath}" >> "${RESULT}"
         echo "" >> "${RESULT}"; echo '```' >> "${RESULT}"
+    fi
+done
+
+if [[ $moduleCounter -eq 0 ]]; then
+    echo "" >> "${RESULT}"
+    echo '<div class="missing-everything">Expected to find files named according to the assignment instructions, but did not find any matching files.</div>' >> "${RESULT}"
+    echo "" >> "${RESULT}"
+fi
+
+# Find any other Java files that were not part of the modules
+let fileCount=0
+for javaFile in $(find . -name "*.java" | grep -vi __macosx); do
+    className=$(basename $javaFile | sed 's/\.java//')
+    if [[ ! " ${JAVA_MODULES[@]} " =~ " ${className} " ]]; then
+        echo "Found $javaFile"
+        if [[ $fileCount -eq 0 ]]; then
+            let moduleCounter=($moduleCounter+1)
+            echo "# $moduleCounter Unexpected Java Files" >> "${RESULT}"
+        fi
+        let fileCount=($fileCount+1)
+        echo "## ${moduleCounter}.${fileCount} ${className}.java" >> "${RESULT}"
+        echo "" >> "${RESULT}"
+        echo "**Location:** ${javaFile}" >> "${RESULT}"
+        echo "" >> "${RESULT}"
+        echo '```java' >> "${RESULT}"
+        cat "${javaFile}" >> "${RESULT}"
+        echo "" >> "${RESULT}"; echo '```' >> "${RESULT}"
+        pushd "$(dirname $javaFile)" > /dev/null
+        compile "$(basename $javaFile)"
+        popd > /dev/null
     fi
 done
 
@@ -196,22 +229,26 @@ cat <<EOF > header.html
 <style type="text/css">
 body { font-family: sans-serif; }
 pre { padding: .5em; overflow-wrap: break-word; 
-      white-space: pre-wrap; page-break-before: avoid; }
+      white-space: pre-wrap; page-break-before: avoid !important; }
 td { vertical-align: top; }
+h1 { page-break-before: always }
+h1:first-of-type, .missing-everything+h1 { page-break-before: avoid; }
 h2 { page-break-before: always; 
      border-bottom: 2px solid #000; padding-bottom: .5em;}
-h2:first-of-type { page-break-before: avoid; }
+h1+h2 { page-break-before: avoid; }
 h3 { border-bottom: 1px solid #999; }
+h3, h4, h5, h6 { margin-top: 3em; }
 .uml { font-size: smaller; }
-table pre.uml { margin-top: .5em; box-shadow: 4px 4px 8px #aaa; }
 #submitter { float: right; box-shadow: 2px 2px 4px #222; border: 1px solid #000; 
              border-radius: 5px; padding: .5em .75em; }
 #submitter label { font-weight: bold; margin-right: 2em; }
-.compiler { font-size: larger; }
+.compiler { font-size: larger; font-weight: bold; }
 .compiler.nok { color: #ff0000; }
 .compiler.ok { color: #00aa00; }
 .run-listing pre { background-color: #242424; 
                    color: #dddddd; padding: 1.25em; border-radius: 5px; }
+.missing-everything { background-color: #f9cccc; color: #ff0000; 
+                      margin: 3em 0; padding: 1em; border-radius: .25em; }
 
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
@@ -245,6 +282,6 @@ fi
 
 wkhtmltopdf -q "${userdir}.feedback.html" "${userdir}.feedback.pdf"
 
-rm content.html header.html #"${userdir}.feedback.html"
+rm content.html header.html "${userdir}.feedback.html" "${RESULT}"
 
 popd > /dev/null

@@ -1,9 +1,40 @@
 #!/usr/bin/env bash
 
+export RESULT_TITLE="WEEK 1 PROGRAMMING EXERCISES"
 export JAVA_MODULES=(W1dot1 W1dot2 A1dot1 A1dot2 Main w1dot1 w1dot2 a1dot1 a1dot2)
 
 function gradeModule() {
-    java -Djava.security.manager $javaClass >> "${RESULT}" 2>&1
+    case $module in 
+        W1dot1|w1dot1|A1dot1|a1dot1)
+            echo "#### Expected Output" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            echo "Student Name" >> "${RESULT}"
+            echo "CIT 260 Section 4" >> "${RESULT}"
+            echo "Student Hometown" >> "${RESULT}"
+            echo "Favorite Dessert" >> "${RESULT}"
+            echo '```' >> "${RESULT}"
+            echo "#### Your Output" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
+            echo '' >> "${RESULT}"
+            echo '```' >> "${RESULT}"
+            ;;
+
+        W1dot2|w1dot2|A1dot2|a1dot2)
+            echo "#### Expected Output" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            echo "    J    A  V     V  A" >> "${RESULT}"
+            echo "    J   A A  V   V  A A" >> "${RESULT}"
+            echo "J   J  AAAAA  V V  AAAAA" >> "${RESULT}"
+            echo " J J  A     A  V  A     A" >> "${RESULT}"
+            echo '```' >> "${RESULT}"
+            echo "#### Your Output" >> "${RESULT}"
+            echo '```plaintext' >> "${RESULT}"
+            java -Djava.security.manager $module >> "${RESULT}" 2>&1
+            echo '' >> "${RESULT}"
+            echo '```' >> "${RESULT}"
+            ;;
+    esac
 }
 
 source $(dirname $0)/autograder_driver.sh

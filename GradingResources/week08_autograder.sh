@@ -19,7 +19,7 @@ function gradeModule() {
             echo "rectangle1: width: 40.00, height: 4.00, area; 160.00, permiter: 88.00" >> "${RESULT}"
             echo "rectangle2: width: 5.00, height: 3.50, area; 17.50, permiter: 17.00" >> "${RESULT}"
             echo '```' >> "${RESULT}"
-            echo "### Actual Output" >> "${RESULT}"
+            echo "### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"
@@ -39,7 +39,7 @@ function gradeModule() {
             echo "Sun Apr 26 10:46:40 MST 1970" >> "${RESULT}"
             echo "Sat Mar 03 02:46:40 MST 1973" >> "${RESULT}"
             echo '```' >> "${RESULT}"
-            echo "### Actual Output" >> "${RESULT}"
+            echo "### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"

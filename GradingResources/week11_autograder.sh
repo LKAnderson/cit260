@@ -41,7 +41,7 @@ function gradeModule() {
             echo "The average value is: 46.20" >> "${RESULT}"
             echo '' >> "${RESULT}"
             echo '```' >> "${RESULT}"
-            echo "#### Actual Output" >> "${RESULT}"
+            echo "#### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             printf "10\n20\n13\nfourty\n40\n50\nsixty\n6x\n60\n70\n80\n19\n100\n" | java -Djava.security.manager -Djava.security.policy="${SCRIPTDIR}/week11_policy" $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"

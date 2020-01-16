@@ -23,7 +23,7 @@ function gradeModule() {
             echo "9       \$2241.12" >> "${RESULT}"
             echo "10      \$2451.36" >> "${RESULT}"
             printf '\n```\n' >> "${RESULT}"
-            echo "### Actual Output" >> "${RESULT}"
+            echo "### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             printf "1000\n9\n" | java -Djava.security.manager $javaClass >> "${RESULT}" 2>&1; 
             printf '\n```\n' >> "${RESULT}"
@@ -56,7 +56,7 @@ function gradeModule() {
             echo "32.0           89.6           |    40.0           4.44" >> "${RESULT}"
             echo "31.0           87.8           |    30.0           -1.11" >> "${RESULT}"
             printf '\n```\n' >> "${RESULT}"
-            echo "### Actual Output" >> "${RESULT}"
+            echo "### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             java -Djava.security.manager $javaClass >> "${RESULT}" 2>&1; 
             printf '\n```\n' >> "${RESULT}"

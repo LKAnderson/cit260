@@ -1,0 +1,15 @@
+
+Your program should have a comment explaining the purpose of the program.
+
+Don’t forget the comments about the purpose of the program.
+
+Great job on the indentation!
+
+Great job on the indentation in this one, too. The code looks perfect!
+
+This line should be indented like the ones below it
+These lines should be indented like the ones below them.
+
+According to the slides in the reading assignment for the week, your programs need to include a comment that explains the purpose of the program. Please remember to include those next week.
+
+You might want to check the settings in your editor/IDE to make sure you're indenting with spaces and not tab characters

@@ -1,0 +1,25 @@
+Write a program that prompts the user to enter their gross monthly pay
+and a percentage to put into savings. The program will then calculate
+the dollar amount that will be added to savings.
+
+------
+Example:
+
+Enter your monthly pay:
+100
+
+Enter the percentage to put into savings:
+15
+
+The amount to put into savings is $15.00
+------
+
+What we'll learn from this example:
+
+1. How to read input from the user.
+2. How to store values in variables.
+3. How to do basic mathematical calculations using variables and contants.
+4. How to print formatted output to the console.
+5. How to use Javadoc documentation.
+6. How to create your program spiritually before you create it physically 
+   (Moses 3:4-5)

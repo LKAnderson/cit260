@@ -42,7 +42,7 @@ function gradeModule() {
             echo "color: yellow and filled: true" >> "${RESULT}"
             echo "The area is: 42.43" >> "${RESULT}"
             echo '```' >> "${RESULT}"
-            echo "##### Actual Output" >> "${RESULT}"
+            echo "##### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             printf "blue\ntrue\n3 4 5\nred\nfalse\n6 7 8\nyellow\ntrue\n9 10 11\n" | java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"
@@ -55,7 +55,7 @@ function gradeModule() {
             echo '```' >> "${RESULT}"
             echo "##### Expected" >> "${RESULT}"
             echo "An error should be reported" >> "${RESULT}"
-            echo "##### Actual Output" >> "${RESULT}"
+            echo "##### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             printf "\ntrue\n3 4 5\n" | java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"
@@ -68,7 +68,7 @@ function gradeModule() {
             echo '```' >> "${RESULT}"
             echo "##### Expected" >> "${RESULT}"
             echo "An error should be reported" >> "${RESULT}"
-            echo "##### Actual Output" >> "${RESULT}"
+            echo "##### Your Output" >> "${RESULT}"
             echo '```plaintext' >> "${RESULT}"
             printf "blue\ntrue\n%d 4 5\n" -3 | java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
             echo '' >> "${RESULT}"
