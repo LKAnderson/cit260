@@ -50,6 +50,11 @@ function compile() {
     fi
 }
 
+function renderCode() {
+    echo "$(cat "$1" | pygmentize -l java -f html -O "style=autumn,linenos=inline,wrapcode,noclasses")" >> "${RESULT}"
+    echo "" >> "${RESULT}"
+}
+
 function processUmlDiagram() {
     # To use this, the grader needs to inject "<!-- UML-INJECT -->" into the
     # markdown file where you want the uml diagram to be injected.
@@ -182,9 +187,7 @@ for module in ${JAVA_MODULES[*]}; do
 
         # Add source code to result file
         echo "### ${moduleCounter}.3 Source Listing" >> "${RESULT}"
-        echo '```java' >> "${RESULT}"
-        cat "${javaPath}" >> "${RESULT}"
-        echo "" >> "${RESULT}"; echo '```' >> "${RESULT}"
+        renderCode "${javaPath}"
     fi
 done
 
@@ -209,9 +212,7 @@ for javaFile in $(find . -name "*.java" | grep -vi __macosx); do
         echo "" >> "${RESULT}"
         echo "**Location:** ${javaFile}" >> "${RESULT}"
         echo "" >> "${RESULT}"
-        echo '```java' >> "${RESULT}"
-        cat "${javaFile}" >> "${RESULT}"
-        echo "" >> "${RESULT}"; echo '```' >> "${RESULT}"
+        renderCode "${javaPath}"
         pushd "$(dirname $javaFile)" > /dev/null
         compile "$(basename $javaFile)"
         popd > /dev/null
@@ -224,8 +225,6 @@ fi
 
 cat <<EOF > header.html
 <html><head>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow.min.css">
 <style type="text/css">
 body { font-family: sans-serif; }
 pre { padding: .5em; overflow-wrap: break-word; 
@@ -251,10 +250,6 @@ h3, h4, h5, h6 { margin-top: 3em; }
                       margin: 3em 0; padding: 1em; border-radius: .25em; }
 
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-<script>
-hljs.initHighlightingOnLoad();
-</script>
 </head>
 <body>
 EOF
