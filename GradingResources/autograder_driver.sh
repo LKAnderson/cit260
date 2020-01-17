@@ -119,111 +119,8 @@ fi
 
 
 # create the file or clear out the file if it exists.
-RESULT="`pwd`/${userdir}.feedback.md"
-echo "" > "${RESULT}"
-echo '<div id="submitter">' >> "${RESULT}"
-echo "<label>Submitter:</label>${userdir}<br/>" >> "${RESULT}"
-echo "<label>Run date:</label> $(date "+%b %d, %Y")" >> "${RESULT}"
-echo '</div>' >> "${RESULT}"
-echo "" >> "${RESULT}"
-
-echo "${RESULT_TITLE}" >> "${RESULT}"
-echo "===" >> "${RESULT}"
-
-if [ "${HAS_USERDIR_HOOK}" != "" ]; then
-    onUserDir "${userdir}"
-fi
-
-# clear out class files
-find . -name \*.class -exec rm {} \;
-
-let moduleCounter=0
-
-for module in ${JAVA_MODULES[*]}; do 
-
-    export module
-    
-    export javaPath=$(find . -name ${module}.java)
-    if [ "${javaPath}" != "" ]; then
-    
-        let moduleCounter=($moduleCounter + 1)
-
-        echo "Found ${javaPath}"
-        echo "## ${moduleCounter} $(basename ${javaPath})" >> "${RESULT}"
-        
-        export submissionDir="$(pwd)"
-        export javaDir="$(dirname ${javaPath})"
-        pushd "${javaDir}" > /dev/null
-
-        export javaFile=$(basename "${javaPath}")
-
-        if [ "$NO_COMPILE" == "" ]; then
-        
-            # Remove package, if any
-            for jj in $(ls *.java); do
-                cp ${jj} tmpfile
-                cat tmpfile | perl -p -e 's/^\s*package .*;//g' > $jj
-                rm tmpfile
-            done
-
-            # Compile the file
-            echo "### ${moduleCounter}.1 Compile Program" >> "${RESULT}"
-            compile "${javaFile}"
-            if [ $? -eq 0 ]; then
-                echo "### ${moduleCounter}.2 Run Program" >> "${RESULT}"
-                echo '<div class="run-listing">' >> "${RESULT}"
-                echo "" >> "${RESULT}"
-                export javaClass=$(echo ${javaFile} | sed 's/\.java//')
-
-                # Run the class
-                gradeModule
-                echo "" >> "${RESULT}"
-                echo '</div>' >> "${RESULT}"
-                echo "" >> "${RESULT}"
-            fi
-        fi
-
-        popd > /dev/null
-
-        # Add source code to result file
-        echo "### ${moduleCounter}.3 Source Listing" >> "${RESULT}"
-        renderCode "${javaPath}"
-    fi
-done
-
-if [[ $moduleCounter -eq 0 ]]; then
-    echo "" >> "${RESULT}"
-    echo '<div class="missing-everything">Expected to find files named according to the assignment instructions, but did not find any matching files.</div>' >> "${RESULT}"
-    echo "" >> "${RESULT}"
-fi
-
-# Find any other Java files that were not part of the modules
-let fileCount=0
-for javaFile in $(find . -name "*.java" | grep -vi __macosx); do
-    className=$(basename $javaFile | sed 's/\.java//')
-    if [[ ! " ${JAVA_MODULES[@]} " =~ " ${className} " ]]; then
-        echo "Found $javaFile"
-        if [[ $fileCount -eq 0 ]]; then
-            let moduleCounter=($moduleCounter+1)
-            echo "# $moduleCounter Unexpected Java Files" >> "${RESULT}"
-        fi
-        let fileCount=($fileCount+1)
-        echo "## ${moduleCounter}.${fileCount} ${className}.java" >> "${RESULT}"
-        echo "" >> "${RESULT}"
-        echo "**Location:** ${javaFile}" >> "${RESULT}"
-        echo "" >> "${RESULT}"
-        renderCode "${javaPath}"
-        pushd "$(dirname $javaFile)" > /dev/null
-        compile "$(basename $javaFile)"
-        popd > /dev/null
-    fi
-done
-
-if [ "${HAS_FINISHED_HOOK}" != "" ]; then
-    onFinished
-fi
-
-cat <<EOF > header.html
+RESULT="`pwd`/${userdir}.feedback.html"
+cat <<EOF > "${RESULT}"
 <html><head>
 <style type="text/css">
 body { font-family: sans-serif; }
@@ -254,29 +151,121 @@ h3, h4, h5, h6 { margin-top: 3em; }
 <body>
 EOF
 
-markdown-it "${RESULT}" > content.html
+echo '<div id="submitter">' >> "${RESULT}"
+echo "<label>Submitter:</label>${userdir}<br/>" >> "${RESULT}"
+echo "<label>Run date:</label> $(date "+%b %d, %Y")" >> "${RESULT}"
+echo '</div>' >> "${RESULT}"
+echo "" >> "${RESULT}"
+
+echo "<h1>${RESULT_TITLE}</h1>" >> "${RESULT}"
+
+if [ "${HAS_USERDIR_HOOK}" != "" ]; then
+    onUserDir "${userdir}"
+fi
+
+# clear out class files
+find . -name \*.class -exec rm {} \;
+
+let moduleCounter=0
+
+for module in ${JAVA_MODULES[*]}; do 
+
+    export module
+    
+    export javaPath=$(find . -name ${module}.java)
+    if [ "${javaPath}" != "" ]; then
+    
+        let moduleCounter=($moduleCounter + 1)
+
+        echo "Found ${javaPath}"
+        echo "<h2>${moduleCounter} $(basename ${javaPath})</h2>" >> "${RESULT}"
+        
+        export submissionDir="$(pwd)"
+        export javaDir="$(dirname ${javaPath})"
+        pushd "${javaDir}" > /dev/null
+
+        export javaFile=$(basename "${javaPath}")
+
+        if [ "$NO_COMPILE" == "" ]; then
+        
+            # Remove package, if any
+            for jj in $(ls *.java); do
+                cp ${jj} tmpfile
+                cat tmpfile | perl -p -e 's/^\s*package .*;//g' > $jj
+                rm tmpfile
+            done
+
+            # Compile the file
+            echo "<h3>${moduleCounter}.1 Compile Program</h3>" >> "${RESULT}"
+            compile "${javaFile}"
+            if [ $? -eq 0 ]; then
+                echo "<h3>${moduleCounter}.2 Run Program</h3>" >> "${RESULT}"
+                echo '<div class="run-listing">' >> "${RESULT}"
+                export javaClass=$(echo ${javaFile} | sed 's/\.java//')
+
+                # Run the class
+                gradeModule
+                echo '</div>' >> "${RESULT}"
+            fi
+        fi
+
+        popd > /dev/null
+
+        # Add source code to result file
+        echo "<h3>${moduleCounter}.3 Source Listing</h3>" >> "${RESULT}"
+        renderCode "${javaPath}"
+    fi
+done
+
+if [[ $moduleCounter -eq 0 ]]; then
+    echo "" >> "${RESULT}"
+    echo '<div class="missing-everything">Expected to find files named according to the assignment instructions, but did not find any matching files.</div>' >> "${RESULT}"
+    echo "" >> "${RESULT}"
+fi
+
+# Find any other Java files that were not part of the modules
+let fileCount=0
+for javaFile in $(find . -name "*.java" | grep -vi __macosx); do
+    className=$(basename $javaFile | sed 's/\.java//')
+    if [[ ! " ${JAVA_MODULES[@]} " =~ " ${className} " ]]; then
+        echo "Found $javaFile"
+        if [[ $fileCount -eq 0 ]]; then
+            let moduleCounter=($moduleCounter+1)
+            echo "<h1>$moduleCounter Unexpected Java Files</h1>" >> "${RESULT}"
+        fi
+        let fileCount=($fileCount+1)
+        echo "<h2>${moduleCounter}.${fileCount} ${className}.java</h2>" >> "${RESULT}"
+        echo "<p>**Location:** ${javaFile}</p>" >> "${RESULT}"
+        renderCode "${javaPath}"
+        pushd "$(dirname $javaFile)" > /dev/null
+        compile "$(basename $javaFile)"
+        popd > /dev/null
+    fi
+done
+
+if [ "${HAS_FINISHED_HOOK}" != "" ]; then
+    onFinished
+fi
 
 if [ "${HAS_HTML_EXTRA}" != "" ]; then
-    cat "${HTML_EXTRA}" >> content.html
+    cat "${HTML_EXTRA}" >> "${RESULT}"
     rm "${HTML_EXTRA}"
 fi
 
-echo "</body></html>" >> content.html
-
-cat header.html content.html > "${userdir}.feedback.html"
+echo "</body></html>" >> "${RESULT}"
 
 if [ "${HAS_UML_DIAGRAM}" == "1" ]; then
     processUmlDiagram
-    sed -i "" -e '/<!-- UML-INJECT -->/r uml.html' "${userdir}.feedback.html"
+    sed -i "" -e '/<!-- UML-INJECT -->/r uml.html' "${RESULT}"
     rm uml.html
 fi
 
 if [ "${HAS_HTML_POST_RENDER_HOOK}" == "1" ]; then
-    doHtmlPostRender "${userdir}.feedback.html"
+    doHtmlPostRender "${RESULT}"
 fi
 
 wkhtmltopdf -q "${userdir}.feedback.html" "${userdir}.feedback.pdf"
 
-rm content.html header.html "${userdir}.feedback.html" "${RESULT}"
+rm "${RESULT}"
 
 popd > /dev/null
