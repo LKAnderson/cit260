@@ -1,0 +1,73 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #aaaaaa; font-style: italic"> * Test Driver for Rectangle and GeometricObject</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W10dot1</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] args) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;This program does some stuff.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>            <span style="color: #0000aa">var</span> objects = <span style="color: #0000aa">new</span> ArrayList&lt;GeometricObject&gt;();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>            <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> i=<span style="color: #009999">1</span>; i &lt;= <span style="color: #009999">3</span>; i++) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>                <span style="color: #0000aa">var</span> rect = readTriangleFromUser(i, scanner);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>                <span style="color: #0000aa">if</span> (rect == <span style="color: #0000aa">null</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>                    System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>                }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>                objects.<span style="color: #1e90ff">add</span>(rect);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>            <span style="color: #0000aa">for</span> (GeometricObject obj: objects) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(obj.<span style="color: #1e90ff">toString</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The area is: %.2f\n&quot;</span>, obj.<span style="color: #1e90ff">getArea</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span><span style="color: #aaaaaa; font-style: italic">     * Gets a Rectangle object from the user.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span><span style="color: #aaaaaa; font-style: italic">     * @param shapeNumber</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span><span style="color: #aaaaaa; font-style: italic">     * @param scanner</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span><span style="color: #aaaaaa; font-style: italic">     * @return The rectangle, or null if invalid data was entered (an error message is already printed)</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> Triangle <span style="color: #00aa00">readTriangleFromUser</span>(<span style="color: #00aaaa">int</span> shapeNumber, Scanner scanner) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Entering Triangle #%d...%n&quot;</span>, shapeNumber);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Please enter a color: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>        scanner.<span style="color: #1e90ff">reset</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>        String color = scanner.<span style="color: #1e90ff">nextLine</span>().<span style="color: #1e90ff">trim</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>        <span style="color: #0000aa">if</span> (color.<span style="color: #1e90ff">length</span>() == <span style="color: #009999">0</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Please enter a color&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>            <span style="color: #0000aa">return</span> <span style="color: #0000aa">null</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Is the rectangle filled (true/false)? &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>        <span style="color: #00aaaa">boolean</span> filled = scanner.<span style="color: #1e90ff">nextBoolean</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter the lengths of the three sides: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span>        <span style="color: #00aaaa">double</span> side1 = scanner.<span style="color: #1e90ff">nextDouble</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span>        <span style="color: #00aaaa">double</span> side2 = scanner.<span style="color: #1e90ff">nextDouble</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span>        <span style="color: #00aaaa">double</span> side3 = scanner.<span style="color: #1e90ff">nextDouble</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>        <span style="color: #aaaaaa; font-style: italic">// Finish reading the line of text, if there&#39;s one there.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>        scanner.<span style="color: #1e90ff">nextLine</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">62 </span>        <span style="color: #0000aa">if</span> (side1 &lt;= <span style="color: #009999">0</span> || side2 &lt;= <span style="color: #009999">0</span> || side3 &lt;= <span style="color: #009999">0</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">63 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Please enter value lengths for the sides&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">64 </span>            <span style="color: #0000aa">return</span> <span style="color: #0000aa">null</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">65 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">66 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">67 </span>        Triangle triangle = <span style="color: #0000aa">new</span> Triangle(side1, side2, side3, color, filled);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">68 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">69 </span>        <span style="color: #0000aa">return</span> triangle;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">70 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">71 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">72 </span>}
+</code></pre></div>

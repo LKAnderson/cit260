@@ -1,0 +1,34 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #aaaaaa; font-style: italic"> * Print all numbers between 100 and 1000</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic"> * that are evenly divisible by both 5 and 6.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W5dot2</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>    <span style="color: #0000aa">private</span> <span style="color: #0000aa">static</span> <span style="color: #0000aa">final</span> <span style="color: #00aaaa">int</span> MAX_PER_LINE = <span style="color: #009999">10</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>        <span style="color: #aaaaaa; font-style: italic">// Loop from 100 to 1000, by one</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>        <span style="color: #aaaaaa; font-style: italic">// also initialize a print counter to 0</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>        <span style="color: #00aaaa">int</span> printCounter = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>        <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> i=<span style="color: #009999">100</span>; i &lt;= <span style="color: #009999">1000</span>; i++) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>            <span style="color: #aaaaaa; font-style: italic">// if the loop counter % 5 is 0 AND the loop counter % 6 is 0</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>            <span style="color: #aaaaaa; font-style: italic">// then print out the number</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>            <span style="color: #0000aa">if</span> ( (i % <span style="color: #009999">5</span> == <span style="color: #009999">0</span>) &amp;&amp; (i % <span style="color: #009999">6</span> == <span style="color: #009999">0</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">printf</span>(<span style="color: #aa5500">&quot;%-4d&quot;</span>, i);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>                <span style="color: #aaaaaa; font-style: italic">// increment the print counter and check if it&#39;s 10. If so, print a</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>                <span style="color: #aaaaaa; font-style: italic">// newline, the reset it for the next line</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>                printCounter += <span style="color: #009999">1</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>                <span style="color: #0000aa">if</span> (printCounter % MAX_PER_LINE == <span style="color: #009999">0</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>                    System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>                }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>}
+</code></pre></div>

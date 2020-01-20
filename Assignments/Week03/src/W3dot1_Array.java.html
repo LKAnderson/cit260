@@ -1,0 +1,80 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> * Implement Programming Exercise 3.5 from the Chapter.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #aaaaaa; font-style: italic"> *</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #aaaaaa; font-style: italic"> * (Find future dates) Write a program that prompts the user to enter</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span><span style="color: #aaaaaa; font-style: italic"> * an integer for today&#39;s day of the week (Sunday is 0, Monday is 1, ...,</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span><span style="color: #aaaaaa; font-style: italic"> * and Saturday is 6). Also prompt the user to enter the number of days</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span><span style="color: #aaaaaa; font-style: italic"> * after today for a future day and display the future day of the week.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span><span style="color: #aaaaaa; font-style: italic"> *</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span><span style="color: #aaaaaa; font-style: italic"> * Here is a sample run:</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span><span style="color: #aaaaaa; font-style: italic"> *</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span><span style="color: #aaaaaa; font-style: italic"> * ```</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span><span style="color: #aaaaaa; font-style: italic"> * Enter today&#39;s day: 1</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span><span style="color: #aaaaaa; font-style: italic"> * Enter the number of days elapsed since today: 3</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span><span style="color: #aaaaaa; font-style: italic"> * Today is Monday and the future day is Thursday</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span><span style="color: #aaaaaa; font-style: italic"> * ```</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span><span style="color: #aaaaaa; font-style: italic"> *</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span><span style="color: #aaaaaa; font-style: italic"> * @author kent</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span><span style="color: #aaaaaa; font-style: italic"> *</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W3dot1_Array</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>        <span style="color: #aaaaaa; font-style: italic">// Sometimes an array lookup is better than a switch statment.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        <span style="color: #aaaaaa; font-style: italic">// But not always. In this case, the cases of the switch would</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>        <span style="color: #aaaaaa; font-style: italic">// would be consecutive integers, perfect for indexing into</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>        <span style="color: #aaaaaa; font-style: italic">// an array.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>        String[] weekdays = <span style="color: #0000aa">new</span> String[] {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>                <span style="color: #aa5500">&quot;Sunday&quot;</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>                <span style="color: #aa5500">&quot;Monday&quot;</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>                <span style="color: #aa5500">&quot;Tuesday&quot;</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>                <span style="color: #aa5500">&quot;Wednesday&quot;</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>                <span style="color: #aa5500">&quot;Thursday&quot;</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>                <span style="color: #aa5500">&quot;Friday&quot;</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>                <span style="color: #aa5500">&quot;Saturday&quot;</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>        };
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>        <span style="color: #0000aa">try</span> (Scanner scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)){
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>                    <span style="color: #aa5500">&quot;Given today&#39;s day of the week and some number of days in the future\n&quot;</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>                            + <span style="color: #aa5500">&quot;this program will tell you the day of the week for the future day.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>            <span style="color: #aaaaaa; font-style: italic">// prompt for inputs, store in variables</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter today&#39;s day of the week (0 for Sunday, 1 for Monday, etc.): &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>            <span style="color: #00aaaa">int</span> today = scanner.<span style="color: #1e90ff">nextInt</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>            <span style="color: #0000aa">if</span> (today &lt; <span style="color: #009999">0</span> || today &gt; <span style="color: #009999">6</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>                System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Invalid weekday. Please enter a number between 0 and 6.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>                System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter the number of days in the future: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span>            <span style="color: #00aaaa">int</span> future = scanner.<span style="color: #1e90ff">nextInt</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span>            <span style="color: #0000aa">if</span> (future &lt; <span style="color: #009999">0</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>                System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Invalid future day. You must enter a positive integer.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>                System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">2</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">62 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">63 </span>            <span style="color: #aaaaaa; font-style: italic">// calculate weekday names</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">64 </span>            <span style="color: #aaaaaa; font-style: italic">// This line guarantees that invalid data won&#39;t mess us up.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">65 </span>            <span style="color: #aaaaaa; font-style: italic">// 7 % 7 = 0, which is Sunday again.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">66 </span>            String weekdayToday = weekdays[today % <span style="color: #009999">7</span>];
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">67 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">68 </span>            String weekdayFuture = weekdays[(today + future) % <span style="color: #009999">7</span>];
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">69 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">70 </span>            <span style="color: #aaaaaa; font-style: italic">// print them out</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">71 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">printf</span>(<span style="color: #aa5500">&quot;Today is %s and the future day is %s&quot;</span>, weekdayToday, weekdayFuture);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">72 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">73 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Good-bye.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">74 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">75 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">76 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">77 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">78 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">79 </span>}
+</code></pre></div>

@@ -1,0 +1,44 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> * Create a tax+tip calculator. Print all of the details of the transaction.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W2dot2</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span><span style="color: #aaaaaa; font-style: italic">     * The tax rate to be applied to the transaction.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>    <span style="color: #0000aa">private</span> <span style="color: #0000aa">static</span> <span style="color: #0000aa">final</span> <span style="color: #00aaaa">double</span> TAX_RATE = <span style="color: #009999">0.032</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>        <span style="color: #aaaaaa; font-style: italic">// Open a scanner using the keyboard as input. Close it automatically</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>        <span style="color: #aaaaaa; font-style: italic">// at the end of the program.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>            <span style="color: #aaaaaa; font-style: italic">// Description</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;This is a tax + tip calculator.\n&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>            <span style="color: #aaaaaa; font-style: italic">// Prompt and gather inputs.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter the meal cost: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>            <span style="color: #0000aa">var</span> cost = scanner.<span style="color: #1e90ff">nextDouble</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter the tip percentage: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>            <span style="color: #0000aa">var</span> tipRate = scanner.<span style="color: #1e90ff">nextDouble</span>() * <span style="color: #009999">0.01</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>            <span style="color: #aaaaaa; font-style: italic">// calculate the tip and tax.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>            <span style="color: #0000aa">var</span> tip = cost * tipRate;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>            <span style="color: #0000aa">var</span> tax = cost * TAX_RATE;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>            <span style="color: #aaaaaa; font-style: italic">// total it all</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>            <span style="color: #0000aa">var</span> total = cost + tip + tax;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>            <span style="color: #aaaaaa; font-style: italic">// Print the report</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The tip is $%.02f\n&quot;</span>, tip);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The tax is $%.02f\n&quot;</span>, tax);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The total is $%.02f\n&quot;</span>, total);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Good-bye&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>}
+</code></pre></div>

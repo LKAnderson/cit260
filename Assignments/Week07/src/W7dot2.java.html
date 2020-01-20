@@ -1,0 +1,12 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #aaaaaa; font-style: italic"> * Ask the user for 5 double values and print out the mean and standard deviation.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W7dot2</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>        <span style="color: #00aaaa">double</span>[] values = Inputs.<span style="color: #1e90ff">getDoubles</span>(<span style="color: #009999">5</span>, <span style="color: #aa5500">&quot;Please enter 5 numbers (one per line):&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The mean is %.02f%n&quot;</span>, Stats.<span style="color: #1e90ff">average</span>(values));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The standard deviation is %.02f%n&quot;</span>, Stats.<span style="color: #1e90ff">deviation</span>(values));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>}
+</code></pre></div>

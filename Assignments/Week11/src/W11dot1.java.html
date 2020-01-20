@@ -1,0 +1,86 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.io.IOException</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.InputMismatchException</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span><span style="color: #aaaaaa; font-style: italic"> * Assignment 11.1</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W11dot1</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;This program reads a list of integers from the user,\n&quot;</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>                + <span style="color: #aa5500">&quot;writes them to a file, reads them from the file and calculates\n&quot;</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>                + <span style="color: #aa5500">&quot;the average of the numbers.\n&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>        <span style="color: #0000aa">final</span> <span style="color: #00aaaa">int</span> NUM_INTEGERS = <span style="color: #009999">10</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>        <span style="color: #0000aa">final</span> String FILEPATH = <span style="color: #aa5500">&quot;data.txt&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Please enter %d integers...\n&quot;</span>, NUM_INTEGERS);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>        <span style="color: #00aaaa">int</span>[] data = readIntegers(NUM_INTEGERS);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>        <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>            Storage.<span style="color: #1e90ff">storeData</span>(FILEPATH, data);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>        } <span style="color: #0000aa">catch</span> (IOException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error storing data: &quot;</span> + ex.<span style="color: #1e90ff">getMessage</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>        <span style="color: #00aaaa">int</span>[] newData = <span style="color: #0000aa">null</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>        <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>            newData = Storage.<span style="color: #1e90ff">loadData</span>(FILEPATH);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>        } <span style="color: #0000aa">catch</span> (IOException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error reading data: &quot;</span> + ex.<span style="color: #1e90ff">getMessage</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>        <span style="color: #0000aa">if</span> (newData.<span style="color: #1e90ff">length</span> != data.<span style="color: #1e90ff">length</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error:  Did not read the same number of items that was written.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>        <span style="color: #00aaaa">double</span> total = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>        <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> d : newData) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>            total += d;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The average value is: %.2f\n&quot;</span>, total / newData.<span style="color: #1e90ff">length</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span><span style="color: #aaaaaa; font-style: italic">     * Read integers from the user.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span><span style="color: #aaaaaa; font-style: italic">     * @param numToRead</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>    <span style="color: #0000aa">private</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">int</span>[] <span style="color: #00aa00">readIntegers</span>(<span style="color: #00aaaa">int</span> numToRead) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>        <span style="color: #0000aa">var</span> data = <span style="color: #0000aa">new</span> ArrayList&lt;Integer&gt;();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">62 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> input = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">63 </span>            <span style="color: #0000aa">while</span> (data.<span style="color: #1e90ff">size</span>() &lt; numToRead) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">64 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Enter integer #%d: &quot;</span>, data.<span style="color: #1e90ff">size</span>() + <span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">65 </span>                <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">66 </span>                    data.<span style="color: #1e90ff">add</span>(input.<span style="color: #1e90ff">nextInt</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">67 </span>                } <span style="color: #0000aa">catch</span> (InputMismatchException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">68 </span>                    <span style="color: #0000aa">if</span> (input.<span style="color: #1e90ff">hasNext</span>() == <span style="color: #0000aa">false</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">69 </span>                        <span style="color: #aaaaaa; font-style: italic">// input stream closed?</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">70 </span>                        <span style="color: #0000aa">break</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">71 </span>                    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">72 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">73 </span>                    System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Please enter a valid integer.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">74 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">75 </span>                    <span style="color: #aaaaaa; font-style: italic">// Skip the invalid value.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">76 </span>                    input.<span style="color: #1e90ff">nextLine</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">77 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">78 </span>                    <span style="color: #0000aa">continue</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">79 </span>                }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">80 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">81 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">82 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">83 </span>        <span style="color: #0000aa">return</span> Utils.<span style="color: #1e90ff">convertListToArray</span>(data);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">84 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">85 </span>}
+</code></pre></div>

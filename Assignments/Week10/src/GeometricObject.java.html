@@ -1,0 +1,78 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Date</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> * Base class for our 2D geometric objects</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">GeometricObject</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>    <span style="color: #0000aa">protected</span> String color = <span style="color: #aa5500">&quot;white&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>    <span style="color: #0000aa">protected</span> <span style="color: #00aaaa">boolean</span> filled;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>    <span style="color: #0000aa">protected</span> Date dateCreated;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span><span style="color: #aaaaaa; font-style: italic">     * Construct a default geometric object.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aa00">GeometricObject</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>        dateCreated = <span style="color: #0000aa">new</span> Date();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span><span style="color: #aaaaaa; font-style: italic">     * Construct a geometric object with the specified color and filled value.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aa00">GeometricObject</span>(String color, <span style="color: #00aaaa">boolean</span> filled) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>        dateCreated = <span style="color: #0000aa">new</span> Date();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">color</span> = color;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">filled</span> = filled;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span><span style="color: #aaaaaa; font-style: italic">     * Return color</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>    <span style="color: #0000aa">public</span> String <span style="color: #00aa00">getColor</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>        <span style="color: #0000aa">return</span> color;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span><span style="color: #aaaaaa; font-style: italic">     * Set a new color.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setColor</span>(String color) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">color</span> = color;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span><span style="color: #aaaaaa; font-style: italic">     * Return filled</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">boolean</span> <span style="color: #00aa00">isFilled</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>        <span style="color: #0000aa">return</span> filled;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span><span style="color: #aaaaaa; font-style: italic">     * Set a new filled value</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setFilled</span>(<span style="color: #00aaaa">boolean</span> filled) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">filled</span> = filled;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span><span style="color: #aaaaaa; font-style: italic">     * Get date created</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span>    <span style="color: #0000aa">public</span> Date <span style="color: #00aa00">getDateCreated</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>        <span style="color: #0000aa">return</span> dateCreated;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">62 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">63 </span><span style="color: #aaaaaa; font-style: italic">     * Calculate the area</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">64 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">65 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">getArea</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">66 </span>        <span style="color: #0000aa">return</span> <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">67 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">68 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">69 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">70 </span><span style="color: #aaaaaa; font-style: italic">     * Return string representation of this object.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">71 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">72 </span>    <span style="color: #888888">@Override</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">73 </span>    <span style="color: #0000aa">public</span> String <span style="color: #00aa00">toString</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">74 </span>        <span style="color: #0000aa">return</span> String.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Created on %s\ncolor: %s and filled: %b&quot;</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">75 </span>                dateCreated.<span style="color: #1e90ff">toString</span>(), color, filled);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">76 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">77 </span>}
+</code></pre></div>

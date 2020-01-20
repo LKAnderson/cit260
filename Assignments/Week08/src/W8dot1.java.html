@@ -1,0 +1,25 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #aaaaaa; font-style: italic"> * Test program for Rectangle</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic"> * @author kent</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W8dot1</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>        <span style="color: #aaaaaa; font-style: italic">// Create the rectangles in an array.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>        Rectangle[] rectangles = <span style="color: #0000aa">new</span> Rectangle[<span style="color: #009999">2</span>];
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>        rectangles[<span style="color: #009999">0</span>] = <span style="color: #0000aa">new</span> Rectangle(<span style="color: #009999">40</span>, <span style="color: #009999">4</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>        rectangles[<span style="color: #009999">1</span>] = <span style="color: #0000aa">new</span> Rectangle(<span style="color: #009999">5</span>, <span style="color: #009999">3.5</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>        <span style="color: #aaaaaa; font-style: italic">// Print out the stats for each rectangle created.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>        <span style="color: #0000aa">for</span> (Rectangle rect: rectangles){
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">printf</span>(<span style="color: #aa5500">&quot;width: %.2f, height: %.2f, area; %.2f, permiter: %.2f%n&quot;</span>, 
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>                    rect.<span style="color: #1e90ff">getWidth</span>(), 
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>                    rect.<span style="color: #1e90ff">getHeight</span>(),
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>                    rect.<span style="color: #1e90ff">getArea</span>(),
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>                    rect.<span style="color: #1e90ff">getPerimeter</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>}
+</code></pre></div>

@@ -1,0 +1,32 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> * Provide methods for getting input from users.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">Inputs</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span><span style="color: #aaaaaa; font-style: italic">     * Read double values from the user.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span><span style="color: #aaaaaa; font-style: italic">     * @param count The number of values to read</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span><span style="color: #aaaaaa; font-style: italic">     * @param prompt The message to print</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span>[] <span style="color: #00aa00">getDoubles</span>(<span style="color: #0000aa">final</span> <span style="color: #00aaaa">int</span> count, <span style="color: #0000aa">final</span> String prompt) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>        <span style="color: #00aaaa">double</span>[] inputs = <span style="color: #0000aa">new</span> <span style="color: #00aaaa">double</span>[count];
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>        <span style="color: #0000aa">try</span> (Scanner scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(prompt);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>            <span style="color: #00aaaa">int</span> stringCount = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>            <span style="color: #0000aa">while</span> (stringCount &lt; count) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;%d/%d: &quot;</span>, stringCount + <span style="color: #009999">1</span>, count);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>                inputs[stringCount] = scanner.<span style="color: #1e90ff">nextDouble</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>                stringCount += <span style="color: #009999">1</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>        <span style="color: #0000aa">return</span> inputs;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>}
+</code></pre></div>

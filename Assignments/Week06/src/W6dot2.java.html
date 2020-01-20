@@ -1,0 +1,48 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #aaaaaa; font-style: italic"> * Temperature converter.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W6dot2</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span><span style="color: #aaaaaa; font-style: italic">     * Convert C to F</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span><span style="color: #aaaaaa; font-style: italic">     * @param celsius the degrees in celsius</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span><span style="color: #aaaaaa; font-style: italic">     * @return the equivalent degrees in fahrenheit</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">celsiusToFahrenheit</span>(<span style="color: #00aaaa">double</span> celsius) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>        <span style="color: #0000aa">return</span> (<span style="color: #009999">9.0</span>/<span style="color: #009999">5</span> * celsius) + <span style="color: #009999">32</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span><span style="color: #aaaaaa; font-style: italic">     * Convert F to C</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span><span style="color: #aaaaaa; font-style: italic">     * @param fahrenheit the degrees in fahrenheit</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span><span style="color: #aaaaaa; font-style: italic">     * @return the equivalent degrees in celsius</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">fahrenheitToCelsius</span>(<span style="color: #00aaaa">double</span> fahrenheit) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        <span style="color: #0000aa">return</span> (fahrenheit - <span style="color: #009999">32</span>) / (<span style="color: #009999">9.0</span>/<span style="color: #009999">5</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        String tableHeader = <span style="color: #aa5500">&quot;Celsius   Fahrenheit   |   Fahrenheit   Celsius&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>        String tableLine =   <span style="color: #aa5500">&quot;-----------------------------------------------&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>        String tableTemplate = <span style="color: #aa5500">&quot;%7.1f   %10.1f   |   %10.1f   %7.2f\n&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(tableHeader);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(tableLine);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>        <span style="color: #00aaaa">double</span> celsius = <span style="color: #009999">40.0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>        <span style="color: #00aaaa">double</span> fahrenheit = <span style="color: #009999">120.0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>        <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> i=<span style="color: #009999">0</span>; i &lt; <span style="color: #009999">10</span>; i++, celsius -= <span style="color: #009999">1.0</span>, fahrenheit -= <span style="color: #009999">10.0</span> ){
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>            <span style="color: #00aaaa">double</span> c2f = celsiusToFahrenheit(celsius);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>            <span style="color: #00aaaa">double</span> f2c = fahrenheitToCelsius(fahrenheit);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">printf</span>(tableTemplate, celsius, c2f, fahrenheit, f2c);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>}
+</code></pre></div>

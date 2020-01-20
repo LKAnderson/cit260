@@ -1,0 +1,64 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #aaaaaa; font-style: italic"> * A Rectangle class to model a rectangle in code.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic"> * @author kent</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">Rectangle</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>    <span style="color: #0000aa">private</span> <span style="color: #00aaaa">double</span> width;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>    <span style="color: #0000aa">private</span> <span style="color: #00aaaa">double</span> height;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span><span style="color: #aaaaaa; font-style: italic">     * Default constructor. This is not too useful since we&#39;re</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span><span style="color: #aaaaaa; font-style: italic">     * not providing a way to update the properties once the </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span><span style="color: #aaaaaa; font-style: italic">     * object is created.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aa00">Rectangle</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>        width = <span style="color: #009999">1</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>        height = <span style="color: #009999">1</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span><span style="color: #aaaaaa; font-style: italic">     * Constructor. Create a new Rectangle object with the given</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span><span style="color: #aaaaaa; font-style: italic">     * width and height.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span><span style="color: #aaaaaa; font-style: italic">     * @param width</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span><span style="color: #aaaaaa; font-style: italic">     * @param height</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aa00">Rectangle</span>(<span style="color: #00aaaa">double</span> width, <span style="color: #00aaaa">double</span> height) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">width</span> = width;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">height</span> = height;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span><span style="color: #aaaaaa; font-style: italic">     * Accessor method for the width property.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">getWidth</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>        <span style="color: #0000aa">return</span> width;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span><span style="color: #aaaaaa; font-style: italic">     * Accessor method for the height property;</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">getHeight</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>        <span style="color: #0000aa">return</span> height;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span><span style="color: #aaaaaa; font-style: italic">     * Calculate the area of the rectangle.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">getArea</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>        <span style="color: #0000aa">return</span> width * height;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span><span style="color: #aaaaaa; font-style: italic">     * Calculate the perimeter of the rectangle.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">getPerimeter</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>        <span style="color: #0000aa">return</span> (<span style="color: #009999">2</span> * width) + (<span style="color: #009999">2</span> * height);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">62 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">63 </span>}
+</code></pre></div>

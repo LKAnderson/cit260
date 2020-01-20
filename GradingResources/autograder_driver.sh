@@ -40,12 +40,10 @@ function compile() {
         echo '<span class="compiler nok">X</span> There were errors.' >> "${RESULT}"
         echo '<div class="run-listing">' >> "${RESULT}"
         echo "" >> "${RESULT}"
-        echo '```plaintext' >> "${RESULT}"
+        echo '<pre>' >> "${RESULT}"
         echo "$output" >> "${RESULT}"
-        echo '```' >> "${RESULT}"
-        echo "" >> "${RESULT}"
+        echo '</pre>' >> "${RESULT}"
         echo "</div>" >> "${RESULT}"
-        echo "" >> "${RESULT}"
         return 1
     fi
 }
@@ -136,13 +134,21 @@ h3 { border-bottom: 1px solid #999; }
 h3, h4, h5, h6 { margin-top: 3em; }
 .uml { font-size: smaller; }
 #submitter { float: right; box-shadow: 2px 2px 4px #222; border: 1px solid #000; 
-             border-radius: 5px; padding: .5em .75em; }
+             border-radius: 5px; padding: .5em .75em; min-width: 25%;}
 #submitter label { font-weight: bold; margin-right: 2em; }
+div.highlight {
+    border: 1px solid #000;
+    border-radius: .25em;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 2px 2px 4px #555;
+}
 .compiler { font-size: larger; font-weight: bold; }
 .compiler.nok { color: #ff0000; }
 .compiler.ok { color: #00aa00; }
 .run-listing pre { background-color: #242424; 
                    color: #dddddd; padding: 1.25em; border-radius: 5px; }
+
 .missing-everything { background-color: #f9cccc; color: #ff0000; 
                       margin: 3em 0; padding: 1em; border-radius: .25em; }
 
@@ -219,13 +225,14 @@ done
 
 if [[ $moduleCounter -eq 0 ]]; then
     echo "" >> "${RESULT}"
-    echo '<div class="missing-everything">Expected to find files named according to the assignment instructions, but did not find any matching files.</div>' >> "${RESULT}"
+    echo '<div class="missing-everything">Expected to find files named according to the assignment ' >> "${RESULT}"
+    echo 'standard of W&lt;week#&gt;dot&lt;assignment#&gt;.java, but did not find any matching files.</div>' >> "${RESULT}"
     echo "" >> "${RESULT}"
 fi
 
 # Find any other Java files that were not part of the modules
 let fileCount=0
-for javaFile in $(find . -name "*.java" | grep -vi __macosx); do
+for javaFile in $(find . -type f -name "*.java" | grep -vi __macosx); do
     className=$(basename $javaFile | sed 's/\.java//')
     if [[ ! " ${JAVA_MODULES[@]} " =~ " ${className} " ]]; then
         echo "Found $javaFile"
@@ -235,8 +242,8 @@ for javaFile in $(find . -name "*.java" | grep -vi __macosx); do
         fi
         let fileCount=($fileCount+1)
         echo "<h2>${moduleCounter}.${fileCount} ${className}.java</h2>" >> "${RESULT}"
-        echo "<p>**Location:** ${javaFile}</p>" >> "${RESULT}"
-        renderCode "${javaPath}"
+        echo "<p><strong>Location:</strong> ${javaFile}</p>" >> "${RESULT}"
+        renderCode "${javaFile}"
         pushd "$(dirname $javaFile)" > /dev/null
         compile "$(basename $javaFile)"
         popd > /dev/null

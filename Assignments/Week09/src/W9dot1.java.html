@@ -1,0 +1,46 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> * Test Driver for MyPoint class</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W9dot1</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] args) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>            <span style="color: #aa5500">&quot;This program creates a point at (0,0) and a point at the coordinates \n&quot;</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>            + <span style="color: #aa5500">&quot;entered by you. It then computes and displays the distance from (0,0)\n&quot;</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>            + <span style="color: #aa5500">&quot;to the point defined by you, using three different methods.\n&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>            MyPoint referencePoint = <span style="color: #0000aa">new</span> MyPoint();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter the x coordinate of a point: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>            <span style="color: #00aaaa">int</span> xCoord = scanner.<span style="color: #1e90ff">nextInt</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter the y coordinate of a point: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>            <span style="color: #00aaaa">int</span> yCoord = scanner.<span style="color: #1e90ff">nextInt</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>            <span style="color: #00aaaa">double</span>[] results = <span style="color: #0000aa">new</span> <span style="color: #00aaaa">double</span>[<span style="color: #009999">3</span>];
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>            results[<span style="color: #009999">0</span>] = referencePoint.<span style="color: #1e90ff">distance</span>(xCoord, yCoord);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>            MyPoint userPoint = <span style="color: #0000aa">new</span> MyPoint(xCoord, yCoord);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>            results[<span style="color: #009999">1</span>] = referencePoint.<span style="color: #1e90ff">distance</span>(userPoint);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>            results[<span style="color: #009999">2</span>] = MyPoint.<span style="color: #1e90ff">distance</span>(referencePoint, userPoint);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>            <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> i = <span style="color: #009999">0</span>; i &lt; results.<span style="color: #1e90ff">length</span>; i++) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>                    <span style="color: #aa5500">&quot;Using method %d, the distance between %s and %s is %.2f%n&quot;</span>, 
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>                    i + <span style="color: #009999">1</span>,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>                    referencePoint.<span style="color: #1e90ff">toString</span>(), 
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>                    userPoint.<span style="color: #1e90ff">toString</span>(), 
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>                    results[i]);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Farewell...&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>}
+</code></pre></div>
