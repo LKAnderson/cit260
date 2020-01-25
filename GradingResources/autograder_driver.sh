@@ -25,33 +25,38 @@
 #              (may have spaces in the path so use it within quotes)
 # 
 
-function indent() {
-    width=$1
-    file=$2
-    cat "${file}" | awk "{ printf(\"%${width}s%s\n\", \" \", \$0) }"
+function output() {
+    echo "$*" >> "${RESULT}"
 }
 
 function compile() {
-    output=$(javac "$1" 2>&1)
+    coutput=$(javac "$1" 2>&1)
     if [ $? -eq 0 ]; then
-        echo '<span class="compiler ok">OK</span> Compiled successfully' >> "${RESULT}"
+        output '<span class="compiler ok">OK</span> Compiled successfully'
         return 0
     else
-        echo '<span class="compiler nok">X</span> There were errors.' >> "${RESULT}"
-        echo '<div class="run-listing">' >> "${RESULT}"
-        echo "" >> "${RESULT}"
-        echo '<pre>' >> "${RESULT}"
-        echo "$output" >> "${RESULT}"
-        echo '</pre>' >> "${RESULT}"
-        echo "</div>" >> "${RESULT}"
+        output '<span class="compiler nok">X</span> There were errors.'
+        output '<div class="run-listing">'
+        output ""
+        output '<pre>'
+        output "$coutput"
+        output '</pre>'
+        output "</div>"
         return 1
     fi
 }
 
 function renderCode() {
-    echo "$(cat "$1" | pygmentize -l java -f html -O "style=autumn,linenos=inline,wrapcode,noclasses")" >> "${RESULT}"
-    echo "" >> "${RESULT}"
+    output $(cat "$1" | pygmentize -l java -f html -O "style=autumn,linenos=inline,wrapcode,noclasses")
 }
+
+
+
+function formattingDisclaimer() {
+    output "<p><em>Do not worry about the formatting you see here. The auto-grader skips over"
+    output "some of the extra newline characters as it processes your program.</em></p>"
+}
+
 
 function processUmlDiagram() {
     # To use this, the grader needs to inject "<!-- UML-INJECT -->" into the
@@ -102,7 +107,15 @@ zip=$1
 userdir=$(echo "${zip}" | sed 's/_/ /' | awk '{ print $1; }')
 echo ${userdir}
 if [ ! -d "${userdir}" ]; then
-    unzip -qq -o -d ${userdir} "${zip}"
+    if [[ "$zip" == *.zip ]]; then 
+        unzip -qq -o -d ${userdir} "${zip}"
+    fi
+
+    if [[ "$zip" == *.rar ]]; then
+        cp "$zip" "$userdir.rar"
+        open "$userdir.rar"
+        rm "$userdir.rar"
+    fi
 fi
 
 pushd ${userdir} > /dev/null
@@ -146,8 +159,9 @@ div.highlight {
 .compiler { font-size: larger; font-weight: bold; }
 .compiler.nok { color: #ff0000; }
 .compiler.ok { color: #00aa00; }
-.run-listing pre { background-color: #242424; 
-                   color: #dddddd; padding: 1.25em; border-radius: 5px; }
+.run-listing pre { background-color: #bbc; 
+                   color: #000; padding: 1.25em; border-radius: 5px; 
+                   font-size: larger; }
 
 .missing-everything { background-color: #f9cccc; color: #ff0000; 
                       margin: 3em 0; padding: 1em; border-radius: .25em; }
@@ -157,13 +171,13 @@ div.highlight {
 <body>
 EOF
 
-echo '<div id="submitter">' >> "${RESULT}"
-echo "<label>Submitter:</label>${userdir}<br/>" >> "${RESULT}"
-echo "<label>Run date:</label> $(date "+%b %d, %Y")" >> "${RESULT}"
-echo '</div>' >> "${RESULT}"
-echo "" >> "${RESULT}"
+output '<div id="submitter">'
+output "<label>Submitter:</label>${userdir}<br/>"
+output "<label>Run date:</label> $(date "+%b %d, %Y")"
+output '</div>'
+output ""
 
-echo "<h1>${RESULT_TITLE}</h1>" >> "${RESULT}"
+output "<h1>${RESULT_TITLE}</h1>"
 
 if [ "${HAS_USERDIR_HOOK}" != "" ]; then
     onUserDir "${userdir}"
@@ -184,7 +198,7 @@ for module in ${JAVA_MODULES[*]}; do
         let moduleCounter=($moduleCounter + 1)
 
         echo "Found ${javaPath}"
-        echo "<h2>${moduleCounter} $(basename ${javaPath})</h2>" >> "${RESULT}"
+        output "<h2>${moduleCounter} $(basename ${javaPath})</h2>"
         
         export submissionDir="$(pwd)"
         export javaDir="$(dirname ${javaPath})"
@@ -202,32 +216,32 @@ for module in ${JAVA_MODULES[*]}; do
             done
 
             # Compile the file
-            echo "<h3>${moduleCounter}.1 Compile Program</h3>" >> "${RESULT}"
+            output "<h3>${moduleCounter}.1 Compile Program</h3>"
             compile "${javaFile}"
             if [ $? -eq 0 ]; then
-                echo "<h3>${moduleCounter}.2 Run Program</h3>" >> "${RESULT}"
-                echo '<div class="run-listing">' >> "${RESULT}"
+                output "<h3>${moduleCounter}.2 Run Program</h3>"
+                output '<div class="run-listing">'
                 export javaClass=$(echo ${javaFile} | sed 's/\.java//')
 
                 # Run the class
                 gradeModule
-                echo '</div>' >> "${RESULT}"
+                output '</div>'
             fi
         fi
 
         popd > /dev/null
 
         # Add source code to result file
-        echo "<h3>${moduleCounter}.3 Source Listing</h3>" >> "${RESULT}"
+        output "<h3>${moduleCounter}.3 Source Listing</h3>"
         renderCode "${javaPath}"
     fi
 done
 
 if [[ $moduleCounter -eq 0 ]]; then
-    echo "" >> "${RESULT}"
-    echo '<div class="missing-everything">Expected to find files named according to the assignment ' >> "${RESULT}"
-    echo 'standard of W&lt;week#&gt;dot&lt;assignment#&gt;.java, but did not find any matching files.</div>' >> "${RESULT}"
-    echo "" >> "${RESULT}"
+    output ""
+    output '<div class="missing-everything">Expected to find files named according to the assignment '
+    output 'standard of W&lt;week#&gt;dot&lt;assignment#&gt;.java, but did not find any matching files.</div>'
+    output ""
 fi
 
 # Find any other Java files that were not part of the modules
@@ -238,11 +252,11 @@ for javaFile in $(find . -type f -name "*.java" | grep -vi __macosx); do
         echo "Found $javaFile"
         if [[ $fileCount -eq 0 ]]; then
             let moduleCounter=($moduleCounter+1)
-            echo "<h1>$moduleCounter Unexpected Java Files</h1>" >> "${RESULT}"
+            output "<h1>$moduleCounter Unexpected Java Files</h1>"
         fi
         let fileCount=($fileCount+1)
-        echo "<h2>${moduleCounter}.${fileCount} ${className}.java</h2>" >> "${RESULT}"
-        echo "<p><strong>Location:</strong> ${javaFile}</p>" >> "${RESULT}"
+        output "<h2>${moduleCounter}.${fileCount} ${className}.java</h2>"
+        output "<p><strong>Location:</strong> ${javaFile}</p>"
         renderCode "${javaFile}"
         pushd "$(dirname $javaFile)" > /dev/null
         compile "$(basename $javaFile)"
@@ -255,11 +269,11 @@ if [ "${HAS_FINISHED_HOOK}" != "" ]; then
 fi
 
 if [ "${HAS_HTML_EXTRA}" != "" ]; then
-    cat "${HTML_EXTRA}" >> "${RESULT}"
+    output $(cat "${HTML_EXTRA}")
     rm "${HTML_EXTRA}"
 fi
 
-echo "</body></html>" >> "${RESULT}"
+output "</body></html>"
 
 if [ "${HAS_UML_DIAGRAM}" == "1" ]; then
     processUmlDiagram
