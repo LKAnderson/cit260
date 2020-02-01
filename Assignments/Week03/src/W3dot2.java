@@ -72,11 +72,7 @@ public class W3dot2 {
                     break;
                 // finally, handle poor little February
                 case FEB:
-                    if (isLeapYear == true) {
-                        days = 29;
-                    } else {
-                        days = 28;
-                    }
+                    days = isLeapYear == true ? 29 : 28;
                     break;
             }
 

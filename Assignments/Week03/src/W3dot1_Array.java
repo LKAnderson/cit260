@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 /**
- * Implement Programming Exercise 3.5 from the Chapter.
+ * Implement Programming Exercise 3.1.
  *
  * (Find future dates) Write a program that prompts the user to enter
  * an integer for today's day of the week (Sunday is 0, Monday is 1, ...,

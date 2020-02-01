@@ -2,14 +2,15 @@
 
 
 export RESULT_TITLE="WEEK 3 PROGRAMMING EXERCISES"
-export JAVA_MODULES=(W3dot1 w3dot1 A3dot1 a3dot1 W3dot2 w3dot2 A3d0t2 a3dot2)
+export JAVA_MODULES=(W3dot1 w3dot1 Wk3dot1 A3dot1 a3dot1 W3dot2 w3dot2 Wk3dot2 A3d0t2 a3dot2)
 
 function gradeModule() {
     case $module in 
-        W3dot1|w3dot1|A3dot1|a3dot2)
+        W3dot1|w3dot1|A3dot1|a3dot1|Wk3dot1)
             formattingDisclaimer
             output "<pre>"
             output "# Case 1: 0-Sunday + 3 = Wednesday"
+            output ""
             printf "0\n3\n" | java -Djava.security.manager $module >> "$$" 2>&1
             output $(cat "$$")
             rm "$$"
@@ -48,7 +49,7 @@ function gradeModule() {
             output "</pre>"
             ;;
 
-        W3dot2|w3dot2|A3dot2|a3dot2)
+        W3dot2|w3dot2|A3dot2|a3dot2|Wk3dot2)
             formattingDisclaimer
             output "<pre>"
             output "# Case 1: 2019 1 (Jan) =  31 days"
