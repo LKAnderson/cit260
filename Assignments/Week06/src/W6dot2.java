@@ -27,7 +27,7 @@ public class W6dot2 {
         String tableHeader = "Celsius   Fahrenheit   |   Fahrenheit   Celsius";
         String tableLine =   "-----------------------------------------------";
         
-        String tableTemplate = "%7.1f   %10.1f   |   %10.1f   %7.2f\n";
+        String tableTemplate = "%-7.1f   %5.1f        |   %-10.1f   %5.2f\n";
 
         System.out.println(tableHeader);
         System.out.println(tableLine);

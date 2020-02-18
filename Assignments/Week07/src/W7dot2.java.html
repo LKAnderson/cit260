@@ -7,6 +7,10 @@
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>        <span style="color: #00aaaa">double</span>[] values = Inputs.<span style="color: #1e90ff">getDoubles</span>(<span style="color: #009999">5</span>, <span style="color: #aa5500">&quot;Please enter 5 numbers (one per line):&quot;</span>);
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The mean is %.02f%n&quot;</span>, Stats.<span style="color: #1e90ff">average</span>(values));
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The standard deviation is %.02f%n&quot;</span>, Stats.<span style="color: #1e90ff">deviation</span>(values));
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>}
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>        values = Inputs.<span style="color: #1e90ff">getDoubles</span>(argv);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The mean is %.02f%n&quot;</span>, Stats.<span style="color: #1e90ff">average</span>(values));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The standard deviation is %.02f%n&quot;</span>, Stats.<span style="color: #1e90ff">deviation</span>(values));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>}
 </code></pre></div>

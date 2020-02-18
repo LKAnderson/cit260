@@ -2,54 +2,61 @@
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #aaaaaa; font-style: italic"> * Future Value Calculator.</span>
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W6dot1</span> {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span><span style="color: #aaaaaa; font-style: italic">     * Calculate the future value of an investment.</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span><span style="color: #aaaaaa; font-style: italic">     * @param investmentAmount</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span><span style="color: #aaaaaa; font-style: italic">     * @param monthlyInterestRate</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span><span style="color: #aaaaaa; font-style: italic">     * @param years</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">futureInvestmentValue</span>(
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>                            <span style="color: #00aaaa">double</span> investmentAmount,
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>                            <span style="color: #00aaaa">double</span> monthlyInterestRate,
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>                            <span style="color: #00aaaa">int</span> years ) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>        
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        <span style="color: #0000aa">return</span> investmentAmount * Math.<span style="color: #1e90ff">pow</span>(<span style="color: #009999">1</span> + monthlyInterestRate, years*<span style="color: #009999">12</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>        <span style="color: #0000aa">try</span> (Scanner scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;The amount invested: &quot;</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>            <span style="color: #00aaaa">double</span> amountInvested = scanner.<span style="color: #1e90ff">nextDouble</span>();
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Annual interest rate: &quot;</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>            <span style="color: #00aaaa">double</span> yearlyInterest = scanner.<span style="color: #1e90ff">nextDouble</span>();
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>            <span style="color: #0000aa">if</span> (yearlyInterest &lt; <span style="color: #009999">0</span>) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>                System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Invalid interest rate&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.text.DecimalFormat</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W6dot1</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span><span style="color: #aaaaaa; font-style: italic">     * Calculate the future value of an investment.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span><span style="color: #aaaaaa; font-style: italic">     * @param investmentAmount</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span><span style="color: #aaaaaa; font-style: italic">     * @param monthlyInterestRate</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span><span style="color: #aaaaaa; font-style: italic">     * @param years</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">futureInvestmentValue</span>(
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>                            <span style="color: #00aaaa">double</span> investmentAmount,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>                            <span style="color: #00aaaa">double</span> monthlyInterestRate,
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>                            <span style="color: #00aaaa">int</span> years ) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>        <span style="color: #0000aa">return</span> investmentAmount * Math.<span style="color: #1e90ff">pow</span>(<span style="color: #009999">1</span> + monthlyInterestRate, years*<span style="color: #009999">12</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        DecimalFormat formatter = <span style="color: #0000aa">new</span> DecimalFormat(<span style="color: #aa5500">&quot;$#,##0.00&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>        <span style="color: #0000aa">try</span> (Scanner scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;The amount invested: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>            <span style="color: #00aaaa">double</span> amountInvested = scanner.<span style="color: #1e90ff">nextDouble</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>            <span style="color: #0000aa">if</span> (amountInvested &lt;= <span style="color: #009999">0</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>                System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Amount must be greater than zero.&quot;</span>);
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>                System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>            }
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>            yearlyInterest = yearlyInterest / <span style="color: #009999">100.0</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>            String tableHeader   = <span style="color: #aa5500">&quot;Years     Future Value\n&quot;</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>            String tableTemplate = <span style="color: #aa5500">&quot;%-5d     %12.02f\n&quot;</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(tableHeader);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Annual interest rate: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>            <span style="color: #00aaaa">double</span> yearlyInterest = scanner.<span style="color: #1e90ff">nextDouble</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>            <span style="color: #0000aa">if</span> (yearlyInterest &lt; <span style="color: #009999">0</span> || yearlyInterest &gt;= <span style="color: #009999">100</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>                System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Invalid interest rate&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>                System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>            }
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>            <span style="color: #00aaaa">double</span> futureValue = <span style="color: #009999">0</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>            <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> year = <span style="color: #009999">1</span>; year &lt;= <span style="color: #009999">10</span>; year++) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>                futureValue = futureInvestmentValue(amountInvested, yearlyInterest/<span style="color: #009999">12</span>, year);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">printf</span>(tableTemplate, year, futureValue);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>            }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>        }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>    
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>}
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>            yearlyInterest = yearlyInterest / <span style="color: #009999">100.0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>            String tableHeader   = <span style="color: #aa5500">&quot;Years     Future Value\n&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>            String tableTemplate = <span style="color: #aa5500">&quot;%-5d     %s\n&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(tableHeader);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>            <span style="color: #00aaaa">double</span> futureValue = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>            <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> year = <span style="color: #009999">1</span>; year &lt;= <span style="color: #009999">10</span>; year++) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>                futureValue = futureInvestmentValue(amountInvested, yearlyInterest/<span style="color: #009999">12</span>, year);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">printf</span>(tableTemplate, year, formatter.<span style="color: #1e90ff">format</span>(futureValue));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>}
 </code></pre></div>

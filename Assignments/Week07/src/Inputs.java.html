@@ -28,5 +28,24 @@
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>        <span style="color: #0000aa">return</span> inputs;
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>}
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span><span style="color: #aaaaaa; font-style: italic">     * Convert an array of strings to an array of doubles.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span><span style="color: #aaaaaa; font-style: italic">     * @param input the array of strings</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span><span style="color: #aaaaaa; font-style: italic">     * @return the array of doubles.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span>[] <span style="color: #00aa00">getDoubles</span>(String[] input) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>        <span style="color: #00aaaa">double</span>[] output = <span style="color: #0000aa">new</span> <span style="color: #00aaaa">double</span>[input.<span style="color: #1e90ff">length</span>];
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>        <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> i=<span style="color: #009999">0</span>; i &lt; input.<span style="color: #1e90ff">length</span>; i++) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>            <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>                output[i] = Double.<span style="color: #1e90ff">parseDouble</span>(input[i]);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>            } <span style="color: #0000aa">catch</span> (NumberFormatException exception) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>                <span style="color: #aaaaaa; font-style: italic">// We&#39;ll set it to 0. We&#39;ll learn how to </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>                <span style="color: #aaaaaa; font-style: italic">// handle this error better in Week 11.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>                output[i] = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>        <span style="color: #0000aa">return</span> output;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>}
 </code></pre></div>

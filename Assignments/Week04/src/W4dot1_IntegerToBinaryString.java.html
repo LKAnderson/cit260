@@ -1,0 +1,57 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #aaaaaa; font-style: italic"> * Convert a hex character to its binary representation.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W4dot1_IntegerToBinaryString</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>        <span style="color: #0000aa">try</span> (Scanner scanner = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>            <span style="color: #aaaaaa; font-style: italic">// prompt the user for the hex digit.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">print</span>(<span style="color: #aa5500">&quot;Enter a hex digit: &quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>            String hexString = scanner.<span style="color: #1e90ff">nextLine</span>().<span style="color: #1e90ff">trim</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>            hexString = hexString.<span style="color: #1e90ff">toUpperCase</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>            <span style="color: #aaaaaa; font-style: italic">// Make sure they only entered a single digit.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>            <span style="color: #0000aa">if</span> (hexString.<span style="color: #1e90ff">length</span>() != <span style="color: #009999">1</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>                <span style="color: #0000aa">if</span> (hexString.<span style="color: #1e90ff">length</span>() == <span style="color: #009999">0</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>                    hexString = <span style="color: #aa5500">&quot;&lt;empty&gt;&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>                }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>                System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(hexString + <span style="color: #aa5500">&quot; is an invalid input&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>                System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>            <span style="color: #aaaaaa; font-style: italic">// Get the first (only) character</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>            <span style="color: #00aaaa">char</span> hexDigit = hexString.<span style="color: #1e90ff">charAt</span>(<span style="color: #009999">0</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>            <span style="color: #aaaaaa; font-style: italic">// default to an empty string</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>            String binaryString = <span style="color: #aa5500">&quot;&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>            <span style="color: #aaaaaa; font-style: italic">// Find the binary string according to the relative offset</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>            <span style="color: #aaaaaa; font-style: italic">// of the character from its root character.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>            <span style="color: #0000aa">if</span> (hexDigit &gt;= <span style="color: #aa5500">&#39;A&#39;</span> &amp;&amp; hexDigit &lt;= <span style="color: #aa5500">&#39;F&#39;</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>                binaryString = Integer.<span style="color: #1e90ff">toBinaryString</span>(<span style="color: #009999">10</span> + (hexDigit - <span style="color: #aa5500">&#39;A&#39;</span>));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>            } <span style="color: #0000aa">else</span> <span style="color: #0000aa">if</span> (hexDigit &gt;= <span style="color: #aa5500">&#39;0&#39;</span> &amp;&amp; hexDigit &lt;= <span style="color: #aa5500">&#39;9&#39;</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>                binaryString = Integer.<span style="color: #1e90ff">toBinaryString</span>(hexDigit - <span style="color: #aa5500">&#39;0&#39;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>            } <span style="color: #0000aa">else</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>                System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">printf</span>(<span style="color: #aa5500">&quot;%c is an invalid input%n&quot;</span>, hexDigit);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>                <span style="color: #aaaaaa; font-style: italic">// Exiting the whole program from an if-else-if ladder</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>                <span style="color: #aaaaaa; font-style: italic">// isn&#39;t really the best form, but it will do for this</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>                <span style="color: #aaaaaa; font-style: italic">// lesson.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>                System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>            <span style="color: #aaaaaa; font-style: italic">// Make sure the string is 4 digits</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>            binaryString = <span style="color: #aa5500">&quot;0&quot;</span>.<span style="color: #1e90ff">repeat</span>(<span style="color: #009999">4</span> - binaryString.<span style="color: #1e90ff">length</span>()) + binaryString;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>            <span style="color: #aaaaaa; font-style: italic">// Print it out.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">printf</span>(<span style="color: #aa5500">&quot;The binary value is %s%n&quot;</span>, binaryString);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span>}
+</code></pre></div>

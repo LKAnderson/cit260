@@ -192,7 +192,7 @@ for module in ${JAVA_MODULES[*]}; do
 
     export module
     
-    export javaPath=$(find . -name ${module}.java)
+    export javaPath=$(find . -name ${module}.java | head -n 1)
     if [ "${javaPath}" != "" ]; then
     
         let moduleCounter=($moduleCounter + 1)
@@ -252,7 +252,7 @@ for javaFile in $(find . -type f -name "*.java" | grep -vi __macosx); do
         echo "Found $javaFile"
         if [[ $fileCount -eq 0 ]]; then
             let moduleCounter=($moduleCounter+1)
-            output "<h1>$moduleCounter Unexpected Java Files</h1>"
+            output "<h1>$moduleCounter Additional Java Files Found</h1>"
         fi
         let fileCount=($fileCount+1)
         output "<h2>${moduleCounter}.${fileCount} ${className}.java</h2>"
