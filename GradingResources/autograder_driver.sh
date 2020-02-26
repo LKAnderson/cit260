@@ -29,13 +29,21 @@ function output() {
     echo "$*" >> "${RESULT}"
 }
 
+function printOk() {
+    output "<span class=\"compiler ok\">$1</span>"
+}
+
+function printError() {
+    output "<span class=\"compiler nok\">$1</span>"
+}
+
 function compile() {
     coutput=$(javac "$1" 2>&1)
     if [ $? -eq 0 ]; then
-        output '<span class="compiler ok">OK</span> Compiled successfully'
+        output "$(printOk OK) Compiled successfully"
         return 0
     else
-        output '<span class="compiler nok">X</span> There were errors.'
+        output "$(printError X) There were errors."
         output '<div class="run-listing">'
         output ""
         output '<pre>'
@@ -77,9 +85,10 @@ EOHTML
     done
 
     # Find any other image files (png, jpg, jpeg, gif)
-    for img in $(find . -name \*.png -o -name \*.jpg -o -name \*.jpeg -o -name \*.gif); do
+    for img in $(find . -name \*.png -o -name \*.jpg -o -name \*.jpeg -o -name \*.gif -o -name \*.svg); do
         echo "Found image file: ${img}"
         cat <<EOHTML >> uml.html
+            <h3>$(basename $img)</h3>
             <img class="uml" src="${img}"/>
 EOHTML
     done

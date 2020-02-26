@@ -45,18 +45,29 @@ function gradeModule() {
             output "40.0           104.0          |    120.0          48.89"
             output "39.0           102.2          |    110.0          43.33"
             output "38.0           100.4          |    100.0          37.78"
-            output "37.0           98.6           |    90.0           32.22"
-            output "36.0           96.8           |    80.0           26.67"
-            output "35.0           95.0           |    70.0           21.11"
-            output "34.0           93.2           |    60.0           15.56"
-            output "33.0           91.4           |    50.0           10.00"
-            output "32.0           89.6           |    40.0           4.44"
-            output "31.0           87.8           |    30.0           -1.11"
+            output "37.0            98.6          |    90.0           32.22"
+            output "36.0            96.8          |    80.0           26.67"
+            output "35.0            95.0          |    70.0           21.11"
+            output "34.0            93.2          |    60.0           15.56"
+            output "33.0            91.4          |    50.0           10.00"
+            output "32.0            89.6          |    40.0            4.44"
+            output "31.0            87.8          |    30.0           -1.11"
             output '</pre>'
             output "<h4>Your Output</h4>"
             output '<pre>'
             output "$(java -Djava.security.manager $javaClass 2>&1)"
             output '</pre>'
+            output "<h4>Check for required methods</h4>"
+
+            output "<p><span style='font-family: monospace;'>public static double celsiusToFahrenheit(double tempCelsius)</span>"
+            grep -e "public\s+static\s+double\s+celsiusToFahrenheit(double\s+tempCelsius)" ${javaFile} > /dev/null 2>&1
+            if [ $? -ne 0 ]; then output "$(printOk Found)"; else output "$(printError "Not Found")"; fi
+            output "</p>"
+
+            output "<p><span style='font-family: monospace;'>public static double fahrenheitToCelsius(double tempFahrenheit)</span>"
+            grep -e "public\s+static\s+double\s+fahrenheitToCelsius(double\s+tempFahrenheit)" ${javaFile} > /dev/null 2>&1
+            if [ $? -ne 0 ]; then output "$(printOk Found)"; else output "$(printError "Not Found")"; fi
+            output "</p>"
             ;;
     esac
 }

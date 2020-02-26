@@ -12,12 +12,15 @@ public class W8dot1 {
         rectangles[1] = new Rectangle(5, 3.5);
         
         // Print out the stats for each rectangle created.
-        for (Rectangle rect: rectangles){
-            System.out.printf("width: %.2f, height: %.2f, area; %.2f, permiter: %.2f%n", 
-                    rect.getWidth(), 
+        for (int i=0; i < rectangles.length; i++) {
+            Rectangle rect = rectangles[i];
+            System.out.format("Rectangle %d:\nheight = %.2f\nwidth = %.2f\narea = %.2f\npermiter: %.2f\n", 
+                    i+1,
                     rect.getHeight(),
+                    rect.getWidth(), 
                     rect.getArea(),
                     rect.getPerimeter());
+            System.out.println();
         }
     }
 

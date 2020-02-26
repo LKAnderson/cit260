@@ -28,20 +28,20 @@ public class Rectangle {
         this.height = height;
     }
     
-    /**
-     * Accessor method for the width property.
-     * @return
-     */
     public double getWidth() {
         return width;
     }
     
-    /**
-     * Accessor method for the height property;
-     * @return
-     */
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
     public double getHeight() {
         return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
     }
     
     /**

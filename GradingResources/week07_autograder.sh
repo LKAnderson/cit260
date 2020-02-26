@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 export RESULT_TITLE="WEEK 7 PROGRAMMING EXERCISES"
-export JAVA_MODULES=(W7dot1 w7dot1 W07dot1 W7dot2 w7dot2 W07dot2)
+export JAVA_MODULES=(W7dot1 w7dot1 W07dot1 A7dot1 W7dot2 w7dot2 W07dot2 A7dot2)
 
 function gradeModule() {
 
     case $module in
-        W7dot1|w7dot1|W07dot1)
+        *7[Dd]ot*1)
             output "<h4>CASE 1: Example from the assignment</h4>"
             output '<pre>'
             output "Inputs: 5.3 6.2 12.1 8.6 7.8"
@@ -29,7 +29,7 @@ function gradeModule() {
             output '</pre>'
             ;;
 
-        W7dot2|w7dot2|W07dot2)
+        *7[Dd]ot*2)
             output "<h4>CASE 1: Example from the assignment</h4>"
             output '<pre>'
             output "Inputs: 3.5 4 6.1 6 7.5"
