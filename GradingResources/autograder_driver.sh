@@ -85,7 +85,7 @@ EOHTML
     done
 
     # Find any other image files (png, jpg, jpeg, gif)
-    for img in $(find . -name \*.png -o -name \*.jpg -o -name \*.jpeg -o -name \*.gif -o -name \*.svg); do
+    for img in $(find . -name \*.png -o -name \*.jpg -o -name \*.jpeg -o -name \*.gif -o -name \*.svg | grep -v __MACOSX); do
         echo "Found image file: ${img}"
         cat <<EOHTML >> uml.html
             <h3>$(basename $img)</h3>
@@ -93,14 +93,13 @@ EOHTML
 EOHTML
     done
 
-    for pdf in $(find . -name \*.pdf | grep -v feedback); do 
+    for pdf in $(find . -name \*.pdf | grep -v feedback | grep -v __MACOSX); do 
         echo "Found pdf file: ${pdf}"
         cleanpdf=$(echo "$pdf" | sed 's/^\.\///' | sed 's/ /+/')
+        APPEND_PDF=${pdf}
         cat <<EOHTML >> uml.html
-            <p class="uml">
-            <b>${pdf}</b>: 
-            <em>Please review this file separately as it cannot be rendered in this document.</em>
-            </p>
+            <h3>$(basename $pdf)</h3>
+            The PDF file is appended to the end of this document.
 EOHTML
     done
 }
@@ -295,6 +294,10 @@ if [ "${HAS_HTML_POST_RENDER_HOOK}" == "1" ]; then
 fi
 
 wkhtmltopdf -q "${userdir}.feedback.html" "${userdir}.feedback.pdf"
+if [ "$APPEND_PDF" != "" ]; then
+    pdftk "${userdir}.feedback.pdf" "${APPEND_PDF}" cat output tmp.pdf 
+    mv tmp.pdf "${userdir}.feedback.pdf"
+fi
 
 rm "${RESULT}"
 

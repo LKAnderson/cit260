@@ -28,7 +28,7 @@ function gradeModule() {
             output '</pre>'
             output "</h4>Your Output</h4>"
             output '<pre>'
-            output "$(java -Djava.security.manager $module 2>&1)" 
+            output "$(echo "" | java -Djava.security.manager $module 2>&1)" 
             output '</pre>'
             ;;
 
@@ -45,7 +45,7 @@ function gradeModule() {
             output '</pre>'
             output "</h4>Your Output</h4>"
             output '<pre>'
-            output "$(java -Djava.security.manager $module 2>&1)"
+            output "$(echo "" | java -Djava.security.manager $module 2>&1)"
             output '</pre>'
             ;;
 
