@@ -1,32 +1,47 @@
 @startuml
 
-class Parent {
-    - parentField: String { get set }
+class Value {
+    - name: String { get set }
 
-    + Parent()
-    + Parent(value: String)
-
+    # Value()
+    # Value(name: String)
     + toString(): String
-    + polymorphicMethod(): String
 }
 
-class IntChild extends Parent {
-    - childField: int { get set }
+class StringValue  {
+    - value: String { get set }
 
-    + IntChild()
-    + IntChild(value: int, parentValue: String)
-
+    + StringValue()
+    + StringValue(name: String, value: String)
     + toString(): String
-    + polymorphicMethod(): String
 }
 
-class DoubleChild extends Parent {
-    - childField: double { get set }
+class BooleanValue {
+    - value: boolean { get set }
 
-    + DoubleChild()
-    + DoubleChild(value: double, parentValue: String)
-
+    + BooleanValue()
+    + BooleanValue(name: String, value: boolean)
     + toString(): String
-    + polymorphicMethod(): String
 }
+
+class IntValue {
+    - value: int { get set }
+
+    + IntValue()
+    + IntValue(name: String, value: int)
+    + toString(): String
+}
+
+class DoubleValue {
+    - value: double { get set }
+
+    + DoubleValue()
+    + DoubleValue(name: String, value: double)
+    + toString(): String
+}
+
+Value <|-- StringValue
+Value <|--- BooleanValue
+Value <|--- IntValue
+Value <|-- DoubleValue
 @enduml

@@ -1,76 +1,64 @@
 #!/usr/bin/env bash
 
 export RESULT_TITLE="WEEK 9 PROGRAMMING EXERCISE"
-export JAVA_MODULES=(W9dot1 w9dot1 W09dot1 MyPoint Mypoint mypoint)
+export JAVA_MODULES=(W9dot1 w9dot1 W09dot1 A9dot1 a9dot1 MyPoint Mypoint mypoint)
 export HAS_UML_DIAGRAM=1
 
 function gradeModule() {
 
     case $module in
-        MyPoint|Mypoint|mypoint)
-            echo '<!-- UML-INJECT -->' >> "${RESULT}"
+        *y*oint)
+            output '<!-- UML-INJECT -->'
             ;;
 
-        W9dot1|w9dot1|W09dot1)
-            echo "### Case 1 (3,4)" >> "${RESULT}"
-            echo "#### Expected" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            echo "A description of the program" >> "${RESULT}"
-            echo "" >> "${RESULT}"
-            echo "Using method 1, the distance between (0,0) and (3,4) is 5.00" >> "${RESULT}"
-            echo "Using method 2, the distance between (0,0) and (3,4) is 5.00" >> "${RESULT}"
-            echo "Using method 3, the distance between (0,0) and (3,4) is 5.00" >> "${RESULT}"
-            echo '```' >> "${RESULT}"
-            echo "#### Your Output" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            printf "3\n4\n" | java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
-            echo '' >> "${RESULT}"
-            echo '```' >> "${RESULT}"
+        *9*ot1)
+            output "<h4>Case 1 (3,4)</h4>"
+            output "<h5>Expected</h5>"
+            output "<pre>"
+            output "Using method 1, the distance between (0,0) and (3,4) is 5.00"
+            output "Using method 2, the distance between (0,0) and (3,4) is 5.00"
+            output "Using method 3, the distance between (0,0) and (3,4) is 5.00"
+            output "</pre>"
+            output "<h5>Your Output</h5>"
+            output "<pre>"
+            output "$(printf "3\n4\n" | java -Djava.security.manager $module 3 4 2>&1)"
+            output "</pre>"
 
-            echo "### Case 2 (10,10)" >> "${RESULT}"
-            echo "#### Expected" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            echo "A description of the program" >> "${RESULT}"
-            echo "" >> "${RESULT}"
-            echo "Using method 1, the distance between (0,0) and (10,10) is 14.14" >> "${RESULT}"
-            echo "Using method 2, the distance between (0,0) and (10,10) is 14.14" >> "${RESULT}"
-            echo "Using method 3, the distance between (0,0) and (10,10) is 14.14" >> "${RESULT}"
-            echo '```' >> "${RESULT}"
-            echo "#### Your Output" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            printf "10\n10\n" | java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
-            echo '' >> "${RESULT}"
-            echo '```' >> "${RESULT}"
+            output "<h4>Case 2 (10,10)</h4>"
+            output "<h5>Expected</h5>"
+            output "<pre>"
+            output "Using method 1, the distance between (0,0) and (10,10) is 14.14"
+            output "Using method 2, the distance between (0,0) and (10,10) is 14.14"
+            output "Using method 3, the distance between (0,0) and (10,10) is 14.14"
+            output "</pre>"
+            output "<h5>Your Output</h5>"
+            output "<pre>"
+            output "$(printf "10\n10\n" | java -Djava.security.manager $module 10 10 2>&1)"
+            output "</pre>"
 
-            echo "### Case 3 (-100,-23)" >> "${RESULT}"
-            echo "#### Expected" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            echo "A description of the program" >> "${RESULT}"
-            echo "" >> "${RESULT}"
-            echo "Using method 1, the distance between (0,0) and (-100,-23) is 102.61" >> "${RESULT}"
-            echo "Using method 2, the distance between (0,0) and (-100,-23) is 102.61" >> "${RESULT}"
-            echo "Using method 3, the distance between (0,0) and (-100,-23) is 102.61" >> "${RESULT}"
-            echo '```' >> "${RESULT}"
-            echo "#### Your Output" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            printf "%d\n%d\n" -100 -23 | java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
-            echo '' >> "${RESULT}"
-            echo '```' >> "${RESULT}"
+            output "<h4>Case 3 (-100,-23)</h4>"
+            output "<h5>Expected</h5>"
+            output "<pre>"
+            output "Using method 1, the distance between (0,0) and (-100,-23) is 102.61"
+            output "Using method 2, the distance between (0,0) and (-100,-23) is 102.61"
+            output "Using method 3, the distance between (0,0) and (-100,-23) is 102.61"
+            output "</pre>"
+            output "<h5>Your Output</h5>"
+            output "<pre>"
+            output "$(printf "%d\n%d\n" -100 -23 | java -Djava.security.manager $module -100 -23 2>&1)"
+            output "</pre>"
 
-            echo "### Case 4 (0,0)" >> "${RESULT}"
-            echo "#### Expected" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            echo "A description of the program" >> "${RESULT}"
-            echo "" >> "${RESULT}"
-            echo "Using method 1, the distance between (0,0) and (0,0) is 0.00" >> "${RESULT}"
-            echo "Using method 2, the distance between (0,0) and (0,0) is 0.00" >> "${RESULT}"
-            echo "Using method 3, the distance between (0,0) and (0,0) is 0.00" >> "${RESULT}"
-            echo '```' >> "${RESULT}"
-            echo "#### Your Output" >> "${RESULT}"
-            echo '```plaintext' >> "${RESULT}"
-            printf "0\n0\n" | java -Djava.security.manager $module >> "${RESULT}" 2>&1; 
-            echo '' >> "${RESULT}"
-            echo '```' >> "${RESULT}"
+            output "<h4>Case 4 (0,0)</h4>"
+            output "<h5>Expected</h5>"
+            output "<pre>"
+            output "Using method 1, the distance between (0,0) and (0,0) is 0.00"
+            output "Using method 2, the distance between (0,0) and (0,0) is 0.00"
+            output "Using method 3, the distance between (0,0) and (0,0) is 0.00"
+            output "</pre>"
+            output "<h5>Your Output</h5>"
+            output "<pre>"
+            output "$(printf "0\n0\n" | java -Djava.security.manager $module 0 0 2>&1)"
+            output "</pre>"
             ;;
 
     esac

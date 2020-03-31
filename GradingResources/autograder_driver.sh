@@ -257,7 +257,7 @@ let fileCount=0
 for javaFile in $(find . -type f -name "*.java" | grep -vi __macosx); do
     className=$(basename $javaFile | sed 's/\.java//')
     if [[ ! " ${JAVA_MODULES[@]} " =~ " ${className} " ]]; then
-        echo "Found $javaFile"
+        echo "Found additional $javaFile"
         if [[ $fileCount -eq 0 ]]; then
             let moduleCounter=($moduleCounter+1)
             output "<h1>$moduleCounter Additional Java Files Found</h1>"

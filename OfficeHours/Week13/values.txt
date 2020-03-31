@@ -1,0 +1,5 @@
+// file format: data-type | name | value
+string|value #1|This is my string value
+boolean|value #2|true
+int|value #3|2020
+double|value #4|95.500000

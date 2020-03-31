@@ -24,12 +24,15 @@
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>        <span style="color: #aaaaaa; font-style: italic">// Walk the array of times, set the Date</span>
 <span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>        <span style="color: #aaaaaa; font-style: italic">// and print out the results.</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">long</span> time : times) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>            date.<span style="color: #1e90ff">setTime</span>(time);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(date.<span style="color: #1e90ff">toString</span>());
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>        }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>}
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        <span style="color: #aaaaaa; font-style: italic">//for (long time : times) {</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>        <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> i=<span style="color: #009999">0</span>; i &lt; times.<span style="color: #1e90ff">length</span>; i++) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>            <span style="color: #00aaaa">long</span> time = times[i];
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>            date.<span style="color: #1e90ff">setTime</span>(time);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(date.<span style="color: #1e90ff">toString</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>}
 </code></pre></div>

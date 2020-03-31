@@ -1,0 +1,29 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">package</span> <span style="color: #00aaaa; text-decoration: underline">values</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">IntValue</span> <span style="color: #0000aa">extends</span> Value {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span>    <span style="color: #0000aa">private</span> <span style="color: #00aaaa">int</span> value;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aa00">IntValue</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span>        value = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aa00">IntValue</span>(String name, <span style="color: #00aaaa">int</span> value) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>        <span style="color: #0000aa">super</span>(name);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">value</span> = value;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">int</span> <span style="color: #00aa00">getValue</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>        <span style="color: #0000aa">return</span> value;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>    <span style="color: #0000aa">public</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">setValue</span>(<span style="color: #00aaaa">int</span> value) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        <span style="color: #0000aa">this</span>.<span style="color: #1e90ff">value</span> = value;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>    <span style="color: #888888">@Override</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>    <span style="color: #0000aa">public</span> String <span style="color: #00aa00">toString</span>() {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>        <span style="color: #0000aa">return</span> String.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;%s, value: %d (int)&quot;</span>, <span style="color: #0000aa">super</span>.<span style="color: #1e90ff">toString</span>(), value);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>}
+</code></pre></div>

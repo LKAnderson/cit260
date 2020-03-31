@@ -1,86 +1,167 @@
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.io.IOException</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.InputMismatchException</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span><span style="color: #aaaaaa; font-style: italic"> * Assignment 11.1</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W11dot1</span> {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;This program reads a list of integers from the user,\n&quot;</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>                + <span style="color: #aa5500">&quot;writes them to a file, reads them from the file and calculates\n&quot;</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>                + <span style="color: #aa5500">&quot;the average of the numbers.\n&quot;</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>();
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>        <span style="color: #0000aa">final</span> <span style="color: #00aaaa">int</span> NUM_INTEGERS = <span style="color: #009999">10</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>        <span style="color: #0000aa">final</span> String FILEPATH = <span style="color: #aa5500">&quot;data.txt&quot;</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Please enter %d integers...\n&quot;</span>, NUM_INTEGERS);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>        <span style="color: #00aaaa">int</span>[] data = readIntegers(NUM_INTEGERS);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>        <span style="color: #0000aa">try</span> {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>            Storage.<span style="color: #1e90ff">storeData</span>(FILEPATH, data);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>        } <span style="color: #0000aa">catch</span> (IOException ex) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error storing data: &quot;</span> + ex.<span style="color: #1e90ff">getMessage</span>());
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>        }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>        <span style="color: #00aaaa">int</span>[] newData = <span style="color: #0000aa">null</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>        <span style="color: #0000aa">try</span> {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>            newData = Storage.<span style="color: #1e90ff">loadData</span>(FILEPATH);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>        } <span style="color: #0000aa">catch</span> (IOException ex) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error reading data: &quot;</span> + ex.<span style="color: #1e90ff">getMessage</span>());
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>        }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>        <span style="color: #0000aa">if</span> (newData.<span style="color: #1e90ff">length</span> != data.<span style="color: #1e90ff">length</span>) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error:  Did not read the same number of items that was written.&quot;</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>        }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>        <span style="color: #00aaaa">double</span> total = <span style="color: #009999">0</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>        <span style="color: #0000aa">for</span> (<span style="color: #00aaaa">int</span> d : newData) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span>            total += d;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span>        }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The average value is: %.2f\n&quot;</span>, total / newData.<span style="color: #1e90ff">length</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span><span style="color: #aaaaaa; font-style: italic">     * Read integers from the user.</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span><span style="color: #aaaaaa; font-style: italic">     * @param numToRead</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>    <span style="color: #0000aa">private</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">int</span>[] <span style="color: #00aa00">readIntegers</span>(<span style="color: #00aaaa">int</span> numToRead) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>        <span style="color: #0000aa">var</span> data = <span style="color: #0000aa">new</span> ArrayList&lt;Integer&gt;();
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">62 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> input = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">63 </span>            <span style="color: #0000aa">while</span> (data.<span style="color: #1e90ff">size</span>() &lt; numToRead) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">64 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Enter integer #%d: &quot;</span>, data.<span style="color: #1e90ff">size</span>() + <span style="color: #009999">1</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">65 </span>                <span style="color: #0000aa">try</span> {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">66 </span>                    data.<span style="color: #1e90ff">add</span>(input.<span style="color: #1e90ff">nextInt</span>());
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">67 </span>                } <span style="color: #0000aa">catch</span> (InputMismatchException ex) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">68 </span>                    <span style="color: #0000aa">if</span> (input.<span style="color: #1e90ff">hasNext</span>() == <span style="color: #0000aa">false</span>) {
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">69 </span>                        <span style="color: #aaaaaa; font-style: italic">// input stream closed?</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">70 </span>                        <span style="color: #0000aa">break</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">71 </span>                    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">72 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">73 </span>                    System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Please enter a valid integer.&quot;</span>);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">74 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">75 </span>                    <span style="color: #aaaaaa; font-style: italic">// Skip the invalid value.</span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">76 </span>                    input.<span style="color: #1e90ff">nextLine</span>();
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">77 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">78 </span>                    <span style="color: #0000aa">continue</span>;
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">79 </span>                }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">80 </span>            }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">81 </span>        }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">82 </span>
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">83 </span>        <span style="color: #0000aa">return</span> Utils.<span style="color: #1e90ff">convertListToArray</span>(data);
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">84 </span>    }
-<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">85 </span>}
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.io.File</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  2 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.io.IOException</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  3 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.io.PrintWriter</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  4 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.nio.file.Files</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  5 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.nio.file.Paths</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  6 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  7 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Arrays</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  8 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.InputMismatchException</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">  9 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.Scanner</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 10 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 11 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 12 </span><span style="color: #aaaaaa; font-style: italic"> * Assignment 11.1</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 13 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 14 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">W11dot1</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 15 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 16 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] argv) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 17 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 18 </span>        <span style="color: #0000aa">final</span> <span style="color: #00aaaa">int</span> NUM_INTEGERS = <span style="color: #009999">10</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 19 </span>        <span style="color: #0000aa">final</span> String FILEPATH = <span style="color: #aa5500">&quot;data.txt&quot;</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 20 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 21 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Please enter %d integers...\n&quot;</span>, NUM_INTEGERS);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 22 </span>        Integer[] data = readIntegers(NUM_INTEGERS);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 23 </span>        <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 24 </span>            storeData(FILEPATH, data);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 25 </span>        } <span style="color: #0000aa">catch</span> (IOException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 26 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error storing data: &quot;</span> + ex.<span style="color: #1e90ff">getMessage</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 27 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 28 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 29 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 30 </span>        <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 31 </span>            <span style="color: #00aaaa">double</span> average = getAverageFromFileAlt(FILEPATH);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 32 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;The average value is: %.2f\n&quot;</span>, average);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 33 </span>        } <span style="color: #0000aa">catch</span> (IOException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 34 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Error reading data: &quot;</span> + ex.<span style="color: #1e90ff">getMessage</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 35 </span>            System.<span style="color: #1e90ff">exit</span>(<span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 36 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 37 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 38 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 39 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 40 </span><span style="color: #aaaaaa; font-style: italic">     * Read integers from the user.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 41 </span><span style="color: #aaaaaa; font-style: italic">     * @param numToRead</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 42 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 43 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 44 </span>    <span style="color: #0000aa">private</span> <span style="color: #0000aa">static</span> Integer[] <span style="color: #00aa00">readIntegers</span>(<span style="color: #00aaaa">int</span> numToRead) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 45 </span>        <span style="color: #0000aa">var</span> data = <span style="color: #0000aa">new</span> ArrayList&lt;Integer&gt;();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 46 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 47 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> input = <span style="color: #0000aa">new</span> Scanner(System.<span style="color: #1e90ff">in</span>)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 48 </span>            <span style="color: #0000aa">while</span> (data.<span style="color: #1e90ff">size</span>() &lt; numToRead) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 49 </span>                System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">format</span>(<span style="color: #aa5500">&quot;Enter integer #%d: &quot;</span>, data.<span style="color: #1e90ff">size</span>() + <span style="color: #009999">1</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 50 </span>                <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 51 </span>                    data.<span style="color: #1e90ff">add</span>(input.<span style="color: #1e90ff">nextInt</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 52 </span>                } <span style="color: #0000aa">catch</span> (InputMismatchException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 53 </span>                    <span style="color: #0000aa">if</span> (input.<span style="color: #1e90ff">hasNext</span>() == <span style="color: #0000aa">false</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 54 </span>                        <span style="color: #aaaaaa; font-style: italic">// input stream must be closed</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 55 </span>                        <span style="color: #0000aa">break</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 56 </span>                    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 57 </span>                    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 58 </span>                    System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Please enter a valid integer.&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 59 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 60 </span>                    <span style="color: #aaaaaa; font-style: italic">// Skip the invalid value.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 61 </span>                    input.<span style="color: #1e90ff">nextLine</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 62 </span>                }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 63 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 64 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 65 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 66 </span>        <span style="color: #0000aa">return</span> data.<span style="color: #1e90ff">toArray</span>(<span style="color: #0000aa">new</span> Integer[data.<span style="color: #1e90ff">size</span>()]);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 67 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 68 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 69 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 70 </span><span style="color: #aaaaaa; font-style: italic">     * Stores the array of data in the file specified by the filepath.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 71 </span><span style="color: #aaaaaa; font-style: italic">     * @param filepath The path to the file</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 72 </span><span style="color: #aaaaaa; font-style: italic">     * @param data The data to be stored.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 73 </span><span style="color: #aaaaaa; font-style: italic">     * @throws IOException</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 74 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 75 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">storeData</span>(String filepath, Integer[] data) <span style="color: #0000aa">throws</span> IOException {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 76 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> output = <span style="color: #0000aa">new</span> PrintWriter(filepath)) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 77 </span>            
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 78 </span>            Arrays.<span style="color: #1e90ff">stream</span>(data).<span style="color: #1e90ff">forEach</span>(i -&gt; output.<span style="color: #1e90ff">println</span>(i));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 79 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 80 </span>            <span style="color: #aaaaaa; font-style: italic">// the line of code above is equivalent to the </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 81 </span>            <span style="color: #aaaaaa; font-style: italic">// following for-each loop. Can you match the </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 82 </span>            <span style="color: #aaaaaa; font-style: italic">// parts?</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 83 </span>            <span style="color: #aaaaaa; font-style: italic">//</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 84 </span>            <span style="color: #aaaaaa; font-style: italic">// for (int i: data) {</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 85 </span>            <span style="color: #aaaaaa; font-style: italic">//     output.println(i);</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 86 </span>            <span style="color: #aaaaaa; font-style: italic">// }</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 87 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 88 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 89 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 90 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 91 </span><span style="color: #aaaaaa; font-style: italic">     * Loads the array of data from the file specified by filepath</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 92 </span><span style="color: #aaaaaa; font-style: italic">     * @param filepath The path to the file.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 93 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 94 </span><span style="color: #aaaaaa; font-style: italic">     * @throws IOException</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 95 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 96 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">getAverageFromFile</span>(String filepath) <span style="color: #0000aa">throws</span> IOException  {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 97 </span>        <span style="color: #aaaaaa; font-style: italic">// Check if file exists.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 98 </span>        <span style="color: #0000aa">var</span> file = <span style="color: #0000aa">new</span> File(filepath);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 99 </span>        <span style="color: #0000aa">if</span> (file.<span style="color: #1e90ff">exists</span>() == <span style="color: #0000aa">false</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">100 </span>            <span style="color: #0000aa">throw</span> <span style="color: #0000aa">new</span> IOException(<span style="color: #aa5500">&quot;File not found: &quot;</span> + filepath);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">101 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">102 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">103 </span>        <span style="color: #0000aa">if</span> (file.<span style="color: #1e90ff">canRead</span>() == <span style="color: #0000aa">false</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">104 </span>            <span style="color: #0000aa">throw</span> <span style="color: #0000aa">new</span> IOException(<span style="color: #aa5500">&quot;File cannot be read: &quot;</span> + filepath);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">105 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">106 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">107 </span>        <span style="color: #00aaaa">double</span> total = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">108 </span>        <span style="color: #00aaaa">int</span> count = <span style="color: #009999">0</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">109 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">110 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> input = <span style="color: #0000aa">new</span> Scanner(<span style="color: #0000aa">new</span> File(filepath))) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">111 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">112 </span>            <span style="color: #0000aa">while</span> (input.<span style="color: #1e90ff">hasNextLine</span>()) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">113 </span>                String line = input.<span style="color: #1e90ff">nextLine</span>().<span style="color: #1e90ff">trim</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">114 </span>                total += Integer.<span style="color: #1e90ff">parseInt</span>(line);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">115 </span>                count += <span style="color: #009999">1</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">116 </span>            }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">117 </span>        } <span style="color: #0000aa">catch</span> (NumberFormatException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">118 </span>            <span style="color: #0000aa">throw</span> <span style="color: #0000aa">new</span> IOException(<span style="color: #aa5500">&quot;Invalid number value in file&quot;</span>, ex);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">119 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">120 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">121 </span>        <span style="color: #0000aa">return</span> total/count;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">122 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">123 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">124 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">125 </span><span style="color: #aaaaaa; font-style: italic">     * (Alternative) Loads the array of data from the file specified by filepath.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">126 </span><span style="color: #aaaaaa; font-style: italic">     * This version of the method uses the Java Streams API to apply a </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">127 </span><span style="color: #aaaaaa; font-style: italic">     * functional style programming solution to the problem. It also </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">128 </span><span style="color: #aaaaaa; font-style: italic">     * uses the java.nio package for file operations.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">129 </span><span style="color: #aaaaaa; font-style: italic">     * </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">130 </span><span style="color: #aaaaaa; font-style: italic">     * @param filepath The path to the file.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">131 </span><span style="color: #aaaaaa; font-style: italic">     * @return</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">132 </span><span style="color: #aaaaaa; font-style: italic">     * @throws IOException</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">133 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">134 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">double</span> <span style="color: #00aa00">getAverageFromFileAlt</span>(String filepath) <span style="color: #0000aa">throws</span> IOException  {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">135 </span>        <span style="color: #aaaaaa; font-style: italic">// Get a Path object, which knows how to check all sorts</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">136 </span>        <span style="color: #aaaaaa; font-style: italic">// of things about files.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">137 </span>        <span style="color: #0000aa">var</span> path = Paths.<span style="color: #1e90ff">get</span>(filepath);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">138 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">139 </span>        <span style="color: #aaaaaa; font-style: italic">// Check if file exists.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">140 </span>        <span style="color: #0000aa">if</span> (Files.<span style="color: #1e90ff">exists</span>(path) == <span style="color: #0000aa">false</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">141 </span>            <span style="color: #0000aa">throw</span> <span style="color: #0000aa">new</span> IOException(<span style="color: #aa5500">&quot;File not found: &quot;</span> + filepath);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">142 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">143 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">144 </span>        <span style="color: #aaaaaa; font-style: italic">// Check if our program is able to read the file.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">145 </span>        <span style="color: #0000aa">if</span> (Files.<span style="color: #1e90ff">isReadable</span>(path) == <span style="color: #0000aa">false</span>) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">146 </span>            <span style="color: #0000aa">throw</span> <span style="color: #0000aa">new</span> IOException(<span style="color: #aa5500">&quot;File cannot be read: &quot;</span> + filepath);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">147 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">148 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">149 </span>        <span style="color: #aaaaaa; font-style: italic">// Get a stream (a special kind of list processor) to</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">150 </span>        <span style="color: #aaaaaa; font-style: italic">// process the lines of the file, one by one.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">151 </span>        <span style="color: #0000aa">try</span> (<span style="color: #0000aa">var</span> stream = Files.<span style="color: #1e90ff">lines</span>(Paths.<span style="color: #1e90ff">get</span>(filepath))) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">152 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">153 </span>            <span style="color: #aaaaaa; font-style: italic">// process each line, convert it to an integer using</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">154 </span>            <span style="color: #aaaaaa; font-style: italic">// the Integer.parseInt() method, collect all of the</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">155 </span>            <span style="color: #aaaaaa; font-style: italic">// integers into an average, and if there is an error,</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">156 </span>            <span style="color: #aaaaaa; font-style: italic">// throw a new exception.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">157 </span>            <span style="color: #0000aa">return</span> stream
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">158 </span>                .<span style="color: #1e90ff">mapToInt</span>(Integer::parseInt)
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">159 </span>                .<span style="color: #1e90ff">average</span>()
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">160 </span>                .<span style="color: #1e90ff">orElseThrow</span>(() -&gt; <span style="color: #0000aa">new</span> IOException(<span style="color: #aa5500">&quot;Could not get average.&quot;</span>));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">161 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">162 </span>        } <span style="color: #0000aa">catch</span> (NumberFormatException ex) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">163 </span>            <span style="color: #0000aa">throw</span> <span style="color: #0000aa">new</span> IOException(<span style="color: #aa5500">&quot;Invalid number value in file&quot;</span>, ex);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">164 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">165 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">166 </span>}
 </code></pre></div>

@@ -1,3 +1,0 @@
-parent|first value
-int|first child value|1
-double|second child value|2.000000

@@ -1,6 +1,12 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
+import values.BooleanValue;
+import values.DoubleValue;
+import values.IntValue;
+import values.StringValue;
+import values.Value;
+
 /**
  * Demonstrate writing files and reading them back in.
  */
@@ -9,51 +15,50 @@ public class Demo {
     public static void main(String[] args) {
 
         // Set up our data.
-        ArrayList<Parent> objects = new ArrayList<>();
-        objects.add(new Parent("first value"));
-        objects.add(new IntChild( 1, "first child value"));
-        objects.add(new DoubleChild( 2.0, "second child value"));
+        var values = new ArrayList<Value>();
+        values.add(new StringValue("value #1", "This is my string value"));
+        values.add(new BooleanValue("value #2", true));
+        values.add(new IntValue("value #3", 2020));
+        values.add(new DoubleValue("value #4", 95.5));
 
-        // Print it out.
-        System.out.println("Here's the list...\n");
-        printObjects(objects);
+        printValues("Original Values", values);
 
         // Save the data to a file.
         try {
-            Storage.storeData("data.txt", objects);
+            Storage.storeData("values.txt", values);
         } catch (IOException exception) {
             System.err.println("Got an exception writing the data!");
-            exception.printStackTrace(System.err);
+            System.err.println(exception);
             return;
         }
 
         // Reload the data and print it out again.
         try {
-            ArrayList<Parent> reloadedObjects = Storage.loadData("data.txt");
-            System.out.println("\n\nHere's the new list...\n");
-            printObjects(reloadedObjects);
+            ArrayList<Value> reloadedValues = Storage.loadData("values.txt");
+            printValues("Reloaded Values", reloadedValues);
         } catch (IOException exception) {
             System.err.println("Got an exception reading the data!");
-            exception.printStackTrace(System.err);
-            return;
-        } catch (Exception exception) {
-            System.err.println("Got an unexpected exception!");
-            exception.printStackTrace(System.err);
-            return;
-        }
+            System.err.println(exception);
+        } 
     }
+
 
     /**
-     * Print the list of objects to the screen.
-     * @param objects
+     * Print the list of values under the given title
      */
-    private static void printObjects(ArrayList<Parent> objects) {
-        if (objects == null) {
-            throw new IllegalArgumentException("objects must not be null");
+    private static void printValues(String title, ArrayList<Value> values) {
+        System.out.println(title);
+        
+        if (values == null || values.isEmpty()) {
+            System.out.println("Nothing to print");
+            return;
         }
 
-        for (Parent obj: objects) {
-            System.out.format("%s - %s\n", obj.polymorphicMethod(), obj.toString());
+        for (var value: values) {
+            System.out.println(value.toString());
         }
+
+        System.out.println();
     }
+
 }

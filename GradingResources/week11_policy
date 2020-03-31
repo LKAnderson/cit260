@@ -2,5 +2,9 @@ grant {
   permission java.io.FilePermission 
         "data.txt", "read,write";
   permission java.io.FilePermission 
+        "Data.txt", "read,write";
+  permission java.io.FilePermission  
+        "integer.txt", "read,write";
+  permission java.io.FilePermission 
         "strings.txt", "read,write";
 };

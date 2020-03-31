@@ -1,0 +1,65 @@
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><code><span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 1 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.io.IOException</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 2 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">java.util.ArrayList</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 3 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 4 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">values.BooleanValue</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 5 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">values.DoubleValue</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 6 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">values.IntValue</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 7 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">values.StringValue</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 8 </span><span style="color: #0000aa">import</span> <span style="color: #00aaaa; text-decoration: underline">values.Value</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px"> 9 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">10 </span><span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">11 </span><span style="color: #aaaaaa; font-style: italic"> * Demonstrate writing files and reading them back in.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">12 </span><span style="color: #aaaaaa; font-style: italic"> */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">13 </span><span style="color: #0000aa">public</span> <span style="color: #0000aa">class</span> <span style="color: #00aa00; text-decoration: underline">Demo</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">14 </span>    
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">15 </span>    <span style="color: #0000aa">public</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">main</span>(String[] args) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">16 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">17 </span>        <span style="color: #aaaaaa; font-style: italic">// Set up our data.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">18 </span>        <span style="color: #0000aa">var</span> values = <span style="color: #0000aa">new</span> ArrayList&lt;Value&gt;();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">19 </span>        values.<span style="color: #1e90ff">add</span>(<span style="color: #0000aa">new</span> StringValue(<span style="color: #aa5500">&quot;value #1&quot;</span>, <span style="color: #aa5500">&quot;This is my string value&quot;</span>));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">20 </span>        values.<span style="color: #1e90ff">add</span>(<span style="color: #0000aa">new</span> BooleanValue(<span style="color: #aa5500">&quot;value #2&quot;</span>, <span style="color: #0000aa">true</span>));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">21 </span>        values.<span style="color: #1e90ff">add</span>(<span style="color: #0000aa">new</span> IntValue(<span style="color: #aa5500">&quot;value #3&quot;</span>, <span style="color: #009999">2020</span>));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">22 </span>        values.<span style="color: #1e90ff">add</span>(<span style="color: #0000aa">new</span> DoubleValue(<span style="color: #aa5500">&quot;value #4&quot;</span>, <span style="color: #009999">95.5</span>));
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">23 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">24 </span>        printValues(<span style="color: #aa5500">&quot;Original Values&quot;</span>, values);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">25 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">26 </span>        <span style="color: #aaaaaa; font-style: italic">// Save the data to a file.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">27 </span>        <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">28 </span>            Storage.<span style="color: #1e90ff">storeData</span>(<span style="color: #aa5500">&quot;values.txt&quot;</span>, values);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">29 </span>        } <span style="color: #0000aa">catch</span> (IOException exception) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">30 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Got an exception writing the data!&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">31 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(exception);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">32 </span>            <span style="color: #0000aa">return</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">33 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">34 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">35 </span>        <span style="color: #aaaaaa; font-style: italic">// Reload the data and print it out again.</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">36 </span>        <span style="color: #0000aa">try</span> {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">37 </span>            ArrayList&lt;Value&gt; reloadedValues = Storage.<span style="color: #1e90ff">loadData</span>(<span style="color: #aa5500">&quot;values.txt&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">38 </span>            printValues(<span style="color: #aa5500">&quot;Reloaded Values&quot;</span>, reloadedValues);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">39 </span>        } <span style="color: #0000aa">catch</span> (IOException exception) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">40 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Got an exception reading the data!&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">41 </span>            System.<span style="color: #1e90ff">err</span>.<span style="color: #1e90ff">println</span>(exception);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">42 </span>        } 
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">43 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">44 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">45 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">46 </span>    <span style="color: #aaaaaa; font-style: italic">/**</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">47 </span><span style="color: #aaaaaa; font-style: italic">     * Print the list of values under the given title</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">48 </span><span style="color: #aaaaaa; font-style: italic">     */</span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">49 </span>    <span style="color: #0000aa">private</span> <span style="color: #0000aa">static</span> <span style="color: #00aaaa">void</span> <span style="color: #00aa00">printValues</span>(String title, ArrayList&lt;Value&gt; values) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">50 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(title);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">51 </span>        
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">52 </span>        <span style="color: #0000aa">if</span> (values == <span style="color: #0000aa">null</span> || values.<span style="color: #1e90ff">isEmpty</span>()) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">53 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(<span style="color: #aa5500">&quot;Nothing to print&quot;</span>);
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">54 </span>            <span style="color: #0000aa">return</span>;
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">55 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">56 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">57 </span>        <span style="color: #0000aa">for</span> (<span style="color: #0000aa">var</span> value: values) {
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">58 </span>            System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>(value.<span style="color: #1e90ff">toString</span>());
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">59 </span>        }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">60 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">61 </span>        System.<span style="color: #1e90ff">out</span>.<span style="color: #1e90ff">println</span>();
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">62 </span>    }
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">63 </span>
+<span style="background-color: #f0f0f0; padding: 0 5px 0 5px">64 </span>}
+</code></pre></div>

@@ -4,6 +4,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import values.BooleanValue;
+import values.DoubleValue;
+import values.IntValue;
+import values.StringValue;
+import values.Value;
+
 /**
  * Provide methods to store and load data from files.
  */
@@ -15,24 +21,25 @@ public class Storage {
      * @param data The data to be stored
      * @throws IOException
      */
-    public static void storeData(String filename, ArrayList<Parent> data) throws IOException {
-        // File format will be:
-        // One object per line of the file
-        // type parentField child-field
-        try (PrintWriter out = new PrintWriter(filename)) {
-            for (Parent obj: data) {
-                if (obj instanceof IntChild) {
-                    IntChild i = (IntChild) obj;
-                    out.format("%s|%s|%d\n", "int", obj.getParentField(), i.getChildField());
-                } else if (obj instanceof DoubleChild) {
-                    DoubleChild d = (DoubleChild) obj;
-                    out.format("%s|%s|%f\n", "double", obj.getParentField(), d.getChildField());
-                } else {
-                    out.format("%s|%s\n", "parent", obj.getParentField());
+    public static void storeData(String filename, ArrayList<Value> data) throws IOException {
+        // Text format, one line per object, delimited by |
+        try (var writer = new PrintWriter(filename)){
+            writer.println("// file format: data-type | name | value");
+            for (var value: data) {
+                if (value instanceof StringValue) {
+                    var stringValue = (StringValue)value;
+                    writer.format("string|%s|%s\n", stringValue.getName(), stringValue.getValue());
+                } else if (value instanceof BooleanValue) {
+                    var boolValue = (BooleanValue)value;
+                    writer.format("boolean|%s|%b\n", boolValue.getName(), boolValue.getValue());
+                } else if (value instanceof IntValue) {
+                    var intValue = (IntValue)value;
+                    writer.format("int|%s|%d\n", intValue.getName(), intValue.getValue());
+                } else if (value instanceof DoubleValue) {
+                    var doubleValue = (DoubleValue)value;
+                    writer.format("double|%s|%f\n", doubleValue.getName(), doubleValue.getValue());
                 }
             }
-        } catch(IOException exception) {
-            throw new IOException("Couldn't write file", exception);
         }
     }
 
@@ -42,52 +49,61 @@ public class Storage {
      * @return The list of objects loaded from the file.
      * @throws IOException
      */
-    public static ArrayList<Parent> loadData(String filename) throws IOException {
-        ArrayList<Parent> newData = new ArrayList<>();
+    public static ArrayList<Value> loadData(String filename) throws IOException {
+        var data = new ArrayList<Value>();
 
-        // Remember to check if the file exists.
+        try (var input = new Scanner(new File(filename))) {
+            int lineNumber = 0;
 
-        int lineNumber = 0;
-
-        try (Scanner input = new Scanner(new File(filename))) {
-            while(input.hasNextLine()) {
-                String line = input.nextLine().trim();
+            while (input.hasNextLine()) {
+                var line = input.nextLine();
                 lineNumber += 1;
 
-                String[] fields = line.split("\\|");
-                if (fields[0].equals("parent")) {
-                    Parent p = new Parent();
-                    if (fields.length > 1) {
-                        p.setParentField(fields[1]);
-                    }
-                    newData.add(p);
-
-                } else if (fields[0].equals("int")) {
-                    // int|first child value|1
-                    if (fields.length < 3) {
-                        throw new IOException("Invalid record format on line " + lineNumber);
-                    }
-                    IntChild i = new IntChild();
-                    i.setParentField(fields[1]);
-                    i.setChildField(Integer.parseInt(fields[2]));
-                    newData.add(i);
-
-                } else if (fields[0].equals("double")) {
-                    if (fields.length < 3) {
-                        throw new IOException("Invalid record format on line " + lineNumber);
-                    }
-                    DoubleChild d = new DoubleChild();
-                    d.setParentField(fields[1]);
-                    d.setChildField(Double.parseDouble(fields[2]));
-                    newData.add(d);
-                } else {
-                    throw new IOException(String.format("Invalid record type '%s' on line %d",fields[0], lineNumber));
+                if (line.trim().startsWith("//")) {
+                    continue;
                 }
-            }
-        } catch (NumberFormatException exception) {
-            throw new IOException("Invalid number format on line " + lineNumber);
+
+                var fields = line.trim().split("\\|");
+                if (fields.length != 3) {
+                    throw new IOException("Invalid file format on line " + lineNumber);
+                }
+
+                try {
+                    switch(fields[0]) {
+                        case "string":
+                            var stringValue = new StringValue();
+                            stringValue.setName(fields[1]);
+                            stringValue.setValue(fields[2]);
+                            data.add(stringValue);
+                            break;
+                        
+                        case "boolean":
+                            var boolValue = new BooleanValue();
+                            boolValue.setName(fields[1]);
+                            boolValue.setValue(Boolean.parseBoolean(fields[2]));
+                            data.add(boolValue);
+                            break;
+
+                        case "int":
+                            var intValue = new IntValue();
+                            intValue.setName(fields[1]);
+                            intValue.setValue(Integer.parseInt(fields[2]));
+                            data.add(intValue);
+                            break;
+
+                        case "double":
+                            var doubleValue = new DoubleValue();
+                            doubleValue.setName(fields[1]);
+                            doubleValue.setValue(Double.parseDouble(fields[2]));
+                            data.add(doubleValue);
+                            break;
+                    }
+                } catch(NumberFormatException exception) {
+                    throw new IOException("Invalid file format on line " + lineNumber, exception);
+                }
+            }    
         }
 
-        return newData;
+        return data;
     }
 }

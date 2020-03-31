@@ -24,11 +24,14 @@ public class W8dot2 {
 
         // Walk the array of times, set the Date
         // and print out the results.
-        for (long time : times) {
+        //for (long time : times) {
+        for (int i=0; i < times.length; i++) {
+            long time = times[i];
+        
             date.setTime(time);
             System.out.println(date.toString());
         }
 
-    }
 
+    }
 }

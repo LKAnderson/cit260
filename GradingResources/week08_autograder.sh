@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 export RESULT_TITLE="WEEK 8 PROGRAMMING EXERCISES"
-export JAVA_MODULES=(W8dot1 w8dot1 W08dot1 Rectangle W8dot2 w8dot2 W08dot2)
+export JAVA_MODULES=(W8dot1 w8dot1 W08dot1 A8dot1 Rectangle W8dot2 w8dot2 W08dot2 A8dot2)
 export HAS_UML_DIAGRAM=1
 
 function gradeModule() {
 
     case $module in
         *ectangle)
-            echo '<!-- UML-INJECT -->' >> "${RESULT}"
+            output "This file does not need to be run directly."
+            output '<!-- UML-INJECT -->'
             ;;
 
         *8dot*1)
