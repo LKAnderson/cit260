@@ -196,6 +196,8 @@ find . -name \*.class -exec rm {} \;
 
 let moduleCounter=0
 
+declare -a filesProcessed
+
 for module in ${JAVA_MODULES[*]}; do 
 
     export module
@@ -242,6 +244,7 @@ for module in ${JAVA_MODULES[*]}; do
         # Add source code to result file
         output "<h3>${moduleCounter}.3 Source Listing</h3>"
         renderCode "${javaPath}"
+        filesProcessed+=${javaPath}
     fi
 done
 
@@ -256,7 +259,7 @@ fi
 let fileCount=0
 for javaFile in $(find . -type f -name "*.java" | grep -vi __macosx); do
     className=$(basename $javaFile | sed 's/\.java//')
-    if [[ ! " ${JAVA_MODULES[@]} " =~ " ${className} " ]]; then
+    if [[ ! "${filesProcessed[@]}" =~ "${javaFile}" ]]; then
         echo "Found additional $javaFile"
         if [[ $fileCount -eq 0 ]]; then
             let moduleCounter=($moduleCounter+1)

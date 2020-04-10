@@ -14,7 +14,7 @@ function onUserDir() {
 function onFinished() {
     UMLS=$(find . -type f \( -name \*.puml -o -name \*.plantuml -o -name \*.pu \))
     if [ ${#UMLS[@]} -ne 0 ]; then
-        echo "## UML Files" >> "${RESULT}"
+        echo "<h2>UML Files</h2>" >> "${RESULT}"
         echo '<!-- UML-INJECT -->' >> "${RESULT}"
     fi
 }
